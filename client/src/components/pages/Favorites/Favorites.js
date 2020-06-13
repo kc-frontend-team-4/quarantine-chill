@@ -9,8 +9,6 @@ function Favorites() {
       <p>
         Placeholder Favorites
         </p>
-      <Link to="/blog/">Blog</Link>
-      <Link to="/write/">Write article</Link>
     </div>
   );
 }
