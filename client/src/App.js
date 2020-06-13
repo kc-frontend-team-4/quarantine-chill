@@ -71,13 +71,15 @@ function App() {
         <option value="3">3</option>
         <option value="4">4</option>
       </select>
-      <br />
+
       <label for="Food Allergies">Food Allergies</label>
       <select name="Food Allergies" id="Food Allergies">
         <option value="Gluten Free">Gluten Free</option>
         <option value="Ketogenic">Ketogenic</option>
         <option value="Vegetarian">Vegetarian</option>
       </select>
+      <br />
+      <button>Pair Me</button>
     </div>
   );
 }
