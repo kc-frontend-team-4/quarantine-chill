@@ -1,18 +1,27 @@
-.LandingPage {
-  text-align: center;
+.Blog {
 }
 
-.LandingPage-header {
-  background-color: #282c34;
-  min-height: 70vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.Blog-article {
+  background: white;
+  padding: 10px;
+  margin: 10px;
+  position: relative;
 }
 
-.LandingPage a {
-  color: #61dafb;
+.Blog-articleActions > div {
+  display: inline-block;
+  position: absolute;
+  top: 10px;
+  cursor: pointer;
+  user-select: none;
 }
+
+.Blog-articleActions > div:first-child {
+  right: 10px;
+}
+
+.Blog-articleActions > div:last-child {
+  left: 10px;
+}
+
+
