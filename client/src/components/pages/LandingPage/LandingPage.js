@@ -1,90 +1,200 @@
 import React, { useState, useEffect } from 'react';
 import './LandingPage.css';
 
-function Blog() {
-  const [blogPosts, setBlogPosts] = useState([]);
-
-  function fetchPosts() {
-    console.log('Fetching data from API');
-    fetch('/api/mongodb/blogposts/')
-      .then(response => response.json())
-      .then(data => {
-        console.log('Got data back', data);
-        setBlogPosts(data);
-      });
-  }
-
-  function deleteArticle(documentId) {
-    console.log('Sending DELETE for', documentId);
-    // Do the DELETE, using "?_id=" to specify which document we are deleting
-    fetch('/api/mongodb/blogposts/?_id=' + documentId, {
-      method: 'DELETE',
-    })
-      .then(response => response.json())
-      .then(data => {
-        console.log('Got this back', data);
-
-        // Call method to refresh data
-        fetchPosts();
-      });
-  }
-
-  function voteArticle(article) {
-    let newVoteCount = article.voteCount;
-
-    // Increase the vote count 
-    if (!newVoteCount) {
-      newVoteCount = 1;
-    } else {
-      newVoteCount++;
+function LandingPage() {
+  // https://spoonacular.com/food-api/docs#Meal-Types
+  let meal_types = [
+    'Main Course',
+    'Side Dish',
+    'Dessert',
+    'Appetizer',
+    'Salad',
+    'Bread',
+    'Breakfast',
+    'Soup',
+    'Beverage',
+    // 'Sauce',
+    // 'Marinade',
+    'Fingerfood',
+    'Snack',
+    'Drink'
+  ];
+  // https://spoonacular.com/food-api/docs#Intolerances
+  let food_allergies = [
+    'Dairy',
+    'Egg',
+    'Gluten',
+    'Grain',
+    'Peanut',
+    'Seafood',
+    'Sesame',
+    'Shellfish',
+    'Soy',
+    'Sulfite',
+    'Tree Nut',
+    'Wheat'
+  ];
+  // https://spoonacular.com/food-api/docs#Cuisines
+  let cuisines = [
+    'African',
+    'American',
+    'British',
+    'Cajun',
+    'Caribbean',
+    'Chinese',
+    'Eastern European',
+    'European',
+    'French',
+    'German',
+    'Greek',
+    'Indian',
+    'Irish',
+    'Italian',
+    'Japanese',
+    'Jewish',
+    'Korean',
+    'Latin American',
+    'Mediterranean',
+    'Mexican',
+    'Middle Eastern',
+    'Nordic',
+    'Southern',
+    'Spanish',
+    'Thai',
+    'Vietnamese'
+  ];
+  // from https://api.themoviedb.org/3/genre/movie/list?api_key=0402eec8d6da4df59f8077842992a247
+  const genres = [
+    {
+      "id": 28,
+      "name": "Action"
+    },
+    {
+      "id": 12,
+      "name": "Adventure"
+    },
+    {
+      "id": 16,
+      "name": "Animation"
+    },
+    {
+      "id": 35,
+      "name": "Comedy"
+    },
+    {
+      "id": 80,
+      "name": "Crime"
+    },
+    {
+      "id": 99,
+      "name": "Documentary"
+    },
+    {
+      "id": 18,
+      "name": "Drama"
+    },
+    {
+      "id": 10751,
+      "name": "Family"
+    },
+    {
+      "id": 14,
+      "name": "Fantasy"
+    },
+    {
+      "id": 36,
+      "name": "History"
+    },
+    {
+      "id": 27,
+      "name": "Horror"
+    },
+    {
+      "id": 10402,
+      "name": "Music"
+    },
+    {
+      "id": 9648,
+      "name": "Mystery"
+    },
+    {
+      "id": 10749,
+      "name": "Romance"
+    },
+    {
+      "id": 878,
+      "name": "Science Fiction"
+    },
+    {
+      "id": 10770,
+      "name": "TV Movie"
+    },
+    {
+      "id": 53,
+      "name": "Thriller"
+    },
+    {
+      "id": 10752,
+      "name": "War"
+    },
+    {
+      "id": 37,
+      "name": "Western"
     }
-
-    const formData = {
-      voteCount: newVoteCount,
-    };
-
-    // Do the PUT, using "?_id=" to specify which document we are affecting
-    const documentId = article._id;
-    fetch('/api/mongodb/blogposts/?_id=' + documentId, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formData),
-    })
-      .then(response => response.json())
-      .then(data => {
-        console.log('Got this back', data);
-
-        // Call method to refresh data
-        fetchPosts();
-      });
-  }
-
-  // Invoke fetchPosts on initial load
-  useEffect(fetchPosts, []);
-
+  ]
   return (
-    <div className="Blog">
-      <h1>Blog</h1>
-      {
-        blogPosts.map((post, index) => (
-          <div className="Blog-article" key={post._id}>
-
-            <h1>{post.title}</h1>
-            <p>{post.text}</p>
-
-            <div className="Blog-articleActions">
-              <div onClick={() => deleteArticle(post._id)}>
-                <span alt="delete this">🗑</span>
-              </div>
-              <div onClick={() => voteArticle(post)}>
-                <span alt="upvote this">⬆ {post.voteCount}</span>
-              </div>
-            </div>
-          </div>
-        ))
-      }
+    <div>
+      <div className="movie">
+        <div className="movie-img"></div>
+        {/* movie section */}
+        <label for="Genre">Genre</label>
+        <select name="Genre" id="Genre">
+          {genres.map((element, index) => (
+            <option value={element.name} >{element.name}</option>
+          ))}
+        </select>
+        <br />
+        <label for="Rating">Rating</label>
+        <select name="Rating" id="Rating">
+          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((element) => (
+            <option value={element} >{element}</option>
+          ))}
+        </select>
+        <br />
+        <label for="Length">Length</label>
+        <select name="Length" id="Length">
+          {['Short', 'Average', 'Long'].map((element) => (
+            <option value={element} >{element}</option>
+          ))}
+        </select>
+      </div>
+      {/* food section */}
+      <div className="food">
+        <div className="food-img"></div>
+        <label for="Cuisine Type">Cuisine Type</label>
+        <select name="Cuisine Type" id="Cuisine Type">
+          {cuisines.map((element) => (
+            <option value={element} >{element}</option>
+          ))}
+        </select>
+        <br />
+        <label for="Meal Type">Meal Type</label>
+        <select name="Meal Type" id="Meal Type">
+          {meal_types.map((element) => (
+            <option value={element} >{element}</option>
+          ))}
+        </select>
+        <br />
+        <label for="Food Allergies">Food Allergies</label>
+        <select name="Food Allergies" id="Food Allergies">
+          {food_allergies.map((element) => (
+            <option value={element} >{element}</option>
+          ))}
+        </select>
+      </div>
+      <br />
+      <button>Pair Me</button>
     </div>
-  );
+  )
 }
-
-export default Blog;
+export default LandingPage;

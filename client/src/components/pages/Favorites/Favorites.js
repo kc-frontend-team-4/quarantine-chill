@@ -1,14 +1,24 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
 
 import './Favorites.css';
 
 function Favorites() {
   return (
     <div >
-      <p>
-        Placeholder Favorites
-        </p>
+      <p>Favorites</p>
+      <p>★
+        <div className="food-img">Food</div>
+        <div className="movie-img">Movie</div>
+      </p>
+      <p>★
+        <div className="food-img">Food</div>
+        <div className="movie-img">Movie</div>
+      </p>
+      <p>★
+        <div className="food-img">Food</div>
+        <div className="movie-img">Movie</div>
+      </p>
+
     </div>
   );
 }

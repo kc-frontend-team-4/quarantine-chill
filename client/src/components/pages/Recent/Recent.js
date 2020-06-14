@@ -1,46 +1,25 @@
-import React, { useState } from 'react';
+import React from 'react';
+
 import './Recent.css';
 
-function WriteArticle(props) {
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
-
-  function onChangeContent(ev) {
-    setContent(ev.target.value);
-  }
-
-  function onChangeTitle(ev) {
-    setTitle(ev.target.value);
-  }
-
-  function submit() {
-    const formData = {
-      title: title,
-      text: content,
-    };
-    // Can also be written:
-    // const formData = {title, text: content};
-
-    fetch('/api/mongodb/blogposts/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formData),
-    })
-      .then(response => response.json())
-      .then(data => {
-        console.log('Got this back', data);
-
-        // Redirect to blog
-        props.history.push('/blog/');
-      });
-  }
-
+function Recent() {
   return (
-    <div className="WriteArticle">
-      <p>Placeholder Recent</p>
-      <br />
+    <div >
+      <p>Recent</p>
+      <p>★
+        <div className="food-img">Food</div>
+        <div className="movie-img">Movie</div>
+      </p>
+      <p>★
+        <div className="food-img">Food</div>
+        <div className="movie-img">Movie</div>
+      </p>
+      <p>★
+        <div className="food-img">Food</div>
+        <div className="movie-img">Movie</div>
+      </p>
     </div>
   );
 }
 
-export default WriteArticle;
+export default Recent;
