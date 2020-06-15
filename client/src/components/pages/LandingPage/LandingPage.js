@@ -3,8 +3,11 @@ import './LandingPage.css';
 import * as arrays from './arrays.js';
 import Select from '../../Select.js';
 
-function LandingPage() {
+function LandingPage(props) {
 
+  const imageSize = 'w200'
+  //width in px accept values of w200,w300,w400,w500,original
+  //poster proportion "1x width:1.5x height"
   return (
     <div>
       <div className="movie">
@@ -22,7 +25,10 @@ function LandingPage() {
         <Select filter='Food Allergies' array={arrays.food_allergies} />
       </div>
       <br />
-      <button>Pair Me</button>
+      <button onClick={props.myProp}>Pair Me</button>
+      <div>{props.movies[1].title}</div>
+
+      <img src={`https://image.tmdb.org/t/p/${imageSize}${props.movies[1].poster_path}`}></img>
     </div>
   )
 }
