@@ -1,12 +1,12 @@
 .movie-img {
-width:100px;
-height: 100px;
+width:200px;
+height: 350px;
 background-color: red;
 }
 
 .food-img {
-    width:100px;
-    height: 100px;
+    width:200px;
+    height: 350px;
     background-color: blue;
 }
     

@@ -4,10 +4,9 @@ import * as arrays from './arrays.js';
 import Select from '../../Select.js';
 
 function LandingPage(props) {
-
   const imageSize = 'w200'
   //width in px accept values of w200,w300,w400,w500,original
-  //poster proportion "1x width:1.5x height"
+  //poster proportion generally "1x width:1.5x height"
   return (
     <div>
       {/* movie section */}
@@ -19,8 +18,8 @@ function LandingPage(props) {
           </div>
           :
           <div className="movie-img"></div>}
-        <Select filter='Genre' array={arrays.genres} selectedOptions={props.selectedOptions} />
-        <Select filter='Rating' array={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]} selectedOptions={props.selectedOptions} />
+        <Select filter='Genre' array={arrays.genres} selectedOptions={props.selectedOptions} movies={props.movie} />
+        <Select filter='Rating' array={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]} selectedOptions={props.selectedOptions} onChangee={props.onChangee} />
         <Select filter='Length' array={['Short', 'Average', 'Long']} selectedOptions={props.selectedOptions} />
       </div>
       {/* food section */}
