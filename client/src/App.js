@@ -7,22 +7,43 @@ import Favorites from './components/pages/Favorites/Favorites.js';
 import Recent from './components/pages/Recent/Recent.js';
 import Results from './components/pages/Results/Results.js';
 function App() {
-  // useEffect(onPairMeClick);
-  // todo: generate movies array
-  const [randomedMovie, setRandomedMovie] = useState([])
+
+
+  const [randomedMovie, setRandomedMovie] = useState({
+    "id": 581859,
+    "video": false,
+    "vote_count": 77,
+    "vote_average": 7.2,
+    "title": "Da 5 Bloods",
+    "release_date": "2020-06-12",
+    "original_language": "en",
+    "original_title": "Da 5 Bloods",
+    "genre_ids": [
+      18,
+      10752
+    ],
+    "backdrop_path": "/Aq5Zhj9iaTF6BEKNk05dlUxeHKa.jpg",
+    "adult": false,
+    "overview": "Four African-American Vietnam veterans return to Vietnam. They are in search of the remains of their fallen squad leader and the promise of buried treasure. These heroes battle forces of humanity and nature while confronted by the lasting ravages of the immorality of the Vietnam War.",
+    "poster_path": "/yx4cp1ljJMDSFeEex0Zjv45b55E.jpg",
+    "popularity": 113.292,
+    "media_type": "movie"
+  })
   const [randomedRecipe, setRandomedRecipe] = useState([])
+
+
+  // helper variable to keep track of selected options
   const [filter, setFilter] = useState({
     Genre: null,
-    Rating: null,
+    Rating: 6,
     Length: null,
     'Cuisine Type': null,
     'Meal Type': null,
     'Food Allergies': null
   })
-  // helper variable to keep track of selected options
   let selectedOptions = {
     Genre: null,
-    Rating: null,
+    Rating: 6,
     Length: null,
     'Cuisine Type': null,
     'Meal Type': null,
@@ -451,6 +472,24 @@ function App() {
   const movieApiKey = 'api_key=0402eec8d6da4df59f8077842992a247';
   const foodApiKey = 'apiKey=73bb985ab78b4740a1444004dfd60217';
 
+
+  function fetchMovie() {
+    let listOfMovies = [];
+    const movieApiKey = 'api_key=0402eec8d6da4df59f8077842992a247';
+    for (let i = 3; i < 15; i++) {
+      fetch(`https://api.themoviedb.org/3/trending/all/day?${movieApiKey}&page=${i}`)
+        .then(response => response.json())
+        .then(data => {
+          // building array of filtered movies 
+          for (const element of (data.results.filter(item => item.genre_ids.includes(12))
+            .filter(item => item.vote_average > selectedOptions.Rating))) {
+            listOfMovies.push(element)
+          }
+        }
+        )
+    }
+    return listOfMovies;
+  }
   // fetchRecipes()
   function fetchRecipes() {
     fetch(`https://api.spoonacular.com/recipes/random?${foodApiKey}&cuisine=&intolerances=&type=&diet=`)
@@ -460,35 +499,19 @@ function App() {
       }
       )
   }
-  //todo: fetch movies array from api 
-  // fetchMovies()
-  // let listOfMovies = []
-  // function fetchMovies() {
-  //   for (let i = 3; i < 5; i++) {
+  function onChangee(event) {
+    // todo: update state with the selected options
+    // console.log(props.filter, event.target.value)
+    console.log('kevin')
+  }
 
-  //     fetch(`https://api.themoviedb.org/3/trending/all/day?${movieApiKey}&page=${i}`)
-  //       .then(response => response.json())
-  //       .then(data => {
-  //         // console.log(data.results.filter(item => item.genre_ids.includes(12))
-  //         //   .filter(item => item.vote_average > 6)
-  //         // )
-  //         // building array of filtered movies 
-  //         listOfMovies = [...listOfMovies, ...data.results.filter(item => item.genre_ids.includes(12))
-  //           .filter(item => item.vote_average > 6)]
-  //       }
-  //       )
-  //   }
-  // }
+  //todo: fetch movies array from api 
   // some movies have name but not title
   function onPairMeClick() {
-    setFilter(selectedOptions)
-    let filteredMovies = movies.filter(item => item.genre_ids.includes(18))
-      .filter(item => item.vote_average > filter.Rating)
-
-    setRandomedMovie(filteredMovies[Math.floor((Math.random() * filteredMovies.length))])
-    console.log(filter)
-    // console.log('these are my selections', selectedOptions);
-    // console.log(listOfMovies);
+    // get filtered movies
+    // setMovies(fetchMovie(selectedOptions.Rating))
+    let index = Math.floor((Math.random() * movies.length))
+    setRandomedMovie(movies[index])
   }
 
   return (
@@ -507,7 +530,11 @@ function App() {
         <Switch>
           {/* passing props to route*/}
           {/* https://reacttraining.com/react-router/web/api/Route/render-func */}
-          <Route exact path='/' render={(...props) => <LandingPage {...props} onClick={onPairMeClick} movies={movies} selectedOptions={selectedOptions} randomedMovie={randomedMovie} />} />
+          <Route exact path='/' render={(...props) => <LandingPage {...props}
+            onClick={onPairMeClick}
+            movies={movies}
+            onChangee={onChangee}
+            randomedMovie={randomedMovie} />} />
           <Route exact path='/results' component={Results} />
           <Route exact path='/favorites/' component={Favorites} />
           <Route exact path='/recent/' component={Recent} />
