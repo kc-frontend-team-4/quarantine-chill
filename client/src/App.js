@@ -517,14 +517,16 @@ function App() {
   return (
     <div>
       <nav>
-        <h1>Quarantine & Chill</h1>
-        <Link to="/">Welcome</Link>
-        <br />
-        <Link to="/results/">Results</Link>
-        <br />
-        <Link to="/favorites/">Favorites</Link>
-        <br />
-        <Link to="/recent/">Recent</Link>
+         <div className="logo">
+          <span className="logo-text">
+            <a href="/">Quarantine & Chill</a>
+          </span>
+        </div>
+        <div className="right-menu">
+          <span className="right-menu-links">
+            <Link to="/favorites/">Favorites</Link> | <Link to="/recent/">Recent</Link>
+          </span>
+        </div>
       </nav>
       <div>
         <Switch>
