@@ -199,3 +199,13 @@ button {
 
 }
 
+.labels {
+    display: flex;
+    flex-direction: column;
+}
+
+.labels label {
+    align-self: center;
+    margin-bottom: 5px;
+    font-weight: 600;
+}

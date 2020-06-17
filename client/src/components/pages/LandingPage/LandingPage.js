@@ -28,6 +28,10 @@ function LandingPage(props) {
                 <Select filter='Length' array={['Short', 'Average', 'Long']} selectedOptions={props.selectedOptions} />
             </div>
           </div>
+    
+        ))
+      }
+
         </div>
         {/* food section */}
         <div className="recipe-column">
@@ -40,7 +44,7 @@ function LandingPage(props) {
             </div>          
           </div>
         </div>
-        <button onClick={props.onClick}>Pair Me</button>
+        <button style={{margin: "60px 0 0 0"}} onClick={props.onClick}>Pair Me</button>
       </main>
     </div>
   )

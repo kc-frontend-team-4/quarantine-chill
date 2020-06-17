@@ -9,7 +9,7 @@ function Select(props) {
             {/* one array contains objects */}
             {(typeof props.array[0] === 'object') ?
                 (
-                    <div>
+                    <div className="labels">
                         <label htmlFor={props.filter}>{props.filter}</label>
                         <select onChange={() => console.log('todo')} name={props.filter} id={props.filter}>
                             {props.array.map((element, index) => (
@@ -20,7 +20,8 @@ function Select(props) {
                 )
                 :
                 (
-                    <div>
+      
+                    <div className="labels">
                         <label htmlFor={props.filter}>{props.filter}</label>
                         <select onChange={() => console.log('todo')} name={props.filter} id={props.filter}>
                             {props.array.map((element, index) => (
