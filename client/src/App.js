@@ -10,45 +10,69 @@ function App() {
 
 
   const [randomedMovie, setRandomedMovie] = useState({
-    "id": 581859,
-    "video": false,
-    "vote_count": 77,
-    "vote_average": 7.2,
-    "title": "Da 5 Bloods",
-    "release_date": "2020-06-12",
-    "original_language": "en",
-    "original_title": "Da 5 Bloods",
-    "genre_ids": [
-      18,
-      10752
-    ],
-    "backdrop_path": "/Aq5Zhj9iaTF6BEKNk05dlUxeHKa.jpg",
-    "adult": false,
-    "overview": "Four African-American Vietnam veterans return to Vietnam. They are in search of the remains of their fallen squad leader and the promise of buried treasure. These heroes battle forces of humanity and nature while confronted by the lasting ravages of the immorality of the Vietnam War.",
-    "poster_path": "/yx4cp1ljJMDSFeEex0Zjv45b55E.jpg",
-    "popularity": 113.292,
-    "media_type": "movie"
   })
+  const [fileredMovieList, setFileredMovieList] = useState([])
   const [randomedRecipe, setRandomedRecipe] = useState([])
-
-
-  // helper variable to keep track of selected options
   const [filter, setFilter] = useState({
     Genre: null,
-    Rating: 6,
+    Rating: 0,
     Length: null,
     'Cuisine Type': null,
     'Meal Type': null,
     'Food Allergies': null
   })
-  let selectedOptions = {
-    Genre: null,
-    Rating: 6,
-    Length: null,
-    'Cuisine Type': null,
-    'Meal Type': null,
-    'Food Allergies': null
+
+  const onChangeGenre = (event) => {
+    // todo: update state with the selected options
+    console.log(event.target.value)
+    setFilter({ ...filter, Genre: event.target.value })
+    console.log(filter)
   }
+  const onChangeRating = (event) => {
+    // todo: update state with the selected options
+    console.log(event.target.value)
+    setFilter({ ...filter, Rating: Number(event.target.value) })
+    console.log(filter)
+  }
+  const onChangeLength = (event) => {
+    // todo: update state with the selected options
+    console.log(event.target.value)
+    setFilter({ ...filter, Length: event.target.value })
+    console.log(filter)
+  }
+  const onChangeCuisineType = (event) => {
+    // todo: update state with the selected options
+    console.log(event.target.value)
+    setFilter({ ...filter, 'Cuisine Type': event.target.value })
+    console.log(filter)
+  }
+  const onChangeMealTypes = (event) => {
+    // todo: update state with the selected options
+    console.log(event.target.value)
+    setFilter({ ...filter, 'Meal Type': event.target.value })
+    console.log(filter)
+  }
+  const onChangeFoodAllergies = (event) => {
+    // todo: update state with the selected options
+    console.log(event.target.value)
+    setFilter({ ...filter, 'Food Allergies': event.target.value })
+    console.log(filter)
+  }
+
+
+  function onPairMeClick() {
+    // get filtered movies
+    // setMovies(fetchMovie(selectedOptions.Rating))
+    // console.log(movies)
+    setFileredMovieList(
+      movies.filter((element) => element.vote_average > filter.Rating)
+    )
+    // console.log(y)
+    let index = Math.floor(() => (Math.random() * fileredMovieList.length))
+    // setRandomedMovie(movies[index])
+    // console.log(filter.Rating)
+  }
+
   //hard code movies array for now
   const [movies, setMovies] = useState([
     {
@@ -482,7 +506,7 @@ function App() {
         .then(data => {
           // building array of filtered movies 
           for (const element of (data.results.filter(item => item.genre_ids.includes(12))
-            .filter(item => item.vote_average > selectedOptions.Rating))) {
+            .filter(item => item.vote_average > filter.Rating))) {
             listOfMovies.push(element)
           }
         }
@@ -499,25 +523,11 @@ function App() {
       }
       )
   }
-  function onChangee(event) {
-    // todo: update state with the selected options
-    // console.log(props.filter, event.target.value)
-    console.log('kevin')
-  }
-
-  //todo: fetch movies array from api 
-  // some movies have name but not title
-  function onPairMeClick() {
-    // get filtered movies
-    // setMovies(fetchMovie(selectedOptions.Rating))
-    let index = Math.floor((Math.random() * movies.length))
-    setRandomedMovie(movies[index])
-  }
 
   return (
     <div>
       <nav>
-         <div className="logo">
+        <div className="logo">
           <span className="logo-text">
             <a href="/">Quarantine & Chill</a>
           </span>
@@ -535,7 +545,12 @@ function App() {
           <Route exact path='/' render={(...props) => <LandingPage {...props}
             onClick={onPairMeClick}
             movies={movies}
-            onChangee={onChangee}
+            onChangeGenre={onChangeGenre}
+            onChangeRating={onChangeRating}
+            onChangeLength={onChangeLength}
+            onChangeCuisineType={onChangeCuisineType}
+            onChangeMealTypes={onChangeMealTypes}
+            onChangeFoodAllergies={onChangeFoodAllergies}
             randomedMovie={randomedMovie} />} />
           <Route exact path='/results' component={Results} />
           <Route exact path='/favorites/' component={Favorites} />
