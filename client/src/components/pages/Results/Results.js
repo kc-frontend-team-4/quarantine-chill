@@ -3,11 +3,24 @@ import './Results.css';
 function Results() {
   return (
     <div>
-      <button>Start Over</button>
-      <div className="movie-img">Movie</div>
-      <div className="food-img">Food</div>
-      <button>Love it!</button>
-      <button>Give me another</button>
+      <main>
+          <div className="movie-column">
+              <div className="start-over">
+                <a href="/"> Start Over</a>
+              </div>
+              <div className="movie-selections"> 
+                <div className="movie-image">
+              </div>
+          </div>
+          </div>
+          <div className="recipe-column">
+              <div className="recipe-selections">
+              <div className="recipe-image"></div>
+          </div>
+          </div>
+          <button style={{alignSelf: "flex-start"}}>Love It!</button>
+          <button className="gray-button" style={{alignSelf: "flex-start"}}>Give Me Another</button>
+      </main>
     </div>
   )
 }
