@@ -20,6 +20,7 @@ function Select(props) {
                 )
                 :
                 (
+      
                     <div className="labels">
                         <label htmlFor={props.filter}>{props.filter}</label>
                         <select onChange={() => console.log('todo')} name={props.filter} id={props.filter}>

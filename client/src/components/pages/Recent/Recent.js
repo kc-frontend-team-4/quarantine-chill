@@ -1,46 +1,48 @@
-import React, { useState } from 'react';
+import React from 'react';
+
 import './Recent.css';
 
-function WriteArticle(props) {
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
-
-  function onChangeContent(ev) {
-    setContent(ev.target.value);
-  }
-
-  function onChangeTitle(ev) {
-    setTitle(ev.target.value);
-  }
-
-  function submit() {
-    const formData = {
-      title: title,
-      text: content,
-    };
-    // Can also be written:
-    // const formData = {title, text: content};
-
-    fetch('/api/mongodb/blogposts/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formData),
-    })
-      .then(response => response.json())
-      .then(data => {
-        console.log('Got this back', data);
-
-        // Redirect to blog
-        props.history.push('/blog/');
-      });
-  }
-
+function Recent() {
   return (
-    <div className="WriteArticle">
-      <p>Placeholder Recent</p>
-      <br />
+    <div>
+        <main>
+            <div className="movie-column">
+                <div className="main-heading" style={{right: "-50px"}}>Recent</div>
+                <div className="movie-selections">
+                    <div className="star-and-image">
+                        <div className="star">⭐<span className="count">4</span></div>
+                        <div className="movie-image">
+                        </div>
+                    </div>
+                    <div className="star-and-image">
+                        <div className="star">⭐<span className="count">6</span></div>
+                        <div className="movie-image">
+                        </div>
+                    </div>
+                    <div className="star-and-image">
+                        <div className="star">⭐<span className="count">7</span></div>
+                        <div className="movie-image">
+                        </div>
+                    </div>
+            </div>
+            </div>
+            <div className="recipe-column">
+                <div className="recipe-selections">
+                <div className="recipe-image"></div>
+                <div className="recipe-image"></div>
+                <div className="recipe-image"></div>
+            </div>
+            </div>
+        </main>
+        <div className="pagination">
+            <div className="page-square"></div>
+            <div className="page-square"></div>
+            <div className="page-square"></div>
+            <div className="page-square"></div>
+            <div className="page-square"></div>
+        </div>
     </div>
   );
 }
 
-export default WriteArticle;
+export default Recent;
