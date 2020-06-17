@@ -81,8 +81,25 @@ function Blog() {
               </div>
             </div>
           </div>
+<<<<<<< Updated upstream
         ))
       }
+=======
+        </div>
+        {/* food section */}
+        <div className="recipe-column">
+          <div className="recipe-selections">
+            <div className="recipe-image"></div>
+            <div className="recipe-options">
+              <Select filter='Cuisine Type' array={arrays.cuisines} selectedOptions={props.selectedOptions} />
+              <Select filter='Meal Type' array={arrays.meal_types} selectedOptions={props.selectedOptions} />
+              <Select filter='Food Allergies' array={arrays.food_allergies} selectedOptions={props.selectedOptions} />
+            </div>          
+          </div>
+        </div>
+        <button style={{margin: "60px 0 0 0"}} onClick={props.onClick}>Pair Me</button>
+      </main>
+>>>>>>> Stashed changes
     </div>
   );
 }
