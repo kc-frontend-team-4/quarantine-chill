@@ -2,11 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { Link, Switch, Route } from 'react-router-dom'
 
 import './App.css';
+import * as arrays from './arrays.js';
 import LandingPage from './components/pages/LandingPage/LandingPage.js';
 import Favorites from './components/pages/Favorites/Favorites.js';
 import Recent from './components/pages/Recent/Recent.js';
 import Results from './components/pages/Results/Results.js';
 function App() {
+  // https://developers.themoviedb.org/3/movies/get-movie-details
+  // need to use this to find movie length
+  // https://api.themoviedb.org/3/movie/{movie_id}?api_key=<<api_key>>&language=en-US
+
   const movieApiKey = 'api_key=0402eec8d6da4df59f8077842992a247';
   const foodApiKey = 'apiKey=73bb985ab78b4740a1444004dfd60217';
   const [randomedMovie, setRandomedMovie] = useState({
@@ -34,12 +39,12 @@ function App() {
   const [fileredMovieList, setFileredMovieList] = useState([])
   const [randomedRecipe, setRandomedRecipe] = useState([])
   const [filter, setFilter] = useState({
-    Genre: null,
-    Rating: 0,
-    Length: null,
-    'Cuisine Type': null,
-    'Meal Type': null,
-    'Food Allergies': null
+    Genre: 'Action',
+    Rating: 1,
+    Length: 'Short',
+    'Cuisine Type': 'African',
+    'Meal Type': 'Main Course',
+    'Food Allergies': 'Dairy'
   })
 
   const onChangeGenre = (event) => {
@@ -80,17 +85,32 @@ function App() {
   }
   // get filtered movies list
   function onClickSearchMovies() {
+    let genreID;
+    console.log(filter.Genre)
+    // given genre name, we need to search for its corresponding genre id
+    for (const el of arrays.genres) {
+      if (el.name === filter.Genre) {
+        genreID = el.id;
+      }
+      console.log('genreName', genreID)
+    }
     console.log('getting filtered movies list')
-    setFileredMovieList(movies.filter((element) =>
-      element.vote_average > filter.Rating
-    ))
+    setFileredMovieList(
+      movies
+        .filter(element =>
+          element.genre_ids.includes(genreID)
+        )
+        .filter
+        (element =>
+          element.vote_average > filter.Rating
+        )
+    )
     console.log('filtered movie list', fileredMovieList)
   }
   function onPairMeClick() {
     // setMovies(fetchMovie(selectedOptions.Rating))
     let index = Math.floor((Math.random() * fileredMovieList.length))
     setRandomedMovie(fileredMovieList[index])
-    console.log(fileredMovieList)
   }
   //hard code movies array for now
   const [movies, setMovies] = useState([
@@ -512,8 +532,6 @@ function App() {
       "media_type": "tv"
     }
   ]);
-
-
 
   function fetchMovie() {
     let listOfMovies = [];
