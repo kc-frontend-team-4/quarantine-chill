@@ -98,9 +98,10 @@ function App() {
 
     setFilteredMovieList(
       movies
-        .filter(element =>
-          true // element.genre_ids.includes(genreID)
-        )
+
+        // .filter(element =>
+        //   element.genre_ids.includes(genreID)
+        // )
         .filter
         (element =>
           element.vote_average > filter.Rating
