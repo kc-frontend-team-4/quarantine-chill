@@ -137,7 +137,7 @@ a {
 }
 
 button {
-    height: 60px;
+    /* height: 60px;
     width: 225px;
     background-color: var(--red);
     grid-row: 2;
@@ -145,12 +145,12 @@ button {
     justify-self: center;
     color: var(--white);
     font-size: 20px;
-    align-self: center;
+    align-self: center; */
 }
 
 .gray-button {
-    background-color: var(--gray);
-    margin-top: 80px;
+    /* background-color: var(--gray);
+    margin-top: 80px; */
 }
 
 .start-over {
