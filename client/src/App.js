@@ -15,7 +15,6 @@ function App() {
   const movieApiKey = 'api_key=0402eec8d6da4df59f8077842992a247';
   const foodApiKey = 'apiKey=73bb985ab78b4740a1444004dfd60217';
   const [randomedMovie, setRandomedMovie] = useState({
-
     "id": 475430,
     "video": false,
     "vote_count": 128,
@@ -99,6 +98,7 @@ function App() {
 
     setFilteredMovieList(
       movies
+
         // .filter(element =>
         //   element.genre_ids.includes(genreID)
         // )
@@ -118,10 +118,10 @@ function App() {
   useEffect(fetchMovie, [])
   function fetchMovie() {
     let listOfMovies = [];
-    let numberOfPages = 8;
+    let numberOfPages = 500;
     let counter = 1;
-    for (let i = 1; i < 8; i++) {
-      fetch(`https://api.themoviedb.org/3/trending/all/day?${movieApiKey}&page=${i}`)
+    for (let i = 1; i < numberOfPages; i++) {
+      fetch(`https://api.themoviedb.org/3/movie/popular?${movieApiKey}&page=${i}`)
         .then(response => response.json())
         .then(data => {
           // building array of movies
