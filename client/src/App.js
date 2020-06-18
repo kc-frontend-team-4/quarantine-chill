@@ -99,7 +99,7 @@ function App() {
     setFilteredMovieList(
       movies
         .filter(element =>
-          element.genre_ids.includes(genreID)
+          true // element.genre_ids.includes(genreID)
         )
         .filter
         (element =>
@@ -117,10 +117,10 @@ function App() {
   useEffect(fetchMovie, [])
   function fetchMovie() {
     let listOfMovies = [];
-    let numberOfPages = 8;
+    let numberOfPages = 500;
     let counter = 1;
-    for (let i = 1; i < 8; i++) {
-      fetch(`https://api.themoviedb.org/3/trending/all/day?${movieApiKey}&page=${i}`)
+    for (let i = 1; i < numberOfPages; i++) {
+      fetch(`https://api.themoviedb.org/3/movie/popular?${movieApiKey}&page=${i}`)
         .then(response => response.json())
         .then(data => {
           // building array of movies
