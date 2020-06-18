@@ -86,9 +86,10 @@ function LandingPage(props) {
             </div>
           </div>
         </div>
-        <div onClick={props.onClickSearchMovies}>Search Movies</div>
-        {/* please make conditional when the movie has name but not title */}
-        <div>{props.randomedMovie.title} </div>
+
+        {/* some movies have name but not title */}
+        <div>{props.randomedMovie.title || props.randomedMovie.name} </div>
+        <div onClick={props.onClickSearchMovies}>CLICK HERE BEFORE CLICKING PAIR ME TO GET NEW FILTERED MOVIE LIST </div>
         <img src={`https://image.tmdb.org/t/p/w500${props.randomedMovie.poster_path}`}></img>
 
         <button style={{ margin: "60px 0 0 0" }} onClick={props.onClick}>Pair Me</button>
