@@ -100,7 +100,7 @@ function App() {
     setFilteredMovieList(
       movies
         // .filter(element =>
-        //   element.genre_ids.includes(16)
+        //   element.genre_ids.includes(genreID)
         // )
         .filter
         (element =>
