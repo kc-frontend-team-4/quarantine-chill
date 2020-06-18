@@ -1,6 +1,7 @@
 // https://spoonacular.com/food-api/docs#Meal-Types
 // comment out meal types we don't want to include
 export const meal_types = [
+    'Meal Type',
     'Main Course',
     'Side Dish',
     'Dessert',
@@ -18,6 +19,7 @@ export const meal_types = [
 ];
 // https://spoonacular.com/food-api/docs#Intolerances
 export const food_allergies = [
+    'Food Allergies',
     'Dairy',
     'Egg',
     'Gluten',
@@ -33,6 +35,7 @@ export const food_allergies = [
 ];
 // https://spoonacular.com/food-api/docs#Cuisines
 export const cuisines = [
+    'Cuisines Type',
     'African',
     'American',
     'British',
@@ -63,6 +66,7 @@ export const cuisines = [
 
 // from https://api.themoviedb.org/3/genre/movie/list?api_key=0402eec8d6da4df59f8077842992a247
 export const genres = [
+    { 'name': 'Genres' },
     {
         "id": 28,
         "name": "Action"
