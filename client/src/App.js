@@ -36,7 +36,7 @@ function App() {
     "popularity": 139.943,
     "media_type": "movie"
   })
-  const [fileredMovieList, setFileredMovieList] = useState([])
+  const [filteredMovieList, setFilteredMovieList] = useState([])
   const [randomedRecipe, setRandomedRecipe] = useState([])
   const [filter, setFilter] = useState({
     Genre: 'Action',
@@ -49,10 +49,10 @@ function App() {
 
   const onChangeGenre = (event) => {
     // todo: update state with the selected options
-    console.log(event.target.value)
+    // console.log(event.target.value)
     setFilter({ ...filter, Genre: event.target.value })
     console.log(filter)
-    console.log(movies)
+    // console.log(movies)
   }
   const onChangeRating = (event) => {
     // todo: update state with the selected options
@@ -96,44 +96,42 @@ function App() {
       console.log('genreName', genreID)
     }
     console.log('getting filtered movies list')
-    setFileredMovieList(
+
+    setFilteredMovieList(
       movies
-        .filter(element =>
-          element.genre_ids.includes(genreID)
-        )
+        // .filter(element =>
+        //   element.genre_ids.includes(genreID)
+        // )
         .filter
         (element =>
           element.vote_average > filter.Rating
         )
     )
-    console.log('filtered movie list', fileredMovieList)
+    console.log('filtered movie list', filteredMovieList)
   }
   function onPairMeClick() {
     // setMovies(fetchMovie(selectedOptions.Rating))
-    let index = Math.floor((Math.random() * fileredMovieList.length))
-    setRandomedMovie(fileredMovieList[index])
+    let index = Math.floor((Math.random() * filteredMovieList.length))
+    setRandomedMovie(filteredMovieList[index])
   }
-  //hard code movies array for now
+  const [movies, setMovies] = useState(null);
   useEffect(fetchMovie, [])
-  const [movies, setMovies] = useState([]);
   function fetchMovie() {
     let listOfMovies = [];
-    let numberOfPages = 15;
+    let numberOfPages = 8;
     let counter = 1;
-    for (let i = 1; i < 15; i++) {
+    for (let i = 1; i < 8; i++) {
       fetch(`https://api.themoviedb.org/3/trending/all/day?${movieApiKey}&page=${i}`)
         .then(response => response.json())
         .then(data => {
           // building array of movies
           // console.log(data.results)
           listOfMovies = [...listOfMovies, ...data.results]
-          console.log(listOfMovies)
+          counter++;
+          if (counter >= numberOfPages) {
+            setMovies(listOfMovies)
+          }
         })
-      counter++;
-      if (counter >= numberOfPages) {
-        // alert('done fetch')
-        setMovies(listOfMovies)
-      }
     }
   }
 
