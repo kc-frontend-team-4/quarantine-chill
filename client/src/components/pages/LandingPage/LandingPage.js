@@ -34,7 +34,7 @@ function LandingPage(props) {
                 {/* Rating */}
                 <label htmlFor='Rating'>Rating</label>
                 <select onChange={props.onChangeRating} name='Rating' id='Rating'>
-                  {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((element, index) => (
+                  {['Rating', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((element, index) => (
                     < option value={element} key={index} > {element}</option>
                   ))}
                 </select>
@@ -43,7 +43,7 @@ function LandingPage(props) {
                 {/* Length */}
                 <label htmlFor='Length'>Length</label>
                 <select onChange={props.onChangeLength} name='Length' id='Length'>
-                  {['Short', 'Average', 'Long'].map((element, index) => (
+                  {['Length', 'Short', 'Average', 'Long'].map((element, index) => (
                     < option value={element} key={index} > {element}</option>
                   ))}
                 </select>
@@ -87,6 +87,7 @@ function LandingPage(props) {
           </div>
         </div>
         <div onClick={props.onClickSearchMovies}>Search Movies</div>
+        {/* please make conditional when the movie has name but not title */}
         <div>{props.randomedMovie.title} </div>
         <img src={`https://image.tmdb.org/t/p/w500${props.randomedMovie.poster_path}`}></img>
 
