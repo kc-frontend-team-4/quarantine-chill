@@ -15,7 +15,6 @@ function App() {
   const movieApiKey = 'api_key=0402eec8d6da4df59f8077842992a247';
   const foodApiKey = 'apiKey=73bb985ab78b4740a1444004dfd60217';
   const [randomedMovie, setRandomedMovie] = useState({
-
     "id": 475430,
     "video": false,
     "vote_count": 128,
@@ -99,9 +98,9 @@ function App() {
 
     setFilteredMovieList(
       movies
-        // .filter(element =>
-        //   element.genre_ids.includes(genreID)
-        // )
+        .filter(element =>
+          element.genre_ids.includes(genreID)
+        )
         .filter
         (element =>
           element.vote_average > filter.Rating
