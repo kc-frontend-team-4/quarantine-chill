@@ -11,7 +11,9 @@ function NavBar() {
       <nav>
         <Link to="/">
           <div className="logo">
-            <Logo />
+            <div className="logo-svg">
+              <Logo />
+            </div>
           </div>
         </Link>
         <div className="right-menu">
