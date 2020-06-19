@@ -11,7 +11,6 @@ import Recent from './components/pages/Recent/Recent.js';
 import Results from './components/pages/Results/Results.js';
 function App() {
   // https://developers.themoviedb.org/3/movies/get-movie-details
-  // need to use this to find movie length
   // https://api.themoviedb.org/3/movie/{movie_id}?api_key=<<api_key>>&language=en-US
 
   const movieApiKey = 'api_key=0402eec8d6da4df59f8077842992a247';
@@ -49,41 +48,38 @@ function App() {
   })
 
   const onChangeGenre = (event) => {
-    // todo: update state with the selected options
     // console.log(event.target.value)
     setFilter({ ...filter, Genre: event.target.value })
-    console.log(filter)
+    // console.log(filter)
     // console.log(movies)
   }
   const onChangeRating = (event) => {
-    // todo: update state with the selected options
-    console.log(event.target.value)
+    // console.log(event.target.value)
     setFilter({ ...filter, Rating: Number(event.target.value) })
-    console.log(filter)
+    // console.log(filter)
   }
   const onChangeLength = (event) => {
-    // todo: update state with the selected options
-    console.log(event.target.value)
+    // console.log(event.target.value)
     setFilter({ ...filter, Length: event.target.value })
-    console.log(filter)
+    // console.log(filter)
   }
   const onChangeCuisineType = (event) => {
     // todo: update state with the selected options
-    console.log(event.target.value)
+    // console.log(event.target.value)
     setFilter({ ...filter, 'Cuisine Type': event.target.value })
-    console.log(filter)
+    // console.log(filter)
   }
   const onChangeMealTypes = (event) => {
     // todo: update state with the selected options
-    console.log(event.target.value)
+    // console.log(event.target.value)
     setFilter({ ...filter, 'Meal Type': event.target.value })
-    console.log(filter)
+    // console.log(filter)
   }
   const onChangeFoodAllergies = (event) => {
     // todo: update state with the selected options
-    console.log(event.target.value)
+    // console.log(event.target.value)
     setFilter({ ...filter, 'Food Allergies': event.target.value })
-    console.log(filter)
+    // console.log(filter)
   }
   // get filtered movies list
   function onClickSearchMovies() {
@@ -94,27 +90,47 @@ function App() {
       if (el.name === filter.Genre) {
         genreID = el.id;
       }
-      console.log('genreName', genreID)
+      // console.log('genreName', genreID);
     }
-    console.log('getting filtered movies list')
+    // console.log('getting filtered movies list')
 
-    setFilteredMovieList(
-      movies
-
-        // .filter(element =>
-        //   element.genre_ids.includes(genreID)
-        // )
-        .filter
-        (element =>
-          element.vote_average > filter.Rating
-        )
-    )
-    console.log('filtered movie list', filteredMovieList)
+    const filteredMovies = movies
+      .filter(element => element.genre_ids.includes(genreID))
+      .filter(element => element.vote_average > filter.Rating);
+    setFilteredMovieList(filteredMovies);
+    console.log('filtered movie list', filteredMovieList);
+    // console.log(filter)
   }
-  function onPairMeClick() {
-    // setMovies(fetchMovie(selectedOptions.Rating))
-    let index = Math.floor((Math.random() * filteredMovieList.length))
-    setRandomedMovie(filteredMovieList[index])
+
+  async function getMovieRuntime(movie) {
+    const movieData = await fetch(`https://api.themoviedb.org/3/movie/${movie.id}?api_key=0402eec8d6da4df59f8077842992a247`);
+    const json = await movieData.json();
+    return json.runtime;
+  }
+  // show the random movie poster and title 
+  async function onPairMeClick() {
+    let movieToSet = undefined;
+    const desiredLength = filter.Length;
+    while (movieToSet === undefined) {
+      let index = Math.floor((Math.random() * filteredMovieList.length));
+      let movie = filteredMovieList[index];
+      let runtime = await getMovieRuntime(movie);
+
+      if (desiredLength === "Short") {
+        if (runtime >= 0 && runtime <= 105) {
+          movieToSet = movie;
+        }
+      } else if (desiredLength === "Average") {
+        if (runtime >= 106 && runtime <= 135) {
+          movieToSet = movie;
+        }
+      } else if (desiredLength === "Long") {
+        if (runtime > 135) {
+          movieToSet = movie;
+        }
+      }
+    };
+    setRandomedMovie(movieToSet);
   }
   const [movies, setMovies] = useState(null);
   useEffect(fetchMovie, [])
@@ -147,6 +163,8 @@ function App() {
       )
   }
 
+
+  // fetch(`https://api.themoviedb.org/3/movie/550?${movieApiKey}`) 
   return (
     <div>
       <NavBar />

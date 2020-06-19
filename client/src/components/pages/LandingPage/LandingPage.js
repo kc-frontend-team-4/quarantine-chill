@@ -88,7 +88,7 @@ function LandingPage(props) {
         </div>
 
         {/* some movies have name but not title */}
-        <div>{props.randomedMovie.title || props.randomedMovie.name} </div>
+        <div style={{ fontSize: '40px' }}>{props.randomedMovie.title || props.randomedMovie.name} </div>
         <div style={{ color: 'red', backgroundColor: 'black' }} onClick={props.onClickSearchMovies}>CLICK HERE BEFORE CLICKING PAIR ME TO GET NEW FILTERED MOVIE LIST </div>
         <img src={`https://image.tmdb.org/t/p/w200${props.randomedMovie.poster_path}`}></img>
 
