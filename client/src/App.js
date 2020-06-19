@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link, Switch, Route } from 'react-router-dom'
+import { ReactComponent as Logo } from './logo.svg';
 
 import './App.css';
 import * as arrays from './arrays.js';
+import NavBar from './components/NavBar/NavBar.js'
 import LandingPage from './components/pages/LandingPage/LandingPage.js';
 import Favorites from './components/pages/Favorites/Favorites.js';
 import Recent from './components/pages/Recent/Recent.js';
@@ -165,18 +167,7 @@ function App() {
   // fetch(`https://api.themoviedb.org/3/movie/550?${movieApiKey}`) 
   return (
     <div>
-      <nav>
-        <div className="logo">
-          <span className="logo-text">
-            <a href="/">Quarantine & Chill</a>
-          </span>
-        </div>
-        <div className="right-menu">
-          <span className="right-menu-links">
-            <Link to="/favorites/">Favorites</Link> | <Link to="/recent/">Recent</Link>
-          </span>
-        </div>
-      </nav>
+      <NavBar />
       <div>
         <Switch>
           {/* passing props to route*/}
