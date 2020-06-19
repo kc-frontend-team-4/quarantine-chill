@@ -38,6 +38,7 @@ function App() {
   const [filteredMovieList, setFilteredMovieList] = useState([])
   const [randomedRecipe, setRandomedRecipe] = useState([])
   const [imdbId, setImdbID] = useState('')
+  const [movieOverview, setmovieOverview] = useState('');
   const [filter, setFilter] = useState({
     Genre: 'Action',
     Rating: 'Must Watch',
@@ -118,7 +119,7 @@ function App() {
     const movieData = await fetch(`https://api.themoviedb.org/3/movie/${movie.id}?api_key=0402eec8d6da4df59f8077842992a247`);
     const json = await movieData.json();
     // console.log('kevin', json.imdb_id, 'wong', json.runtime)
-    return [json.runtime, json.imdb_id]
+    return [json.runtime, json.imdb_id, json.overview]
   }
   // show the random movie poster and title 
   async function onPairMeClick() {
@@ -127,25 +128,30 @@ function App() {
     while (movieToSet === undefined) {
       let index = Math.floor((Math.random() * filteredMovieList.length));
       let movie = filteredMovieList[index];
-      let [runtime, imdb_id] = await getMovieRuntime(movie);
+      let [runtime, imdb_id, overview] = await getMovieRuntime(movie);
       if (desiredLength === "Short") {
         if (runtime >= 0 && runtime <= 105) {
           movieToSet = movie;
           setImdbID(imdb_id)
+          setmovieOverview(overview)
         }
       } else if (desiredLength === "Average") {
         if (runtime >= 106 && runtime <= 135) {
           movieToSet = movie;
           setImdbID(imdb_id)
+          setmovieOverview(overview)
         }
       } else if (desiredLength === "Long") {
         if (runtime > 135) {
           movieToSet = movie;
           setImdbID(imdb_id)
+          setmovieOverview(overview)
         }
       }
     };
+
     setRandomedMovie(movieToSet);
+
   }
   const [movies, setMovies] = useState(null);
   useEffect(fetchMovie, [])
@@ -208,7 +214,8 @@ function App() {
 
             onClickonClickFetchRecipes={fetchRecipes}
             onClickSearchMovies={onClickSearchMovies}
-            imdbId={imdbId} />} />
+            imdbId={imdbId}
+            movieOverview={movieOverview} />} />
 
           <Route exact path='/results' component={Results} />
           <Route exact path='/favorites/' component={Favorites} />
