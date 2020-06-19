@@ -86,7 +86,6 @@ function LandingPage(props) {
             </div>
           </div>
         </div>
-
         {/* some movies have name but not title */}
         <div style={{ fontSize: '40px' }}>{props.randomedMovie.title || props.randomedMovie.name} </div>
         <div style={{ color: 'red', backgroundColor: 'black' }} onClick={props.onClickSearchMovies}>CLICK HERE BEFORE CLICKING PAIR ME TO GET NEW FILTERED MOVIE LIST </div>

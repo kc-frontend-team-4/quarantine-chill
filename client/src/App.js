@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Link, Switch, Route } from 'react-router-dom'
-import { ReactComponent as Logo } from './logo.svg';
 
 import './App.css';
 import * as arrays from './arrays.js';
@@ -67,19 +66,19 @@ function App() {
     // todo: update state with the selected options
     // console.log(event.target.value)
     setFilter({ ...filter, 'Cuisine Type': event.target.value })
-    // console.log(filter)
+    //console.log(filter)
   }
   const onChangeMealTypes = (event) => {
     // todo: update state with the selected options
     // console.log(event.target.value)
     setFilter({ ...filter, 'Meal Type': event.target.value })
-    // console.log(filter)
+    //console.log(filter)
   }
   const onChangeFoodAllergies = (event) => {
     // todo: update state with the selected options
     // console.log(event.target.value)
     setFilter({ ...filter, 'Food Allergies': event.target.value })
-    // console.log(filter)
+    //console.log(filter)
   }
   // get filtered movies list
   function onClickSearchMovies() {
@@ -155,10 +154,20 @@ function App() {
 
   // fetchRecipes()
   function fetchRecipes() {
-    fetch(`https://api.spoonacular.com/recipes/random?${foodApiKey}&cuisine=&intolerances=&type=&diet=`)
+  console.log("fetching recipe data from API...");
+  
+    const recipeApi =
+      `https://api.spoonacular.com/recipes/random?${foodApiKey}` +
+      "&cuisine=" + filter['Cuisine Type'] +
+      "&intolerances=" + filter['Food Allergies'] +
+      "&type=" + filter['Meal Type'] +
+      "&diet=" 
+
+    console.log('here is the api', recipeApi)
+    fetch(recipeApi)
       .then(response => response.json())
       .then(data => {
-        console.log(data.recipes[0].title, data.recipes[0].image)
+        console.log("recipe is", data.recipes[0].title, data.recipes[0].image)
       }
       )
   }
@@ -182,6 +191,7 @@ function App() {
             onChangeMealTypes={onChangeMealTypes}
             onChangeFoodAllergies={onChangeFoodAllergies}
             randomedMovie={randomedMovie}
+            onClickFetchRecipes={fetchRecipes}
             onClickSearchMovies={onClickSearchMovies} />} />     onClickSearchMovies={onClickSearchMovies} />} />
           <Route exact path='/results' component={Results} />
           <Route exact path='/favorites/' component={Favorites} />
