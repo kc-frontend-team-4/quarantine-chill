@@ -40,7 +40,7 @@ function App() {
   const [imdbId, setImdbID] = useState('')
   const [filter, setFilter] = useState({
     Genre: 'Action',
-    Rating: 1,
+    Rating: 'Must Watch',
     Length: 'Short',
     'Cuisine Type': 'African',
     'Meal Type': 'Main Course',
@@ -50,18 +50,18 @@ function App() {
   const onChangeGenre = (event) => {
     // console.log(event.target.value)
     setFilter({ ...filter, Genre: event.target.value })
-    // console.log(filter)
+    console.log(filter)
     // console.log(movies)
   }
   const onChangeRating = (event) => {
     // console.log(event.target.value)
-    setFilter({ ...filter, Rating: Number(event.target.value) })
-    // console.log(filter)
+    setFilter({ ...filter, Rating: event.target.value })
+    console.log(filter)
   }
   const onChangeLength = (event) => {
     // console.log(event.target.value)
     setFilter({ ...filter, Length: event.target.value })
-    // console.log(filter)
+    console.log(filter)
   }
   const onChangeCuisineType = (event) => {
     // todo: update state with the selected options
@@ -94,9 +94,21 @@ function App() {
     }
     // console.log('getting filtered movies list')
 
-    const filteredMovies = movies
-      .filter(element => element.genre_ids.includes(genreID))
-      .filter(element => element.vote_average > filter.Rating);
+    const filteredMovies1 = movies
+      .filter(element => element.genre_ids.includes(genreID));
+
+    let filteredMovies = null;
+    // console.log('kevin', filter.Rating, filter.Rating === 'Must Watch')
+    if (filter.Rating === 'Must Watch') {
+      filteredMovies = filteredMovies1.filter(element => element.vote_average >= 8);
+    } else if (filter.Rating === 'Good') {
+      filteredMovies = filteredMovies1.filter(element => element.vote_average < 8 && element.vote_average >= 7);
+    } else if (filter.Rating === 'Decent') {
+      filteredMovies = filteredMovies1.filter(element => element.vote_average < 7 && element.vote_average >= 6);
+    } else {
+      filteredMovies = filteredMovies1.filter(element => element.vote_average < 6);
+    }
+
     setFilteredMovieList(filteredMovies);
     console.log('filtered movie list', filteredMovieList);
     // console.log(filter)
@@ -105,7 +117,7 @@ function App() {
   async function getMovieRuntime(movie) {
     const movieData = await fetch(`https://api.themoviedb.org/3/movie/${movie.id}?api_key=0402eec8d6da4df59f8077842992a247`);
     const json = await movieData.json();
-    console.log('kevin', json.imdb_id, 'wong', json.runtime)
+    // console.log('kevin', json.imdb_id, 'wong', json.runtime)
     return [json.runtime, json.imdb_id]
   }
   // show the random movie poster and title 
@@ -159,14 +171,14 @@ function App() {
 
   // fetchRecipes()
   function fetchRecipes() {
-  console.log("fetching recipe data from API...");
-  
+    console.log("fetching recipe data from API...");
+
     const recipeApi =
       `https://api.spoonacular.com/recipes/random?${foodApiKey}` +
       "&cuisine=" + filter['Cuisine Type'] +
       "&intolerances=" + filter['Food Allergies'] +
       "&type=" + filter['Meal Type'] +
-      "&diet=" 
+      "&diet="
 
     console.log('here is the api', recipeApi)
     fetch(recipeApi)
@@ -194,11 +206,9 @@ function App() {
             onChangeFoodAllergies={onChangeFoodAllergies}
             randomedMovie={randomedMovie}
 
+            onClickonClickFetchRecipes={fetchRecipes}
             onClickSearchMovies={onClickSearchMovies}
             imdbId={imdbId} />} />
-
-            onClickFetchRecipes={fetchRecipes}
-            onClickSearchMovies={onClickSearchMovies} />} />     onClickSearchMovies={onClickSearchMovies} />} />
 
           <Route exact path='/results' component={Results} />
           <Route exact path='/favorites/' component={Favorites} />
