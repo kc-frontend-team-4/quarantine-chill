@@ -34,7 +34,7 @@ function LandingPage(props) {
                 {/* Rating */}
                 <label htmlFor='Rating'>Rating</label>
                 <select onChange={props.onChangeRating} name='Rating' id='Rating'>
-                  {['Rating', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((element, index) => (
+                  {['Rating', 'Must Watch', 'Good', 'Decent', 'Controversial '].map((element, index) => (
                     < option value={element} key={index} > {element}</option>
                   ))}
                 </select>
