@@ -14,13 +14,6 @@ body {
     margin: 0;
 }
 
-nav {
-    border: var(--main-border);
-    display: grid;
-    grid-template-rows: 75px;
-    grid-template-columns: 20% 80%;
-}
-
 main {
     display: grid;
     grid-template-columns: 50% 50%;
@@ -31,39 +24,6 @@ main {
 a {
     color: unset;
     text-decoration: none;
-}
-
-.logo {
-    grid-column: 1;
-    display: grid;
-    border-right: var(--main-border);
-    background-color: var(--red)
-}
-
-.logo-text {
-    align-self: center;
-    text-align: center;
-    color: var(--white);
-    font-family: 'Poppins', sans-serif;
-    font-size: 25px;
-}
-
-.right-menu {
-    grid-column: 2;
-    display: grid;
-    padding-right: 5%;
-    background-color: var(--black) ;
-}
-
-.right-menu-links {
-    align-self: center;
-    justify-self: flex-end;
-    color: var(--gray);
-    font-size: 20px;
-}
-
-.right-menu-links a {
-    color: var(--gray);
 }
 
 .movie-column {
