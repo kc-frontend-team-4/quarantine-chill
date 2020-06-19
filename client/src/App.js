@@ -134,6 +134,7 @@ function App() {
   useEffect(fetchMovie, [])
   function fetchMovie() {
     let listOfMovies = [];
+    // popular end point has max of 500 pages 
     let numberOfPages = 500;
     let counter = 1;
     for (let i = 1; i < numberOfPages; i++) {
