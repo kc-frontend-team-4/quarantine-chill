@@ -9,13 +9,14 @@ function NavBar() {
   return (
     <div>
       <nav>
-        <Link to="/">
+        
           <div className="logo">
             <div className="logo-svg">
+            <Link to="/">
               <Logo />
+            </Link>
             </div>
           </div>
-        </Link>
         <div className="right-menu">
           <span className="right-menu-links">
             <Link to="/favorites/">Favorites</Link> | <Link to="/recent/">Recent</Link>
