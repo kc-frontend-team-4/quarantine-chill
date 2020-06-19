@@ -37,6 +37,7 @@ function App() {
   })
   const [filteredMovieList, setFilteredMovieList] = useState([])
   const [randomedRecipe, setRandomedRecipe] = useState([])
+  const [imdbId, setImdbID] = useState('')
   const [filter, setFilter] = useState({
     Genre: 'Action',
     Rating: 1,
@@ -104,7 +105,8 @@ function App() {
   async function getMovieRuntime(movie) {
     const movieData = await fetch(`https://api.themoviedb.org/3/movie/${movie.id}?api_key=0402eec8d6da4df59f8077842992a247`);
     const json = await movieData.json();
-    return json.runtime;
+    console.log('kevin', json.imdb_id, 'wong', json.runtime)
+    return [json.runtime, json.imdb_id]
   }
   // show the random movie poster and title 
   async function onPairMeClick() {
@@ -113,19 +115,21 @@ function App() {
     while (movieToSet === undefined) {
       let index = Math.floor((Math.random() * filteredMovieList.length));
       let movie = filteredMovieList[index];
-      let runtime = await getMovieRuntime(movie);
-
+      let [runtime, imdb_id] = await getMovieRuntime(movie);
       if (desiredLength === "Short") {
         if (runtime >= 0 && runtime <= 105) {
           movieToSet = movie;
+          setImdbID(imdb_id)
         }
       } else if (desiredLength === "Average") {
         if (runtime >= 106 && runtime <= 135) {
           movieToSet = movie;
+          setImdbID(imdb_id)
         }
       } else if (desiredLength === "Long") {
         if (runtime > 135) {
           movieToSet = movie;
+          setImdbID(imdb_id)
         }
       }
     };
@@ -135,6 +139,7 @@ function App() {
   useEffect(fetchMovie, [])
   function fetchMovie() {
     let listOfMovies = [];
+    // popular end point has max of 500 pages 
     let numberOfPages = 500;
     let counter = 1;
     for (let i = 1; i < numberOfPages; i++) {
@@ -171,9 +176,6 @@ function App() {
       }
       )
   }
-
-
-  // fetch(`https://api.themoviedb.org/3/movie/550?${movieApiKey}`) 
   return (
     <div>
       <NavBar />
@@ -191,8 +193,13 @@ function App() {
             onChangeMealTypes={onChangeMealTypes}
             onChangeFoodAllergies={onChangeFoodAllergies}
             randomedMovie={randomedMovie}
+
+            onClickSearchMovies={onClickSearchMovies}
+            imdbId={imdbId} />} />
+
             onClickFetchRecipes={fetchRecipes}
             onClickSearchMovies={onClickSearchMovies} />} />     onClickSearchMovies={onClickSearchMovies} />} />
+
           <Route exact path='/results' component={Results} />
           <Route exact path='/favorites/' component={Favorites} />
           <Route exact path='/recent/' component={Recent} />
