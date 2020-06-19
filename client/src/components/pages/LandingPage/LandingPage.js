@@ -91,7 +91,13 @@ function LandingPage(props) {
         <div style={{ fontSize: '40px' }}>{props.randomedMovie.title || props.randomedMovie.name} </div>
         <div style={{ color: 'red', backgroundColor: 'black' }} onClick={props.onClickSearchMovies}>CLICK HERE BEFORE CLICKING PAIR ME TO GET NEW FILTERED MOVIE LIST </div>
         <img src={`https://image.tmdb.org/t/p/w200${props.randomedMovie.poster_path}`}></img>
-
+        <div>
+          {
+            (props.imdbId) ? <a target="_blank" href={'https://www.imdb.com/title/' + props.imdbId}> https://www.imdb.com/title/{props.imdbId}</a >
+              :
+              <div></div>
+          }
+        </div>
         <button style={{ margin: "60px 0 0 0" }} onClick={props.onClick}>Pair Me</button>
       </main>
     </div>
