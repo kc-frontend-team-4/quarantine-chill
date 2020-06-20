@@ -91,7 +91,7 @@ function App() {
       if (el.name === filter.Genre) {
         genreID = el.id;
       }
-      // console.log('genreName', genreID);
+      // console.log('genreName', genre  ID);
     }
     // console.log('getting filtered movies list')
 
