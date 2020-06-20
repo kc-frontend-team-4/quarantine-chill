@@ -19,7 +19,7 @@ function Results(props) {
           </div>
           <div className="recipe-column">
               <div className="recipe-selections">
-              <div className="recipe-image"><img src={props.recipeInfo} /></div>
+              <div className="recipe-image"><img className="recipe-image-item" src={props.recipeInfo} /></div>
           </div>
           </div>
           <button style={{alignSelf: "flex-start"}}>Love It!</button>
