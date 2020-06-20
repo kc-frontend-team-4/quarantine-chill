@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 import './LandingPage.css';
 import * as arrays from './arrays.js';
 import Select from '../../Select.js';
@@ -97,7 +98,9 @@ function LandingPage(props) {
               <div></div>
           }
         </div>
-        <button style={{ margin: "60px 0 0 0" }} onClick={props.onClick}>Pair Me</button>
+          <button style={{ margin: "60px 0 0 0" }} onClick={props.onClick}>
+            <Link to="/results/">Pair Me</Link>
+          </button>
       </main>
     </div>
   )
