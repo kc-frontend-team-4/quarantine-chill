@@ -33,10 +33,10 @@ function LandingPage(props) {
               </div >
               <div className="labels">
                 {/* Rating */}
-                <label htmlFor='Rating'>Rating</label>
-                <select onChange={props.onChangeRating} name='Rating' id='Rating'>
-                  {['Rating', 'Must Watch', 'Good', 'Decent', 'Controversial '].map((element, index) => (
-                    < option value={element} key={index} > {element}</option>
+                <label htmlFor='Decade'>Decade</label>
+                <select onChange={props.onChangeDecade} name='Decade' id='Decade'>
+                  {['Decade', '1900s', '1910s', '1920s', '1930s', '1940s', '1950s', '1960s', '1970s', '1980s', '1990s', '2000s', '2010s', '2020s'].map((element, index) => (
+                    < option value={element.slice(0, element.length - 1)} key={index} > {element}</option>
                   ))}
                 </select>
               </div >
@@ -103,11 +103,33 @@ function LandingPage(props) {
               <div></div>
           }
         </div>
-          <button style={{ margin: "60px 0 0 0" }} onClick={props.onClick}>
-            <Link to="/results/">Pair Me</Link>
-          </button>
+        <button style={{ margin: "60px 0 0 0" }} onClick={props.onClick}>
+          <Link to="/results/">Pair Me</Link>
+        </button>
       </main>
     </div>
   )
 }
 export default LandingPage;
+
+// https://api.themoviedb.org/3/movie/popular endpoint sample
+// {
+//   "popularity": 9.753,
+//   "vote_count": 325,
+//   "video": false,
+//   "poster_path": "/bz9717vMiTw2EGvGQUPRK4WLQ6G.jpg",
+//   "id": 323027,
+//   "adult": false,
+//   "backdrop_path": "/kc0ufvlfl7H9G6BRhnBf8EbTpF5.jpg",
+//   "original_language": "en",
+//   "original_title": "Justice League: Gods and Monsters",
+//   "genre_ids": [
+//   28,
+//   16,
+//   14
+//   ],
+//   "title": "Justice League: Gods and Monsters",
+//   "vote_average": 7,
+//   "overview": "In an alternate universe, very different versions of DC's Trinity fight against the government after they are framed for an embassy bombing.",
+//   "release_date": "2015-07-14"
+//   }
