@@ -3,7 +3,7 @@ import './Results.css';
 function Results(props) {
   useEffect(() => {
     console.log("recipe info found!")
-  }, [props.recipeInfo])
+  }, [props.recipeImg])
 
   return (
     <div>
@@ -19,7 +19,10 @@ function Results(props) {
           </div>
           <div className="recipe-column">
               <div className="recipe-selections">
-              <div className="recipe-image"><img className="recipe-image-item" src={props.recipeInfo} /></div>
+              <div className="recipe-image">
+                <img className="recipe-image-item" src={props.recipeImg} />
+              </div>
+              {props.recipeName}
           </div>
           </div>
           <button style={{alignSelf: "flex-start"}}>Love It!</button>

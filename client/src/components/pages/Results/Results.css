@@ -82,6 +82,8 @@ a {
 .recipe-column {
     grid-column: 2;
     position: relative;
+    font-size: 22px;
+    font-weight: bold;
 }
 
 .movie-options select, .recipe-options select {
