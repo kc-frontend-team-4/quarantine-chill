@@ -1,6 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './Results.css';
-function Results() {
+function Results(props) {
+  useEffect(() => {
+    console.log("recipe info found!")
+  }, [props.recipeInfo])
+
   return (
     <div>
       <main>
@@ -15,7 +19,7 @@ function Results() {
           </div>
           <div className="recipe-column">
               <div className="recipe-selections">
-              <div className="recipe-image"></div>
+              <div className="recipe-image"><img src={props.recipeInfo} /></div>
           </div>
           </div>
           <button style={{alignSelf: "flex-start"}}>Love It!</button>
