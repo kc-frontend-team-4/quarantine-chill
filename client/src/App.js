@@ -169,6 +169,9 @@ function App() {
     }
   }
 
+  const [recipeName, setRecipeName] = useState("")
+  const [recipeImg, setRecipeImg] = useState("")
+
   // fetchRecipes()
   function fetchRecipes() {
     console.log("fetching recipe data from API...");
@@ -185,9 +188,11 @@ function App() {
       .then(response => response.json())
       .then(data => {
         console.log("recipe is", data.recipes[0].title, data.recipes[0].image)
-      }
-      )
-  }
+          setRecipeName(data.recipes[0].title)
+          setRecipeImg(data.recipes[0].image)
+      })
+   }
+
   return (
     <div>
       <NavBar />
@@ -196,7 +201,7 @@ function App() {
           {/* passing props to route*/}
           {/* https://reacttraining.com/react-router/web/api/Route/render-func */}
           <Route exact path='/' render={(...props) => <LandingPage {...props}
-            onClick={onPairMeClick}
+            onClick={fetchRecipes}
             movies={movies}
             onChangeGenre={onChangeGenre}
             onChangeRating={onChangeRating}
@@ -210,7 +215,10 @@ function App() {
             onClickSearchMovies={onClickSearchMovies}
             imdbId={imdbId} />} />
 
-          <Route exact path='/results' component={Results} />
+          <Route exact path='/results' render={(...props) => <Results {...props}
+            recipeName={recipeName}
+            recipeImg={recipeImg} />}/>
+
           <Route exact path='/favorites/' component={Favorites} />
           <Route exact path='/recent/' component={Recent} />
         </Switch>
