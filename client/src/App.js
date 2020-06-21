@@ -38,9 +38,10 @@ function App() {
   const [filteredMovieList, setFilteredMovieList] = useState([])
   const [randomedRecipe, setRandomedRecipe] = useState([])
   const [imdbId, setImdbID] = useState('')
+  const [movieOverview, setmovieOverview] = useState('');
   const [filter, setFilter] = useState({
     Genre: 'Action',
-    Rating: 'Must Watch',
+    Decade: '2000',
     Length: 'Short',
     'Cuisine Type': 'African',
     'Meal Type': 'Main Course',
@@ -53,9 +54,9 @@ function App() {
     console.log(filter)
     // console.log(movies)
   }
-  const onChangeRating = (event) => {
+  const onChangeDecade = (event) => {
     // console.log(event.target.value)
-    setFilter({ ...filter, Rating: event.target.value })
+    setFilter({ ...filter, Decade: event.target.value })
     console.log(filter)
   }
   const onChangeLength = (event) => {
@@ -67,19 +68,19 @@ function App() {
     // todo: update state with the selected options
     // console.log(event.target.value)
     setFilter({ ...filter, 'Cuisine Type': event.target.value })
-    //console.log(filter)
+    console.log(filter)
   }
   const onChangeMealTypes = (event) => {
     // todo: update state with the selected options
     // console.log(event.target.value)
     setFilter({ ...filter, 'Meal Type': event.target.value })
-    //console.log(filter)
+    console.log(filter)
   }
   const onChangeFoodAllergies = (event) => {
     // todo: update state with the selected options
     // console.log(event.target.value)
     setFilter({ ...filter, 'Food Allergies': event.target.value })
-    //console.log(filter)
+    console.log(filter)
   }
   // get filtered movies list
   function onClickSearchMovies() {
@@ -90,24 +91,17 @@ function App() {
       if (el.name === filter.Genre) {
         genreID = el.id;
       }
-      // console.log('genreName', genreID);
+      // console.log('genreName', genre  ID);
     }
     // console.log('getting filtered movies list')
 
     const filteredMovies1 = movies
       .filter(element => element.genre_ids.includes(genreID));
+    console.log('kevin', filteredMovies1)
+    let filteredMovies = filteredMovies1.filter(element => filter.Decade === element.release_date.slice(0, 4))
 
-    let filteredMovies = null;
-    // console.log('kevin', filter.Rating, filter.Rating === 'Must Watch')
-    if (filter.Rating === 'Must Watch') {
-      filteredMovies = filteredMovies1.filter(element => element.vote_average >= 8);
-    } else if (filter.Rating === 'Good') {
-      filteredMovies = filteredMovies1.filter(element => element.vote_average < 8 && element.vote_average >= 7);
-    } else if (filter.Rating === 'Decent') {
-      filteredMovies = filteredMovies1.filter(element => element.vote_average < 7 && element.vote_average >= 6);
-    } else {
-      filteredMovies = filteredMovies1.filter(element => element.vote_average < 6);
-    }
+    //element.slice(0, element.length - 1)
+
 
     setFilteredMovieList(filteredMovies);
     console.log('filtered movie list', filteredMovieList);
@@ -118,7 +112,7 @@ function App() {
     const movieData = await fetch(`https://api.themoviedb.org/3/movie/${movie.id}?api_key=0402eec8d6da4df59f8077842992a247`);
     const json = await movieData.json();
     // console.log('kevin', json.imdb_id, 'wong', json.runtime)
-    return [json.runtime, json.imdb_id]
+    return [json.runtime, json.imdb_id, json.overview]
   }
   // show the random movie poster and title 
   async function onPairMeClick() {
@@ -127,21 +121,24 @@ function App() {
     while (movieToSet === undefined) {
       let index = Math.floor((Math.random() * filteredMovieList.length));
       let movie = filteredMovieList[index];
-      let [runtime, imdb_id] = await getMovieRuntime(movie);
+      let [runtime, imdb_id, overview] = await getMovieRuntime(movie);
       if (desiredLength === "Short") {
         if (runtime >= 0 && runtime <= 105) {
           movieToSet = movie;
           setImdbID(imdb_id)
+          setmovieOverview(overview)
         }
       } else if (desiredLength === "Average") {
         if (runtime >= 106 && runtime <= 135) {
           movieToSet = movie;
           setImdbID(imdb_id)
+          setmovieOverview(overview)
         }
       } else if (desiredLength === "Long") {
         if (runtime > 135) {
           movieToSet = movie;
           setImdbID(imdb_id)
+          setmovieOverview(overview)
         }
       }
     };
@@ -188,10 +185,10 @@ function App() {
       .then(response => response.json())
       .then(data => {
         console.log("recipe is", data.recipes[0].title, data.recipes[0].image)
-          setRecipeName(data.recipes[0].title)
-          setRecipeImg(data.recipes[0].image)
+        setRecipeName(data.recipes[0].title)
+        setRecipeImg(data.recipes[0].image)
       })
-   }
+  }
 
   return (
     <div>
@@ -204,7 +201,7 @@ function App() {
             onClick={fetchRecipes}
             movies={movies}
             onChangeGenre={onChangeGenre}
-            onChangeRating={onChangeRating}
+            onChangeDecade={onChangeDecade}
             onChangeLength={onChangeLength}
             onChangeCuisineType={onChangeCuisineType}
             onChangeMealTypes={onChangeMealTypes}
@@ -213,12 +210,17 @@ function App() {
 
             onClickonClickFetchRecipes={fetchRecipes}
             onClickSearchMovies={onClickSearchMovies}
-            imdbId={imdbId} />} />
+            imdbId={imdbId}
+            movieOverview={movieOverview} />} />
 
           <Route exact path='/results' render={(...props) => <Results {...props}
             recipeName={recipeName}
+<<<<<<< HEAD
             recipeImg={recipeImg}
             fetchRecipes={fetchRecipes} />}/>
+=======
+            recipeImg={recipeImg} />} />
+>>>>>>> master
 
           <Route exact path='/favorites/' component={Favorites} />
           <Route exact path='/recent/' component={Recent} />
@@ -229,3 +231,26 @@ function App() {
 }
 
 export default App;
+
+
+// https://api.themoviedb.org/3/movie/popular endpoint sample
+// {
+//   "popularity": 9.753,
+//   "vote_count": 325,
+//   "video": false,
+//   "poster_path": "/bz9717vMiTw2EGvGQUPRK4WLQ6G.jpg",
+//   "id": 323027,
+//   "adult": false,
+//   "backdrop_path": "/kc0ufvlfl7H9G6BRhnBf8EbTpF5.jpg",
+//   "original_language": "en",
+//   "original_title": "Justice League: Gods and Monsters",
+//   "genre_ids": [
+//   28,
+//   16,
+//   14
+//   ],
+//   "title": "Justice League: Gods and Monsters",
+//   "vote_average": 7,
+//   "overview": "In an alternate universe, very different versions of DC's Trinity fight against the government after they are framed for an embassy bombing.",
+//   "release_date": "2015-07-14"
+//   }
