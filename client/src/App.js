@@ -215,12 +215,8 @@ function App() {
 
           <Route exact path='/results' render={(...props) => <Results {...props}
             recipeName={recipeName}
-<<<<<<< HEAD
             recipeImg={recipeImg}
             fetchRecipes={fetchRecipes} />}/>
-=======
-            recipeImg={recipeImg} />} />
->>>>>>> master
 
           <Route exact path='/favorites/' component={Favorites} />
           <Route exact path='/recent/' component={Recent} />
