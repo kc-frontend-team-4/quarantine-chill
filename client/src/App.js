@@ -15,25 +15,25 @@ function App() {
   const movieApiKey = 'api_key=0402eec8d6da4df59f8077842992a247';
   const foodApiKey = 'apiKey=73bb985ab78b4740a1444004dfd60217';
   const [randomedMovie, setRandomedMovie] = useState({
-    "id": 475430,
-    "video": false,
-    "vote_count": 128,
-    "vote_average": 5.3,
-    "title": "Artemis Fowl",
-    "release_date": "2020-06-12",
-    "original_language": "en",
-    "original_title": "Artemis Fowl",
-    "genre_ids": [
-      12,
-      14,
-      878
-    ],
-    "backdrop_path": "/3CIae0GrhKTIzNS3FYYvT8P9D3w.jpg",
-    "adult": false,
-    "overview": "With the help of his loyal protector Butler, 12-year-old genius Artemis Fowl, descendant of a long line of criminal masterminds, seeks to find his mysteriously disappeared father, and in doing so, uncovers an ancient, underground civilization—the amazingly advanced world of fairies. Deducing that his father’s disappearance is somehow connected to the secretive, reclusive fairy world, cunning Artemis concocts a dangerous plan—so dangerous that he ultimately finds himself in a perilous war of wits with the all-powerful fairies.",
-    "poster_path": "/4cd08Le3PjCEd9EAOV71hR6r20R.jpg",
-    "popularity": 139.943,
-    "media_type": "movie"
+    // "id": 475430,
+    // "video": false,
+    // "vote_count": 128,
+    // "vote_average": 5.3,
+    // "title": "Artemis Fowl",
+    // "release_date": "2020-06-12",
+    // "original_language": "en",
+    // "original_title": "Artemis Fowl",
+    // "genre_ids": [
+    //   12,
+    //   14,
+    //   878
+    // ],
+    // "backdrop_path": "/3CIae0GrhKTIzNS3FYYvT8P9D3w.jpg",
+    // "adult": false,
+    // "overview": "With the help of his loyal protector Butler, 12-year-old genius Artemis Fowl, descendant of a long line of criminal masterminds, seeks to find his mysteriously disappeared father, and in doing so, uncovers an ancient, underground civilization—the amazingly advanced world of fairies. Deducing that his father’s disappearance is somehow connected to the secretive, reclusive fairy world, cunning Artemis concocts a dangerous plan—so dangerous that he ultimately finds himself in a perilous war of wits with the all-powerful fairies.",
+    // "poster_path": "/4cd08Le3PjCEd9EAOV71hR6r20R.jpg",
+    // "popularity": 139.943,
+    // "media_type": "movie"
   })
   const [filteredMovieList, setFilteredMovieList] = useState([])
   const [randomedRecipe, setRandomedRecipe] = useState([])
@@ -199,6 +199,7 @@ function App() {
           {/* https://reacttraining.com/react-router/web/api/Route/render-func */}
           <Route exact path='/' render={(...props) => <LandingPage {...props}
             onClick={fetchRecipes}
+            onClick={onPairMeClick}
             movies={movies}
             onChangeGenre={onChangeGenre}
             onChangeDecade={onChangeDecade}
@@ -212,11 +213,13 @@ function App() {
             onClickSearchMovies={onClickSearchMovies}
             imdbId={imdbId}
             movieOverview={movieOverview} />} />
-
           <Route exact path='/results' render={(...props) => <Results {...props}
             recipeName={recipeName}
             recipeImg={recipeImg}
-            fetchRecipes={fetchRecipes} />}/>
+            fetchRecipes={fetchRecipes}
+
+            randomedMovie={randomedMovie}
+          />} />
 
           <Route exact path='/favorites/' component={Favorites} />
           <Route exact path='/recent/' component={Recent} />

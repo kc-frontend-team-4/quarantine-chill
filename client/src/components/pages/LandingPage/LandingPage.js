@@ -35,7 +35,7 @@ function LandingPage(props) {
                 {/* Rating */}
                 <label htmlFor='Decade'>Decade</label>
                 <select onChange={props.onChangeDecade} name='Decade' id='Decade'>
-                  {['Decade', '1900s', '1910s', '1920s', '1930s', '1940s', '1950s', '1960s', '1970s', '1980s', '1990s', '2000s', '2010s', '2020s'].map((element, index) => (
+                  {['Decade', '1950s', '1960s', '1970s', '1980s', '1990s', '2000s', '2010s', '2020s'].map((element, index) => (
                     < option value={element.slice(0, element.length - 1)} key={index} > {element}</option>
                   ))}
                 </select>
@@ -88,9 +88,9 @@ function LandingPage(props) {
           </div>
         </div>
         {/* some movies have name but not title */}
-        <div style={{ fontSize: '40px' }}>{props.randomedMovie.title || props.randomedMovie.name} </div>
+        {/* <div style={{ fontSize: '40px' }}>{props.randomedMovie.title || props.randomedMovie.name} </div> */}
         <div style={{ color: 'red', backgroundColor: 'black' }} onClick={props.onClickSearchMovies}>CLICK HERE BEFORE CLICKING PAIR ME TO GET NEW FILTERED MOVIE LIST </div>
-        <img src={`https://image.tmdb.org/t/p/w200${props.randomedMovie.poster_path}`}></img>
+        {/* <img src={`https://image.tmdb.org/t/p/w200${props.randomedMovie.poster_path}`}></img>
         <div>
           {
             (props.imdbId) ? <a target="_blank" href={'https://www.imdb.com/title/' + props.imdbId}> https://www.imdb.com/title/{props.imdbId}</a >
@@ -102,7 +102,7 @@ function LandingPage(props) {
               :
               <div></div>
           }
-        </div>
+        </div> */}
         <button style={{ margin: "60px 0 0 0" }} onClick={props.onClick}>
           <Link to="/results/">Pair Me</Link>
         </button>
