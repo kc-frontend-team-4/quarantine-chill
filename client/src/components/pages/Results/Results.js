@@ -24,9 +24,9 @@ function Results(props) {
             </div>
             {props.recipeName}
           </div>
-        </div>
-        <button style={{ alignSelf: "flex-start" }}>Love It!</button>
-        <button className="gray-button" style={{ alignSelf: "flex-start" }}>Give Me Another</button>
+          </div>
+          <button style={{alignSelf: "flex-start"}}>Love It!</button>
+          <button className="gray-button" onClick={props.fetchRecipes}style={{alignSelf: "flex-start"}}>Give Me Another </button>
       </main>
     </div>
   )
