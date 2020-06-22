@@ -190,6 +190,11 @@ function App() {
       })
   }
 
+  function getPair() {
+    fetchRecipes();
+    onPairMeClick();
+    }
+
   return (
     <div>
       <NavBar />
@@ -198,8 +203,7 @@ function App() {
           {/* passing props to route*/}
           {/* https://reacttraining.com/react-router/web/api/Route/render-func */}
           <Route exact path='/' render={(...props) => <LandingPage {...props}
-            onClick={fetchRecipes}
-            onClick={onPairMeClick}
+            onClick={getPair}//{onPairMeClick}
             movies={movies}
             onChangeGenre={onChangeGenre}
             onChangeDecade={onChangeDecade}
