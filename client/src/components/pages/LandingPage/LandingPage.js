@@ -22,7 +22,7 @@ function LandingPage(props) {
         <div className="movie-column">
           <div className="movie-selections">
             {/* beginning movie image */}
-            <div className="movie-image">
+            <div className="landing-movie-image">
               <div className="movie-image-svg"><Movie /></div>
             </div>
             <div className="movie-options">
@@ -59,7 +59,7 @@ function LandingPage(props) {
         {/* food section */}
         <div className="recipe-column">
           <div className="recipe-selections">
-            <div className="recipe-image">
+            <div className="landing-recipe-image">
               <div className="recipe-image-svg">
               <Recipe />
               </div>
