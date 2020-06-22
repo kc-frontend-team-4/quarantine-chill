@@ -55,8 +55,23 @@ a {
     margin-left: auto
 }
 
+.movie-image-svg {
+    padding-top: 65px;
+    margin: auto;
+    max-width: 90%;
+    max-height: 90%;
+}
+
 .recipe-image {
     background-color: var(--black);
+}
+
+.recipe-image-svg {
+    padding-top: 65px;
+    padding-left:20px;
+    margin: auto;
+    max-width: 75%;
+    max-height: 75%;
 }
 
 .movie-selections {
