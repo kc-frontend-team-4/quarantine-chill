@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import './LandingPage.css';
 import * as arrays from './arrays.js';
 import Select from '../../Select.js';
+import { ReactComponent as Movie } from '../../../movie.svg';
+import { ReactComponent as Recipe } from '../../../recipe.svg';
 
 function LandingPage(props) {
 
@@ -20,7 +22,9 @@ function LandingPage(props) {
         <div className="movie-column">
           <div className="movie-selections">
             {/* beginning movie image */}
-            <div className="movie-image"></div>
+            <div className="landing-movie-image">
+              <div className="movie-image-svg"><Movie /></div>
+            </div>
             <div className="movie-options">
               <div className="labels">
                 {/* Genre */}
@@ -55,7 +59,11 @@ function LandingPage(props) {
         {/* food section */}
         <div className="recipe-column">
           <div className="recipe-selections">
-            <div className="recipe-image"></div>
+            <div className="landing-recipe-image">
+              <div className="recipe-image-svg">
+              <Recipe />
+              </div>
+            </div>
             <div className="recipe-options">
               <div className="labels">
                 {/* Cuisine Type */}

@@ -43,20 +43,34 @@ a {
     position: relative;
 }
 
-.movie-image, .recipe-image {
+.landing-movie-image, .landing-recipe-image {
     width: 300px;
     height: 200px;
     border: var(--main-border);
     margin-bottom: 15px;
 }
 
-.movie-image {
+.landing-movie-image {
     background-color: var(--gray);
     margin-left: auto
 }
 
-.recipe-image {
-    background-color: var(--black);
+.movie-image-svg {
+    padding-top: 14px;
+    margin: auto;
+    max-width: 90%;
+    max-height: 90%;
+}
+.landing-recipe-image {
+    background-color: var(--gray);
+}
+
+.recipe-image-svg {
+    padding-top: 24px;
+    padding-left:20px;
+    margin: auto;
+    max-width: 75%;
+    max-height: 75%;
 }
 
 .movie-selections {
