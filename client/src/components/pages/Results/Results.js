@@ -18,7 +18,7 @@ function Results(props) {
               <img src={`https://image.tmdb.org/t/p/w200${props.randomedMovie.poster_path}`}></img>
 
             </div>
-            <h1>{props.randomedMovie.title || props.randomedMovie.name}</h1>
+            <p className="movie-name">{props.randomedMovie.title || props.randomedMovie.name}</p>
           </div>
         </div>
         <div className="recipe-column">
@@ -26,7 +26,7 @@ function Results(props) {
             <div className="recipe-image">
               <img className="recipe-image-item" src={props.recipeImg} />
             </div>
-            {props.recipeName}
+            <p className="recipe-name">{props.recipeName}</p>
           </div>
         </div>
         <button style={{ alignSelf: "flex-start" }}>Love It!</button>
