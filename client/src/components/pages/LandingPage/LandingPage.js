@@ -103,7 +103,7 @@ function LandingPage(props) {
               <div></div>
           }
         </div> */}
-        <button style={{ margin: "60px 0 0 0" }} onClick={props.onClick}>
+        <button onClick={props.onClick}>
           <Link to="/results/">Pair Me</Link>
         </button>
       </main>
