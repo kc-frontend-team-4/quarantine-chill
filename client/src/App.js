@@ -36,9 +36,7 @@ function App() {
     // "media_type": "movie"
   })
   const [filteredMovieList, setFilteredMovieList] = useState([])
-  const [randomedRecipe, setRandomedRecipe] = useState([])
   const [imdbId, setImdbID] = useState('')
-  const [movieOverview, setmovieOverview] = useState('');
   const [filter, setFilter] = useState({
     Genre: 'Action',
     Decade: '2000',
@@ -91,21 +89,14 @@ function App() {
       if (el.name === filter.Genre) {
         genreID = el.id;
       }
-      // console.log('genreName', genre  ID);
     }
-    // console.log('getting filtered movies list')
 
     const filteredMovies1 = movies
       .filter(element => element.genre_ids.includes(genreID));
     console.log('kevin', filteredMovies1)
     let filteredMovies = filteredMovies1.filter(element => filter.Decade === element.release_date.slice(0, 4))
-
-    //element.slice(0, element.length - 1)
-
-
     setFilteredMovieList(filteredMovies);
     console.log('filtered movie list', filteredMovieList);
-    // console.log(filter)
   }
 
   async function getMovieRuntime(movie) {
@@ -126,19 +117,16 @@ function App() {
         if (runtime >= 0 && runtime <= 105) {
           movieToSet = movie;
           setImdbID(imdb_id)
-          setmovieOverview(overview)
         }
       } else if (desiredLength === "Average") {
         if (runtime >= 106 && runtime <= 135) {
           movieToSet = movie;
           setImdbID(imdb_id)
-          setmovieOverview(overview)
         }
       } else if (desiredLength === "Long") {
         if (runtime > 135) {
           movieToSet = movie;
           setImdbID(imdb_id)
-          setmovieOverview(overview)
         }
       }
     };
@@ -193,7 +181,7 @@ function App() {
   function getPair() {
     fetchRecipes();
     onPairMeClick();
-    }
+  }
 
   return (
     <div>
@@ -216,13 +204,14 @@ function App() {
             onClickonClickFetchRecipes={fetchRecipes}
             onClickSearchMovies={onClickSearchMovies}
             imdbId={imdbId}
-            movieOverview={movieOverview} />} />
+          />} />
           <Route exact path='/results' render={(...props) => <Results {...props}
             recipeName={recipeName}
             recipeImg={recipeImg}
             fetchRecipes={fetchRecipes}
 
             randomedMovie={randomedMovie}
+            imdbId={imdbId}
           />} />
 
           <Route exact path='/favorites/' component={Favorites} />

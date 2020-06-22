@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom'
 import './LandingPage.css';
 import * as arrays from './arrays.js';
-import Select from '../../Select.js';
 import { ReactComponent as Movie } from '../../../movie.svg';
 import { ReactComponent as Recipe } from '../../../recipe.svg';
 
@@ -11,10 +10,6 @@ function LandingPage(props) {
   const imageSize = 'w200'
   //width in px accept values of w200,w300,w400,w500,original
   //poster proportion "1x width:1.5x height"
-
-  // let didUserClickonPairMe = props.randomedMovie.poster_path ? true : false;
-  // let doesTheRandomedMovieHaveATitle = props.randomedMovie.title ? props.randomedMovie.title : props.randomedMovie.name;
-
   return (
     <div>
       <main>
@@ -61,7 +56,7 @@ function LandingPage(props) {
           <div className="recipe-selections">
             <div className="landing-recipe-image">
               <div className="recipe-image-svg">
-              <Recipe />
+                <Recipe />
               </div>
             </div>
             <div className="recipe-options">
@@ -95,22 +90,7 @@ function LandingPage(props) {
             </div>
           </div>
         </div>
-        {/* some movies have name but not title */}
-        {/* <div style={{ fontSize: '40px' }}>{props.randomedMovie.title || props.randomedMovie.name} </div> */}
         <div style={{ color: 'red', backgroundColor: 'black' }} onClick={props.onClickSearchMovies}>CLICK HERE BEFORE CLICKING PAIR ME TO GET NEW FILTERED MOVIE LIST </div>
-        {/* <img src={`https://image.tmdb.org/t/p/w200${props.randomedMovie.poster_path}`}></img>
-        <div>
-          {
-            (props.imdbId) ? <a target="_blank" href={'https://www.imdb.com/title/' + props.imdbId}> https://www.imdb.com/title/{props.imdbId}</a >
-              :
-              <div></div>
-          }
-          {
-            (props.movieOverview) ? <div>{props.movieOverview}</div>
-              :
-              <div></div>
-          }
-        </div> */}
         <button onClick={props.onClick}>
           <Link to="/results/">Pair Me</Link>
         </button>
