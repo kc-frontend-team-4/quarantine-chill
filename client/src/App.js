@@ -159,8 +159,12 @@ function App() {
     }
   }
 
-  const [recipeName, setRecipeName] = useState("")
-  const [recipeImg, setRecipeImg] = useState("")
+  const [recipeInfo, setRecipeInfo] =useState({
+    name: "",
+    url: "",
+    img: "",
+    cooktime: ""
+  })
 
   // fetchRecipes()
   function fetchRecipes() {
@@ -172,9 +176,17 @@ function App() {
     fetch(recipeApi)
       .then(response => response.json())
       .then(data => {
-        console.log("recipe is", data.recipes[0].title, data.recipes[0].image)
-        setRecipeName(data.recipes[0].title)
-        setRecipeImg(data.recipes[0].image)
+        console.log("recipe info is", 
+          data.recipes[0].title, 
+          data.recipes[0].spoonacularSourceUrl,
+          data.recipes[0].image,
+          data.recipes[0].readyInMinutes)
+
+        setRecipeInfo(
+          recipeInfo.name = data.recipes[0].title,
+          recipeInfo.url = data.recipes[0].spoonacularSourceUrl, 
+          recipeInfo.img = data.recipes[0].image,
+          recipeInfo.cooktime = data.recipes[0].readyInMinutes)
       })
   }
 
@@ -206,8 +218,7 @@ function App() {
             imdbId={imdbId}
           />} />
           <Route exact path='/results' render={(...props) => <Results {...props}
-            recipeName={recipeName}
-            recipeImg={recipeImg}
+            recipeInfo={recipeInfo}
             fetchRecipes={fetchRecipes}
             movieOverview={movieOverview}
             randomedMovie={randomedMovie}
