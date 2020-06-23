@@ -36,14 +36,15 @@ function App() {
     // "media_type": "movie"
   })
   const [filteredMovieList, setFilteredMovieList] = useState([])
-  const [imdbId, setImdbID] = useState('')
+  const [imdbId, setImdbID] = useState('');
+  const [movieOverview, setmovieOverview] = useState('');
   const [filter, setFilter] = useState({
-    Genre: 'Action',
-    Decade: '2000',
-    Length: 'Short',
-    'Cuisine Type': 'African',
-    'Meal Type': 'Main Course',
-    'Food Allergies': 'Dairy'
+    Genre: '',
+    Decade: '',
+    Length: '',
+    'Cuisine Type': '',
+    'Meal Type': '',
+    'Food Allergies': '',
   })
 
   const onChangeGenre = (event) => {
@@ -73,6 +74,7 @@ function App() {
     // console.log(event.target.value)
     setFilter({ ...filter, 'Meal Type': event.target.value })
     console.log(filter)
+
   }
   const onChangeFoodAllergies = (event) => {
     // todo: update state with the selected options
@@ -90,10 +92,7 @@ function App() {
         genreID = el.id;
       }
     }
-
-    const filteredMovies1 = movies
-      .filter(element => element.genre_ids.includes(genreID));
-    console.log('kevin', filteredMovies1)
+    const filteredMovies1 = movies.filter(element => element.genre_ids.includes(genreID));
     let filteredMovies = filteredMovies1.filter(element => filter.Decade === element.release_date.slice(0, 4))
     setFilteredMovieList(filteredMovies);
     console.log('filtered movie list', filteredMovieList);
@@ -117,16 +116,19 @@ function App() {
         if (runtime >= 0 && runtime <= 105) {
           movieToSet = movie;
           setImdbID(imdb_id)
+          setmovieOverview(overview)
         }
       } else if (desiredLength === "Average") {
         if (runtime >= 106 && runtime <= 135) {
           movieToSet = movie;
           setImdbID(imdb_id)
+          setmovieOverview(overview)
         }
       } else if (desiredLength === "Long") {
         if (runtime > 135) {
           movieToSet = movie;
           setImdbID(imdb_id)
+          setmovieOverview(overview)
         }
       }
     };
@@ -160,7 +162,6 @@ function App() {
   // fetchRecipes()
   function fetchRecipes() {
     console.log("fetching recipe data from API...");
-
     const recipeApi =
       `https://api.spoonacular.com/recipes/random?${foodApiKey}` +
       "&cuisine=" + filter['Cuisine Type'] +
@@ -209,7 +210,7 @@ function App() {
             recipeName={recipeName}
             recipeImg={recipeImg}
             fetchRecipes={fetchRecipes}
-
+            movieOverview={movieOverview}
             randomedMovie={randomedMovie}
             imdbId={imdbId}
           />} />
