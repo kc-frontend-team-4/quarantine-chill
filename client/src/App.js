@@ -13,7 +13,7 @@ function App() {
   // https://api.themoviedb.org/3/movie/{movie_id}?api_key=<<api_key>>&language=en-US
 
   const movieApiKey = 'api_key=0402eec8d6da4df59f8077842992a247';
-  const foodApiKey = 'apiKey=73bb985ab78b4740a1444004dfd60217';
+  const foodApiKey = 'apiKey=2fa1eb822ad241b381e2d9b65da08a0f' //'apiKey=73bb985ab78b4740a1444004dfd60217';
   const [randomedMovie, setRandomedMovie] = useState({
     // "id": 475430,
     // "video": false,
@@ -66,20 +66,23 @@ function App() {
   const onChangeCuisineType = (event) => {
     // todo: update state with the selected options
     // console.log(event.target.value)
-    setFilter({ ...filter, 'Cuisine Type': event.target.value })
+    let cusineURL = event.target.value.toLowerCase().split(' ').join('_')
+    setFilter({ ...filter, 'Cuisine Type': cusineURL })
     console.log(filter)
   }
   const onChangeMealTypes = (event) => {
     // todo: update state with the selected options
     // console.log(event.target.value)
-    setFilter({ ...filter, 'Meal Type': event.target.value })
+    let mealTypeURL = event.target.value.toLowerCase().split(' ').join('_')
+    setFilter({ ...filter, 'Meal Type': mealTypeURL })
     console.log(filter)
 
   }
   const onChangeFoodAllergies = (event) => {
     // todo: update state with the selected options
     // console.log(event.target.value)
-    setFilter({ ...filter, 'Food Allergies': event.target.value })
+    let foodAllergiesURL = event.target.value.toLowerCase().split(' ').join('_')
+    setFilter({ ...filter, 'Food Allergies': foodAllergiesURL })
     console.log(filter)
   }
   // get filtered movies list
@@ -163,12 +166,8 @@ function App() {
   function fetchRecipes() {
     console.log("fetching recipe data from API...");
     const recipeApi =
-      `https://api.spoonacular.com/recipes/random?${foodApiKey}` +
-      "&cuisine=" + filter['Cuisine Type'] +
-      "&intolerances=" + filter['Food Allergies'] +
-      "&type=" + filter['Meal Type'] +
-      "&diet="
-
+      `https://api.spoonacular.com/recipes/random?${foodApiKey}` + "&tags="
+      + filter['Cuisine Type'] + ',' + filter['Food Allergies'] + ',' + filter['Meal Type'] + ',';
     console.log('here is the api', recipeApi)
     fetch(recipeApi)
       .then(response => response.json())
