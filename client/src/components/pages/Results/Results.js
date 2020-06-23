@@ -17,8 +17,11 @@ function Results(props) {
             <div className="movie-image">
               <img src={`https://image.tmdb.org/t/p/w200${props.randomedMovie.poster_path}`}></img>
             </div>
+
             <a target="_blank" href={'https://www.imdb.com/title/' + props.imdbId}> <p className="movie-name">{props.randomedMovie.title || props.randomedMovie.name}</p></a>
           </div>
+          <h2>{props.movieOverview}</h2>
+
         </div>
         <div className="recipe-column">
           <div className="recipe-selections">
