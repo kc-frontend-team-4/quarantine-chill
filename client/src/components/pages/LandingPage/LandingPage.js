@@ -11,8 +11,6 @@ function LandingPage(props) {
   //width in px accept values of w200,w300,w400,w500,original
   //poster proportion "1x width:1.5x height"
 
-  useEffect(props.resetRecipeInfo, [])
-
   return (
     <div>
       <main>

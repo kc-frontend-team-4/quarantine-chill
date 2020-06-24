@@ -125,23 +125,6 @@ function App() {
     }
   }
 
-
-function resetRecipeInfo(){
-  setRecipeInfo({...recipeInfo,
-    name: "",
-    url: "", 
-    img: "",
-    cooktime:""
-  })
-}
-
-  const [recipeInfo, setRecipeInfo] =useState({
-    name: "",
-    url: "",
-    img: "",
-    cooktime: ""
-  })
-
   function fetchRecipes() {
     console.log("fetching recipe data from API...");
     
