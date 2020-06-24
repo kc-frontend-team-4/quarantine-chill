@@ -4,7 +4,7 @@ export const meal_types = [
     'Main Course',
     'Side Dish',
     'Dessert',
-    'Appetizer',
+    //'Appetizer',
     'Salad',
     // 'Bread',
     'Breakfast',
@@ -18,18 +18,20 @@ export const meal_types = [
 ];
 // https://spoonacular.com/food-api/docs#Intolerances
 export const food_allergies = [
-    'Dairy',
-    'Egg',
-    'Gluten',
-    'Grain',
-    'Peanut',
-    'Seafood',
-    'Sesame',
-    'Shellfish',
-    'Soy',
-    'Sulfite',
-    'Tree Nut',
-    'Wheat'
+    'vegan',
+    'vegetarian'
+    // 'Dairy',
+    // 'Egg',
+    // 'Gluten',
+    // 'Grain',
+    // 'Peanut',
+    // 'Seafood',
+    // 'Sesame',
+    // 'Shellfish',
+    // 'Soy',
+    // 'Sulfite',
+    // 'Tree Nut',
+    // 'Wheat'
 ];
 // https://spoonacular.com/food-api/docs#Cuisines
 export const cuisines = [

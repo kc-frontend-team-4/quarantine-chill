@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Results.css';
+
 import { Link } from 'react-router-dom';
 import imdb from '../../../imdb.png'
 
@@ -9,7 +10,17 @@ function Results(props) {
   }, [props.recipeInfo.recipeImg])
 
   return (
+
+
     <div>
+      {/* <div>
+        <BounceLoader
+          // css={override}
+          size={50}
+          color={'#000000'}
+          loading={props.loader.loading}
+        />
+      </div> */}
       <main>
         <div className="movie-column">
           <div className="start-over">

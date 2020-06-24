@@ -5,6 +5,10 @@ import * as arrays from './arrays.js';
 import { ReactComponent as Movie } from '../../../movie.svg';
 import { ReactComponent as Recipe } from '../../../recipe.svg';
 
+
+// import { css } from "@emotion/core";
+import BounceLoader from "react-spinners/BounceLoader";
+
 function LandingPage(props) {
 
   const imageSize = 'w200'
@@ -13,6 +17,14 @@ function LandingPage(props) {
 
   return (
     <div>
+      <div>
+        <BounceLoader
+          // css={override}
+          size={50}
+          color={'#000000'}
+          loading={props.loader.loading}
+        />
+      </div>
       <main>
         {/* movie section */}
         <div className="movie-column">
@@ -71,7 +83,7 @@ function LandingPage(props) {
                 </select>
               </div >
               <div className="labels">
-                {/* meal types */}
+
                 <label htmlFor='Meal Type'>Meal Type</label>
                 <select onChange={props.onChangeMealTypes} name='Meal Type' id='Meal Type'>
                   {arrays.meal_types.map((element, index) => (
@@ -79,15 +91,29 @@ function LandingPage(props) {
                   ))}
                 </select>
               </div >
+
+
               <div className="labels">
-                {/* Food Allergies */}
+                {/* food restrictions */}
+                <label htmlFor='food restrictions'>food restrictions</label>
+                <select onChange={props.onChangeFoodRestrictions} name='food restrictions' id='food restrictions'>
+                  {arrays.food_restrictions.map((element, index) => (
+                    < option value={element} key={index} > {element}</option>
+                  ))}
+                </select>
+              </div >
+
+
+              {/* <div className="labels">
+                Food Allergies
                 <label htmlFor='Food Allergies' >Food Allergies</label>
                 <select onChange={props.onChangeFoodAllergies} name='Food Allergies' id='Food Allergies' >
+                  {console.log(arrays.food_allergies)}
                   {arrays.food_allergies.map((element, index) => (
                     < option value={element} key={index} > {element}</option>
                   ))}
                 </select>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
@@ -98,6 +124,7 @@ function LandingPage(props) {
       </main>
     </div>
   )
+
 }
 export default LandingPage;
 
