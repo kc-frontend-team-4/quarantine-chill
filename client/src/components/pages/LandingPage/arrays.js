@@ -4,13 +4,18 @@ export const meal_types = [
     'Meal Type',
     'Breakfast',
     'Lunch',
-    'Dinner'
+    'Dinner',
+    'Snack',
+    'Dessert',
 ];
 
 export const food_restrictions = [
-    'Food Restiction',
-    // 'Vegan',
+    'Dietary Restictions',
+    'Vegan',
     'Vegetarian',
+    'DairyFree',
+    'GlutenFree'
+
 ];
 
 // https://spoonacular.com/food-api/docs#Intolerances
