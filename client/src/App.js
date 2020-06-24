@@ -161,7 +161,7 @@ function App() {
 
   const [recipeInfo, setRecipeInfo] =useState({
     name: "",
-    url: "",
+    url: "https://recipeland.com/images/r/2175/8d93f9014f51778c591c_1024.jpg",
     img: "",
     cooktime: ""
   })
@@ -169,9 +169,30 @@ function App() {
   // fetchRecipes()
   function fetchRecipes() {
     console.log("fetching recipe data from API...");
+    
+    // Create list of filters from the filter state variable
+    const recipeFilters = [
+      filter['Cuisine Type'], 
+      filter['Food Allergies'],
+      filter['Meal Type']
+    ]
+
+    // Create empty list to hold the values that are not empty strings
+    let tagList=[]
+    
+    // Add non-empty strings to list
+    for (let filter of recipeFilters){
+      if (filter !== ''){
+        tagList.push(filter)
+      }
+    }
+
+    const tags = tagList.join()
+    console.log("tags are", tags)
     const recipeApi =
-      `https://api.spoonacular.com/recipes/random?${foodApiKey}` + "&tags="
-      + filter['Cuisine Type'] + ',' + filter['Food Allergies'] + ',' + filter['Meal Type'] + ',';
+      `https://api.spoonacular.com/recipes/random?${foodApiKey}` + "&tags=" +
+       tags
+
     console.log('here is the api', recipeApi)
     fetch(recipeApi)
       .then(response => response.json())
