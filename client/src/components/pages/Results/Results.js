@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Results.css';
 import { Link } from 'react-router-dom'
-import BounceLoader from "react-spinners/BounceLoader";
 
 function Results(props) {
   useEffect(() => {
