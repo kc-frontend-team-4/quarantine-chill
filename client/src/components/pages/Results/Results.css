@@ -16,6 +16,7 @@ background-color: red;
     --gray: #98A0A6;
     --red:  #e63946;
     --black: #081621;
+    --darkgray: #606060;
 }
 
 * {
@@ -68,16 +69,23 @@ a {
     height:100%;
 }
 
-.movie-selections {
-    position: absolute;
+.movie-selections, .movie-selections-results{
     right: 0;
-    top: 40%;
     margin-right: 25px;
+
 }
 
-.recipe-selections {
+ .movie-selections-results, .recipe-selections-results {
+    padding: 25px 25px 0 25px;
+    background-color: var(--gray)
+}
+
+.movie-selections, .recipe-selections, .movie-selections-results, .recipe-selections-results  {
     position: absolute;
     top: 40%;
+}
+
+.recipe-selections, .recipe-selections-results {
     left: 0;
     margin-left: 25px;
 }
@@ -86,7 +94,6 @@ a {
     grid-column: 2;
     position: relative;
     font-size: 22px;
-    font-weight: bold;
 }
 
 .movie-options select, .recipe-options select {
@@ -94,8 +101,8 @@ a {
     width: 200px;
     height: 35px;
     margin-bottom: 15px;
-    background-color: #98A0A6;
-    color: #ffffff;
+    background-color: var(--gray);
+    color: var(--white);
     font-size: 18px;
     margin-left: auto;
     margin-right: auto;
@@ -104,7 +111,7 @@ a {
 
 .movie-name, .recipe-name {
     font-size: 22px;
-    font-weight: 400;
+    font-weight: 700;
     text-align: center;
     margin-top: 0;
 }
@@ -161,20 +168,39 @@ button {
     top: 15%;
 }
 
-.star-and-image {
-    display: flex;
-    flex-direction: row;
+.recipe-information, .movie-information {
+    width: 300px;
 }
 
-.star {
-    align-self: center;
-    margin-right: 50px;
+.movie-link-container, .recipe-link-container {
+    background-color: var(--white);
+    margin-left: -25px;
+    margin-right: -27px;
+    border: 2px solid var(--gray);
 }
 
-.count {
-    display: block;
-    font-size: 20px;
-    text-align: center;
+.movie-link, .recipe-link {
+    margin: 10px auto;
+    width: 200px;
+    padding: 5px;
+    background-color: var(--darkgray);
+}
 
+.imdb-text {
+    margin-left: 15px;
+}
+
+.imdb-text, .recipe-text {
+    font-size: 16px;
+    color: var(--white);
+}
+
+.recipe-text {
+    margin-left: 35px;
+}
+
+.imdb-img {
+    width: 50px;
+    margin-bottom: -6px;
 }
 

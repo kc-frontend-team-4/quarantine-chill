@@ -153,6 +153,7 @@ function App() {
   function fetchRecipes() {
     console.log("fetching recipe data from API...",);
 
+
     const recipeFilters = [
       filter['Cuisine Type'],
       filter['Food Restriction'],
@@ -172,10 +173,13 @@ function App() {
     const recipeApi =
       `https://api.spoonacular.com/recipes/random?${foodApiKey}` + "&tags=" +
       tags
+
+    // Do the fetch
     console.log('here is the api', recipeApi)
     fetch(recipeApi)
       .then(response => response.json())
       .then(data => {
+
         console.log(recipeApi)
         // check if such recipe exists  
         if (data.recipes[0] !== undefined) {
@@ -186,8 +190,9 @@ function App() {
             cooktime: data.recipes[0]['readyInMinutes']
           })
         }
-      }
-      )
+        console.log("and now the recipe info is", recipeInfo)
+      })
+    
   }
   function getPair() {
     fetchRecipes();
