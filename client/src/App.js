@@ -13,7 +13,7 @@ function App() {
   // https://api.themoviedb.org/3/movie/{movie_id}?api_key=<<api_key>>&language=en-US
 
   const movieApiKey = 'api_key=0402eec8d6da4df59f8077842992a247';
-  const foodApiKey = 'apiKey=2fa1eb822ad241b381e2d9b65da08a0f' //'apiKey=73bb985ab78b4740a1444004dfd60217';
+  const foodApiKey = 'apiKey=73bb985ab78b4740a1444004dfd60217'; //'apiKey=2fa1eb822ad241b381e2d9b65da08a0f'
   const [randomedMovie, setRandomedMovie] = useState({
     // "id": 475430,
     // "video": false,
@@ -109,6 +109,8 @@ function App() {
   }
   // show the random movie poster and title 
   async function onPairMeClick() {
+    fetchRecipes();
+
     let movieToSet = undefined;
     const desiredLength = filter.Length;
     while (movieToSet === undefined) {
@@ -138,7 +140,7 @@ function App() {
     setRandomedMovie(movieToSet);
   }
   const [movies, setMovies] = useState(null);
-  useEffect(fetchMovie, [])
+
   function fetchMovie() {
     let listOfMovies = [];
     // popular end point has max of 500 pages 
@@ -159,6 +161,7 @@ function App() {
     }
   }
 
+
 function resetRecipeInfo(){
   setRecipeInfo({...recipeInfo,
     name: "",
@@ -175,7 +178,6 @@ function resetRecipeInfo(){
     cooktime: ""
   })
 
-  // fetchRecipes()
   function fetchRecipes() {
     console.log("fetching recipe data from API...");
     
@@ -207,6 +209,7 @@ function resetRecipeInfo(){
     fetch(recipeApi)
       .then(response => response.json())
       .then(data => {
+
         console.log("recipe info is", 
           data.recipes[0].title, 
           data.recipes[0].spoonacularSourceUrl,
@@ -222,12 +225,15 @@ function resetRecipeInfo(){
 
         console.log("and now the recipe info is", recipeInfo)
       })
+
   }
 
   function getPair() {
     fetchRecipes();
     onPairMeClick();
   }
+
+  useEffect(fetchMovie, [])
 
   return (
     <div>

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 function Results(props) {
   useEffect(() => {
     console.log("recipe info found!")
-  }, [props.recipeImg])
+  }, [props.recipeInfo.recipeImg])
 
   return (
     <div>
@@ -29,6 +29,7 @@ function Results(props) {
               <img className="recipe-image-item" src={props.recipeInfo.img} />
             </div>
             <p className="recipe-name">{props.recipeInfo.name}</p>
+            <p>cook time is {props.recipeInfo.cooktime} minutes</p>
           </div>
         </div>
         <button style={{ alignSelf: "flex-start" }}>Love It!</button>
