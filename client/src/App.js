@@ -8,12 +8,26 @@ import LandingPage from './components/pages/LandingPage/LandingPage.js';
 import Favorites from './components/pages/Favorites/Favorites.js';
 import Recent from './components/pages/Recent/Recent.js';
 import Results from './components/pages/Results/Results.js';
+
+import { css } from "@emotion/core";
+import BounceLoader from "react-spinners/BounceLoader";
+
+const override = css`
+  display: block;
+  margin: 0 auto;
+  border-color: red;
+`;
+
+
 function App() {
+
+  const [loader, setLoader] = useState({
+    loading: true,
+  })
   // https://developers.themoviedb.org/3/movies/get-movie-details
   // https://api.themoviedb.org/3/movie/{movie_id}?api_key=<<api_key>>&language=en-US
-
   const movieApiKey = 'api_key=0402eec8d6da4df59f8077842992a247';
-  const foodApiKey = 'apiKey=73bb985ab78b4740a1444004dfd60217'; //'apiKey=2fa1eb822ad241b381e2d9b65da08a0f'
+  const foodApiKey = 'apiKey=d04ffb4acf8442e5a0cbc4291ed663b4';// 'apiKey=2fa1eb822ad241b381e2d9b65da08a0f'; //'apiKey=73bb985ab78b4740a1444004dfd60217'; //'
   const [randomedMovie, setRandomedMovie] = useState({});
   const [filteredMovieList, setFilteredMovieList] = useState([]);
   const [imdbId, setImdbID] = useState('');
@@ -25,6 +39,7 @@ function App() {
     'Cuisine Type': '',
     'Meal Type': '',
     'Food Allergies': '',
+    'Food Restriction': '',
   })
   const [recipeInfo, setRecipeInfo] = useState({
     name: "",
@@ -46,13 +61,44 @@ function App() {
     setFilter({ ...filter, 'Cuisine Type': cusineURL });
   }
   const onChangeMealTypes = (event) => {
-    let mealTypeURL = event.target.value.toLowerCase().split(' ').join('%20');
+    let mealTypeURL = event.target.value.toLowerCase();
     setFilter({ ...filter, 'Meal Type': mealTypeURL });
+    console.log(filter['Meal Type'])
   }
   const onChangeFoodAllergies = (event) => {
     let foodAllergiesURL = event.target.value.toLowerCase().split(' ').join('%20');
     setFilter({ ...filter, 'Food Allergies': foodAllergiesURL });
   }
+
+  const onChangeFoodRestrictions = (event) => {
+    let foodRestriction = event.target.value.toLowerCase().split(' ').join('%20');
+    setFilter({ ...filter, 'Food Restriction': foodRestriction });
+  }
+
+
+  const [movies, setMovies] = useState(null);
+  useEffect(fetchMovie, [])
+  function fetchMovie() {
+    let listOfMovies = [];
+    // popular end point has max of 500 pages 
+    let numberOfPages = 500;
+    let counter = 1;
+    for (let i = 1; i < numberOfPages; i++) {
+      fetch(`https://api.themoviedb.org/3/movie/popular?${movieApiKey}&page=${i}`)
+        .then(response => response.json())
+        .then(data => {
+          // building array of movies
+          // console.log(data.results)
+          listOfMovies = [...listOfMovies, ...data.results]
+          counter++;
+          if (counter >= numberOfPages) {
+            setMovies(listOfMovies)
+          }
+          setLoader({ loading: false })
+        })
+    }
+  }
+
   // get filtered movies list
   function onClickSearchMovies() {
     let genreID;
@@ -103,35 +149,12 @@ function App() {
     };
     setRandomedMovie(movieToSet);
   }
-  const [movies, setMovies] = useState(null);
-
-  function fetchMovie() {
-    let listOfMovies = [];
-    // popular end point has max of 500 pages 
-    let numberOfPages = 500;
-    let counter = 1;
-    for (let i = 1; i < numberOfPages; i++) {
-      fetch(`https://api.themoviedb.org/3/movie/popular?${movieApiKey}&page=${i}`)
-        .then(response => response.json())
-        .then(data => {
-          // building array of movies
-          // console.log(data.results)
-          listOfMovies = [...listOfMovies, ...data.results]
-          counter++;
-          if (counter >= numberOfPages) {
-            setMovies(listOfMovies)
-          }
-        })
-    }
-  }
-
-
 
   function fetchRecipes() {
-    console.log("fetching recipe data from API...");
+    console.log("fetching recipe data from API...", filter['Meal Type']);
     const recipeApi =
       `https://api.spoonacular.com/recipes/random?${foodApiKey}` + "&tags="
-      + filter['Cuisine Type'] + ',' + filter['Food Allergies'] + ',' + filter['Meal Type'] + ',';
+      + filter['Cuisine Type'] + ',' + filter['Meal Type'] + ',' + filter['Food Restriction'];
     console.log('here is the api', recipeApi)
     fetch(recipeApi)
       .then(response => response.json())
@@ -153,7 +176,6 @@ function App() {
     fetchRecipes();
     onPairMeClick();
   }
-  useEffect(fetchMovie, [])
   return (
     <div>
       <NavBar />
@@ -169,7 +191,10 @@ function App() {
             onChangeCuisineType={onChangeCuisineType}
             onChangeMealTypes={onChangeMealTypes}
             onChangeFoodAllergies={onChangeFoodAllergies}
+            onChangeFoodRestrictions={onChangeFoodRestrictions}
             onClickSearchMovies={onClickSearchMovies}
+
+            loader={loader}
           />} />
           <Route exact path='/results' render={(...props) => <Results {...props}
             recipeInfo={recipeInfo}
@@ -185,5 +210,6 @@ function App() {
     </div>
   );
 }
+
 
 export default App;
