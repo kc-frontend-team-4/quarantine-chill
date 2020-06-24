@@ -126,16 +126,54 @@ function App() {
   }
 
 
+function resetRecipeInfo(){
+  setRecipeInfo({...recipeInfo,
+    name: "",
+    url: "", 
+    img: "",
+    cooktime:""
+  })
+}
+
+  const [recipeInfo, setRecipeInfo] =useState({
+    name: "",
+    url: "",
+    img: "",
+    cooktime: ""
+  })
 
   function fetchRecipes() {
     console.log("fetching recipe data from API...");
+    
+    // Create list of filters from the filter state variable
+    const recipeFilters = [
+      filter['Cuisine Type'], 
+      filter['Food Allergies'],
+      filter['Meal Type']
+    ]
+
+    // Create empty list to hold the values that are not empty strings
+    let tagList=[]
+    
+    // Add non-empty strings to list
+    for (let filter of recipeFilters){
+      if (filter !== "" && filter !== undefined){
+        tagList.push(filter)
+      }
+    }
+    console.log("here is the taglist", tagList)
+    const tags = tagList.join()
+    console.log("tags are", tags)
     const recipeApi =
-      `https://api.spoonacular.com/recipes/random?${foodApiKey}` + "&tags="
-      + filter['Cuisine Type'] + ',' + filter['Food Allergies'] + ',' + filter['Meal Type'] + ',';
+      `https://api.spoonacular.com/recipes/random?${foodApiKey}` + "&tags=" +
+       tags
+
+    // Do the fetch
     console.log('here is the api', recipeApi)
     fetch(recipeApi)
       .then(response => response.json())
       .then(data => {
+
         console.log(recipeApi)
         // check if such recipe exists  
         if (data.recipes[0] !== undefined) {
@@ -146,8 +184,9 @@ function App() {
             cooktime: data.recipes[0]['readyInMinutes']
           })
         }
-      }
-      )
+        console.log("and now the recipe info is", recipeInfo)
+      })
+    
   }
   function getPair() {
     fetchRecipes();
