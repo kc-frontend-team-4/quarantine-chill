@@ -26,9 +26,9 @@ function Results(props) {
         <div className="recipe-column">
           <div className="recipe-selections">
             <div className="recipe-image">
-              <img className="recipe-image-item" src={props.recipeImg} />
+              <img className="recipe-image-item" src={props.recipeInfo.img} />
             </div>
-            <p className="recipe-name">{props.recipeName}</p>
+            <p className="recipe-name">{props.recipeInfo.name}</p>
           </div>
         </div>
         <button style={{ alignSelf: "flex-start" }}>Love It!</button>

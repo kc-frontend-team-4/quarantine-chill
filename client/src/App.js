@@ -169,9 +169,31 @@ function App() {
   // fetchRecipes()
   function fetchRecipes() {
     console.log("fetching recipe data from API...");
+    
+    // Create list of filters from the filter state variable
+    const recipeFilters = [
+      filter['Cuisine Type'], 
+      filter['Food Allergies'],
+      filter['Meal Type']
+    ]
+
+    // Create empty list to hold the values that are not empty strings
+    let tagList=[]
+    
+    // Add non-empty strings to list
+    for (let filter of recipeFilters){
+      if (filter !== ''){
+        tagList.push(filter)
+      }
+    }
+
+    const tags = tagList.join()
+    console.log("tags are", tags)
     const recipeApi =
-      `https://api.spoonacular.com/recipes/random?${foodApiKey}` + "&tags="
-      + filter['Cuisine Type'] + ',' + filter['Food Allergies'] + ',' + filter['Meal Type'] + ',';
+      `https://api.spoonacular.com/recipes/random?${foodApiKey}` + "&tags=" +
+       tags
+
+    // Do the fetch
     console.log('here is the api', recipeApi)
     fetch(recipeApi)
       .then(response => response.json())
@@ -187,6 +209,8 @@ function App() {
           recipeInfo.url = data.recipes[0].spoonacularSourceUrl, 
           recipeInfo.img = data.recipes[0].image,
           recipeInfo.cooktime = data.recipes[0].readyInMinutes)
+
+        console.log("and now the recipe info is", recipeInfo)
       })
   }
 
