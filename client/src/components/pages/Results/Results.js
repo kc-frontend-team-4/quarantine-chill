@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 function Results(props) {
   useEffect(() => {
     console.log("recipe info found!")
-  }, [props.recipeImg])
+  }, [props.recipeInfo.img])
 
   return (
     <div>

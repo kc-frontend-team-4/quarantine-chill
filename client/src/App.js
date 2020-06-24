@@ -161,7 +161,7 @@ function App() {
 
   const [recipeInfo, setRecipeInfo] =useState({
     name: "",
-    url: "https://recipeland.com/images/r/2175/8d93f9014f51778c591c_1024.jpg",
+    url: "",
     img: "",
     cooktime: ""
   })
@@ -208,6 +208,8 @@ function App() {
           recipeInfo.url = data.recipes[0].spoonacularSourceUrl, 
           recipeInfo.img = data.recipes[0].image,
           recipeInfo.cooktime = data.recipes[0].readyInMinutes)
+
+        console.log("and now the recipe info is", recipeInfo)
       })
   }
 
