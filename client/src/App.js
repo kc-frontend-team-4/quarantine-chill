@@ -159,6 +159,15 @@ function App() {
     }
   }
 
+function resetRecipeInfo(){
+  setRecipeInfo({...recipeInfo,
+    name: "",
+    url: "", 
+    img: "",
+    cooktime:""
+  })
+}
+
   const [recipeInfo, setRecipeInfo] =useState({
     name: "",
     url: "",
@@ -182,11 +191,11 @@ function App() {
     
     // Add non-empty strings to list
     for (let filter of recipeFilters){
-      if (filter !== ''){
+      if (filter !== "" && filter !== undefined){
         tagList.push(filter)
       }
     }
-
+    console.log("here is the taglist", tagList)
     const tags = tagList.join()
     console.log("tags are", tags)
     const recipeApi =
@@ -204,11 +213,12 @@ function App() {
           data.recipes[0].image,
           data.recipes[0].readyInMinutes)
 
-        setRecipeInfo(
-          recipeInfo.name = data.recipes[0].title,
-          recipeInfo.url = data.recipes[0].spoonacularSourceUrl, 
-          recipeInfo.img = data.recipes[0].image,
-          recipeInfo.cooktime = data.recipes[0].readyInMinutes)
+        setRecipeInfo({...recipeInfo,
+          name:data.recipes[0].title,
+          url: data.recipes[0].spoonacularSourceUrl, 
+          img: data.recipes[0].image,
+          cooktime: data.recipes[0].readyInMinutes
+        })
 
         console.log("and now the recipe info is", recipeInfo)
       })
@@ -236,7 +246,7 @@ function App() {
             onChangeMealTypes={onChangeMealTypes}
             onChangeFoodAllergies={onChangeFoodAllergies}
             randomedMovie={randomedMovie}
-
+            resetRecipeInfo={resetRecipeInfo}
             onClickonClickFetchRecipes={fetchRecipes}
             onClickSearchMovies={onClickSearchMovies}
             imdbId={imdbId}

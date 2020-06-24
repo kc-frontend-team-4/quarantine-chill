@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'
 import './LandingPage.css';
 import * as arrays from './arrays.js';
@@ -10,6 +10,9 @@ function LandingPage(props) {
   const imageSize = 'w200'
   //width in px accept values of w200,w300,w400,w500,original
   //poster proportion "1x width:1.5x height"
+
+  useEffect(props.resetRecipeInfo, [])
+
   return (
     <div>
       <main>
