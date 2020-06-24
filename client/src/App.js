@@ -33,26 +33,25 @@ function App() {
     cooktime: ""
   })
   const onChangeGenre = (event) => {
-    setFilter({ ...filter, Genre: event.target.value })
+    setFilter({ ...filter, Genre: event.target.value });
   }
   const onChangeDecade = (event) => {
-    setFilter({ ...filter, Decade: event.target.value })
+    setFilter({ ...filter, Decade: event.target.value });
   }
   const onChangeLength = (event) => {
     setFilter({ ...filter, Length: event.target.value })
-    console.log(filter)
   }
   const onChangeCuisineType = (event) => {
-    let cusineURL = event.target.value.toLowerCase().split(' ').join('_')
-    setFilter({ ...filter, 'Cuisine Type': cusineURL })
+    let cusineURL = event.target.value.toLowerCase().split(' ').join('%20');
+    setFilter({ ...filter, 'Cuisine Type': cusineURL });
   }
   const onChangeMealTypes = (event) => {
-    let mealTypeURL = event.target.value.toLowerCase().split(' ').join('_')
-    setFilter({ ...filter, 'Meal Type': mealTypeURL })
+    let mealTypeURL = event.target.value.toLowerCase().split(' ').join('%20');
+    setFilter({ ...filter, 'Meal Type': mealTypeURL });
   }
   const onChangeFoodAllergies = (event) => {
-    let foodAllergiesURL = event.target.value.toLowerCase().split(' ').join('_')
-    setFilter({ ...filter, 'Food Allergies': foodAllergiesURL })
+    let foodAllergiesURL = event.target.value.toLowerCase().split(' ').join('%20');
+    setFilter({ ...filter, 'Food Allergies': foodAllergiesURL });
   }
   // get filtered movies list
   function onClickSearchMovies() {
@@ -64,7 +63,7 @@ function App() {
       }
     }
     let filteredMovies = movies.filter(element => element.genre_ids.includes(genreID))
-      .filter(element => filter.Decade === element.release_date.slice(0, 4))
+      .filter(element => filter.Decade === element.release_date.slice(0, 4));
     setFilteredMovieList(filteredMovies);
     console.log('filtered movie list', filteredMovieList);
   }
@@ -85,20 +84,20 @@ function App() {
       if (desiredLength === "Short") {
         if (runtime >= 0 && runtime <= 105) {
           movieToSet = movie;
-          setImdbID(imdb_id)
-          setmovieOverview(overview)
+          setImdbID(imdb_id);
+          setmovieOverview(overview);
         }
       } else if (desiredLength === "Average") {
         if (runtime >= 106 && runtime <= 135) {
           movieToSet = movie;
-          setImdbID(imdb_id)
-          setmovieOverview(overview)
+          setImdbID(imdb_id);
+          setmovieOverview(overview);
         }
       } else if (desiredLength === "Long") {
         if (runtime > 135) {
           movieToSet = movie;
-          setImdbID(imdb_id)
-          setmovieOverview(overview)
+          setImdbID(imdb_id);
+          setmovieOverview(overview);
         }
       }
     };

@@ -29,7 +29,7 @@ function Results(props) {
               <img className="recipe-image-item" src={props.recipeInfo.img} />
             </div>
             <a target="_blank" href={props.recipeInfo.url}> <p className="recipe-name">{props.recipeInfo.name}</p></a>
-            <p>cook time is {props.recipeInfo.cooktime} minutes</p>
+            <p>Cook time is {props.recipeInfo.cooktime} minutes.</p>
           </div>
         </div>
         <button style={{ alignSelf: "flex-start" }}>Love It!</button>
