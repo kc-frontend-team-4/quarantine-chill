@@ -56,7 +56,7 @@ function LandingPage(props) {
                 {/* Length */}
                 <label htmlFor='Length'>Length</label>
                 <select onChange={props.onChangeLength} name='Length' id='Length'>
-                  {['Length', 'Short', 'Average', 'Long'].map((element, index) => (
+                  {['Length', 'Less than 106 min', '106 min - 135 min', 'More than 135 min'].map((element, index) => (
                     < option value={element} key={index} > {element}</option>
                   ))}
                 </select>

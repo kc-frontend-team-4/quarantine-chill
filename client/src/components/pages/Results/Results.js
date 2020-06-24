@@ -53,7 +53,7 @@ function Results(props) {
               <p>Cook time is {props.recipeInfo.cooktime} minutes.</p>
               <div class="recipe-link-container">
                 <div class="recipe-link">
-                  <a className="recipe-text" target="_blank" href={'https://www.imdb.com/title/' + props.imdbId}>See the full recipe</a>
+                  <a className="recipe-text" target="_blank" href={props.recipeInfo.url}>See the full recipe</a>
                 </div>
             </div>           
             </div>
