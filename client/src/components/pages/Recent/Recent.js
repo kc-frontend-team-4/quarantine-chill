@@ -1,8 +1,24 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import './Recent.css';
 
 function Recent() {
+
+  const [pairings, setPairings] = useState([])
+
+  // Fetch pairings from the database
+  function fetchPairings() {
+    console.log('Fetching parings data from API');
+    fetch('/api/mongodb/quarantine-chill/test')
+      .then(response => response.json())
+      .then(data => {
+        console.log('Got data back', data);
+        setPairings(data);
+      });
+  }
+
+  useEffect(fetchPairings, [])
+
   return (
     <div>
         <main>

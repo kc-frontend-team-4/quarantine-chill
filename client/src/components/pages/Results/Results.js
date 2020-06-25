@@ -11,7 +11,8 @@ function Results(props) {
       randomedMovie: props.randomedMovie,
       imdbId: props.imdbId,
       movieOverview: props.movieOverview,
-      recipeInfo: props.recipeInfo
+      recipeInfo: props.recipeInfo,
+      valid: true
     }
     
     console.log("Sending pairing to the database...")

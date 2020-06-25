@@ -5,8 +5,8 @@ const ObjectId = require('mongodb').ObjectId;
 const app = express();
 app.use(express.json());
 
-/// YOUR ROUTES GO HERE!
 
+// POST pairing to database
 app.post('/api/mongodb/quarantine-chill/test', (request, response) => {
   const data = request.body;
 
@@ -19,6 +19,27 @@ app.post('/api/mongodb/quarantine-chill/test', (request, response) => {
         'success': true,
         'results': results,
       });
+    });
+});
+
+// GET pairings from database
+app.get('/api/mongodb/quarantine-chill/test', (request, response) => {
+
+//  // Get GET params, if there are any
+//  const query = request.query || {};
+
+  // Due to a requirement of MongoDB, whenever we query based on _id field, we
+  // have to do it like this using ObjectId
+//  if (query._id) {
+//    query._id = ObjectId(query._id);
+//  }
+
+  db.collection("test")
+    .find({valid: true})
+    .toArray((err, results) => {
+      // Got data back.. send to client
+      if (err) throw err;
+      response.json(results);
     });
 });
 
