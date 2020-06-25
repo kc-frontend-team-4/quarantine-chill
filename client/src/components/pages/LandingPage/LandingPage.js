@@ -37,7 +37,7 @@ function LandingPage(props) {
               <div className="labels">
                 {/* Genre */}
                 <label htmlFor='Genre'>Genre</label>
-                <select onChange={props.onChangeGenre} name='Genre' id='Genre'>
+                <select required onChange={props.onChangeGenre} name='Genre' id='Genre'>
                   {arrays.genres.map((element, index) => (
                     < option value={element.name} key={index} > {element.name}</option>
                   ))}
@@ -46,7 +46,7 @@ function LandingPage(props) {
               <div className="labels">
                 {/* Rating */}
                 <label htmlFor='Decade'>Decade</label>
-                <select onChange={props.onChangeDecade} name='Decade' id='Decade'>
+                <select required onChange={props.onChangeDecade} name='Decade' id='Decade'>
                   {['Decade', '1950s', '1960s', '1970s', '1980s', '1990s', '2000s', '2010s', '2020s'].map((element, index) => (
                     < option value={element.slice(0, element.length - 1)} key={index} > {element}</option>
                   ))}
@@ -55,7 +55,7 @@ function LandingPage(props) {
               <div className="labels">
                 {/* Length */}
                 <label htmlFor='Length'>Length</label>
-                <select onChange={props.onChangeLength} name='Length' id='Length'>
+                <select required onChange={props.onChangeLength} name='Length' id='Length'>
                   {['Length', 'Less than 106 min', '106 min - 135 min', 'More than 135 min'].map((element, index) => (
                     < option value={element} key={index} > {element}</option>
                   ))}
@@ -76,7 +76,7 @@ function LandingPage(props) {
               <div className="labels">
                 {/* Cuisine Type */}
                 <label htmlFor='Cuisine Type'>Cuisine Type</label>
-                <select onChange={props.onChangeCuisineType} name='Cuisine Type' id='Cuisine Type'>
+                <select required onChange={props.onChangeCuisineType} name='Cuisine Type' id='Cuisine Type'>
                   {arrays.cuisines.map((element, index) => (
                     < option value={element} key={index} > {element}</option>
                   ))}
@@ -85,7 +85,7 @@ function LandingPage(props) {
               <div className="labels">
 
                 <label htmlFor='Meal Type'>Meal Type</label>
-                <select onChange={props.onChangeMealTypes} name='Meal Type' id='Meal Type'>
+                <select required onChange={props.onChangeMealTypes} name='Meal Type' id='Meal Type'>
                   {arrays.meal_types.map((element, index) => (
                     < option value={element} key={index} > {element}</option>
                   ))}
@@ -96,29 +96,16 @@ function LandingPage(props) {
               <div className="labels">
                 {/* food restrictions */}
                 <label htmlFor='food restrictions'>food restrictions</label>
-                <select onChange={props.onChangeFoodRestrictions} name='food restrictions' id='food restrictions'>
+                <select required onChange={props.onChangeFoodRestrictions} name='food restrictions' id='food restrictions'>
                   {arrays.food_restrictions.map((element, index) => (
                     < option value={element} key={index} > {element}</option>
                   ))}
                 </select>
               </div >
-
-
-              {/* <div className="labels">
-                Food Allergies
-                <label htmlFor='Food Allergies' >Food Allergies</label>
-                <select onChange={props.onChangeFoodAllergies} name='Food Allergies' id='Food Allergies' >
-                  {console.log(arrays.food_allergies)}
-                  {arrays.food_allergies.map((element, index) => (
-                    < option value={element} key={index} > {element}</option>
-                  ))}
-                </select>
-              </div> */}
             </div>
           </div>
         </div>
-        <div style={{ color: 'red', backgroundColor: 'black' }} onClick={props.onClickSearchMovies}>CLICK HERE BEFORE CLICKING PAIR ME TO GET NEW FILTERED MOVIE LIST </div>
-        <button onClick={props.onClick}>
+        <button onClick={props.onClick} type="submit">
           <Link to="/results/">Pair Me</Link>
         </button>
       </main>

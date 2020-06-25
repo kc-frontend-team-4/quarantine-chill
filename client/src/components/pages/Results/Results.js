@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import './Results.css';
 
@@ -5,9 +6,37 @@ import { Link } from 'react-router-dom';
 import imdb from '../../../imdb.png'
 
 function Results(props) {
+
+  function submit() {
+    const formData = {
+      randomedMovie: props.randomedMovie,
+      imdbId: props.imdbId,
+      movieOverview: props.movieOverview,
+      recipeInfo: props.recipeInfo
+    }
+
+    console.log("Sending pairing to the database...")
+    fetch('/api/mongodb/quarantine-chill/test', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData),
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Got this back', data);
+      });
+  }
+
+
   useEffect(() => {
     console.log("recipe info found!")
   }, [props.recipeInfo.recipeImg])
+
+  function formatRecipeSummary(summary) {
+    let formattedSummary = summary.replace(/<[^>]*>?/gm, '')
+
+    return (formattedSummary)
+  }
 
   return (
 
@@ -33,14 +62,14 @@ function Results(props) {
             <div className="movie-information">
               <p className="movie-name">{props.randomedMovie.title || props.randomedMovie.name}</p>
               <p>{props.movieOverview}</p>
-            <div class="movie-link-container">
-              <div class="movie-link">
-                <a className="imdb-text" target="_blank" href={'https://www.imdb.com/title/' + props.imdbId}>Check it out on <img className="imdb-img"src={imdb} /></a>
+              <div class="movie-link-container">
+                <div class="movie-link">
+                  <a className="imdb-text" target="_blank" href={'https://www.imdb.com/title/' + props.imdbId}>Check it out on <img className="imdb-img" src={imdb} /></a>
+                </div>
               </div>
             </div>
-            </div>
           </div>
-          
+
 
         </div>
         <div className="recipe-column">
@@ -50,18 +79,18 @@ function Results(props) {
             </div>
             <div className="recipe-information">
               <p className="recipe-name">{props.recipeInfo.name}</p>
-              <p>Cook time is {props.recipeInfo.cooktime} minutes.</p>
+              <p>{formatRecipeSummary(props.recipeInfo.summary).substring(0, 200)}...</p>
               <div class="recipe-link-container">
                 <div class="recipe-link">
                   <a className="recipe-text" target="_blank" href={props.recipeInfo.url}>See the full recipe</a>
                 </div>
-            </div>           
+              </div>
             </div>
           </div>
         </div>
         {/* href={props.recipeInfo.url}> */}
-        <button style={{ alignSelf: "flex-start" }}>Love It!</button>
-        <button className="gray-button" onClick={props.fetchRecipes} style={{ alignSelf: "flex-start" }}>Give Me Another </button>
+        <button style={{ alignSelf: "flex-start" }} onClick={submit}>Love It!</button>
+        <button className="gray-button" onClick={props.getPair} style={{ alignSelf: "flex-start" }}>Give Me Another </button>
       </main>
     </div>
   )
