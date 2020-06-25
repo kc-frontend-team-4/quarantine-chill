@@ -5,9 +5,37 @@ import { Link } from 'react-router-dom';
 import imdb from '../../../imdb.png'
 
 function Results(props) {
+
+  function submit() {
+    const formData =  {
+      randomedMovie: props.randomedMovie,
+      imdbId: props.imdbId,
+      movieOverview: props.movieOverview,
+      recipeInfo: props.recipeInfo
+    }
+    
+    console.log("Sending pairing to the database...")
+    fetch('/api/mongodb/quarantine-chill/test', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(formData),
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Got this back', data);
+      });
+  }
+
+
   useEffect(() => {
     console.log("recipe info found!")
   }, [props.recipeInfo.recipeImg])
+  
+  function formatRecipeSummary(summary){
+    let formattedSummary = summary.replace(/<[^>]*>?/gm, '')
+    
+    return(formattedSummary)
+  }
 
   return (
 
@@ -50,7 +78,7 @@ function Results(props) {
             </div>
             <div className="recipe-information">
               <p className="recipe-name">{props.recipeInfo.name}</p>
-              <p>Cook time is {props.recipeInfo.cooktime} minutes.</p>
+              <p>{formatRecipeSummary(props.recipeInfo.summary).substring(0,200)}...</p>
               <div class="recipe-link-container">
                 <div class="recipe-link">
                   <a className="recipe-text" target="_blank" href={props.recipeInfo.url}>See the full recipe</a>
@@ -60,7 +88,7 @@ function Results(props) {
           </div>
         </div>
         {/* href={props.recipeInfo.url}> */}
-        <button style={{ alignSelf: "flex-start" }}>Love It!</button>
+        <button style={{ alignSelf: "flex-start" }} onClick={submit}>Love It!</button>
         <button className="gray-button" onClick={props.fetchRecipes} style={{ alignSelf: "flex-start" }}>Give Me Another </button>
       </main>
     </div>

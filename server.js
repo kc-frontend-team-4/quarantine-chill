@@ -7,41 +7,10 @@ app.use(express.json());
 
 /// YOUR ROUTES GO HERE!
 
-
-/////////////////////////////////////////////
-
-// Totally insecure backend routes below, good only for rapid prototyping
-// unsecured front-end applications. Should not be used in production.
-
-
-// GET for getting existing item
-app.get('/api/mongodb/:collectionName/', (request, response) => {
-  const collectionName = request.params.collectionName;
-
-  // Get GET params, if there are any
-  const query = request.query || {};
-
-  // Due to a requirement of MongoDB, whenever we query based on _id field, we
-  // have to do it like this using ObjectId
-  if (query._id) {
-    query._id = ObjectId(query._id);
-  }
-
-  db.collection(collectionName)
-    .find(query)
-    .toArray((err, results) => {
-      // Got data back.. send to client
-      if (err) throw err;
-      response.json(results);
-    });
-});
-
-// POST for creating a new item
-app.post('/api/mongodb/:collectionName/', (request, response) => {
-  const collectionName = request.params.collectionName;
+app.post('/api/mongodb/quarantine-chill/test', (request, response) => {
   const data = request.body;
 
-  db.collection(collectionName)
+  db.collection("test")
     .insert(data, (err, results) => {
       // Got data back.. send to client
       if (err) throw err;
@@ -53,67 +22,112 @@ app.post('/api/mongodb/:collectionName/', (request, response) => {
     });
 });
 
+/////////////////////////////////////////////
 
-// PUT endpoint for modifying an existing item
-app.put('/api/mongodb/:collectionName/', (request, response) => {
-  const collectionName = request.params.collectionName;
-  const data = request.body;
-  const query = request.query;
-
-  // Due to a requirement of MongoDB, whenever we query based on _id field, we
-  // have to do it like this using ObjectId
-  if (query._id) {
-    query._id = ObjectId(query._id);
-  }
-
-  // MongoDB disallows _id fields from being updated, delete if it exists
-  delete data._id;
-
-  db.collection(collectionName)
-    .updateOne(query, {$set: data}, (err, results) => {
-      if (err) throw err;
-
-      // If we modified exactly 1, then success, otherwise failure
-      if (results.result.nModified === 1) {
-        response.json({
-          success: true,
-        });
-      } else {
-        response.json({
-          success: false,
-        });
-      }
-    });
-});
+// Totally insecure backend routes below, good only for rapid prototyping
+// unsecured front-end applications. Should not be used in production.
 
 
-// D in CRUD, delete a single item with given criteria
-app.delete('/api/mongodb/:collectionName/', (request, response) => {
-  const collectionName = request.params.collectionName;
-  const query = request.query;
+//// GET for getting existing item
+//app.get('/api/mongodb/:collectionName/', (request, response) => {
+//  const collectionName = request.params.collectionName;
 
-  // Due to a requirement of MongoDB, whenever we query based on _id field, we
-  // have to do it like this using ObjectId
-  if (query._id) {
-    query._id = ObjectId(query._id);
-  }
+//  // Get GET params, if there are any
+//  const query = request.query || {};
 
-  db.collection(collectionName)
-    .deleteOne(query, (err, results) => {
-      if (err) throw err;
+//  // Due to a requirement of MongoDB, whenever we query based on _id field, we
+//  // have to do it like this using ObjectId
+//  if (query._id) {
+//    query._id = ObjectId(query._id);
+//  }
 
-      // If we deleted exactly 1, then success, otherwise failure
-      if (results.result.n === 1) {
-        response.json({
-          success: true,
-        });
-      } else {
-        response.json({
-          success: false,
-        });
-      }
-    })
-});
+//  db.collection(collectionName)
+//    .find(query)
+//    .toArray((err, results) => {
+//      // Got data back.. send to client
+//      if (err) throw err;
+//      response.json(results);
+//    });
+//});
+
+// POST for creating a new item
+//app.post('/api/mongodb/:collectionName/', (request, response) => {
+//  const collectionName = request.params.collectionName;
+//  const data = request.body;
+
+//  db.collection(collectionName)
+//    .insert(data, (err, results) => {
+//      // Got data back.. send to client
+//      if (err) throw err;
+
+//      response.json({
+//        'success': true,
+//        'results': results,
+//      });
+//    });
+//});
+
+
+//// PUT endpoint for modifying an existing item
+//app.put('/api/mongodb/:collectionName/', (request, response) => {
+//  const collectionName = request.params.collectionName;
+//  const data = request.body;
+//  const query = request.query;
+
+//  // Due to a requirement of MongoDB, whenever we query based on _id field, we
+//  // have to do it like this using ObjectId
+//  if (query._id) {
+//    query._id = ObjectId(query._id);
+//  }
+
+//  // MongoDB disallows _id fields from being updated, delete if it exists
+//  delete data._id;
+
+//  db.collection(collectionName)
+//    .updateOne(query, {$set: data}, (err, results) => {
+//      if (err) throw err;
+
+//      // If we modified exactly 1, then success, otherwise failure
+//      if (results.result.nModified === 1) {
+//        response.json({
+//          success: true,
+//        });
+//      } else {
+//        response.json({
+//          success: false,
+//        });
+//      }
+//    });
+//});
+
+
+//// D in CRUD, delete a single item with given criteria
+//app.delete('/api/mongodb/:collectionName/', (request, response) => {
+//  const collectionName = request.params.collectionName;
+//  const query = request.query;
+
+//  // Due to a requirement of MongoDB, whenever we query based on _id field, we
+//  // have to do it like this using ObjectId
+//  if (query._id) {
+//    query._id = ObjectId(query._id);
+//  }
+
+//  db.collection(collectionName)
+//    .deleteOne(query, (err, results) => {
+//      if (err) throw err;
+
+//      // If we deleted exactly 1, then success, otherwise failure
+//      if (results.result.n === 1) {
+//        response.json({
+//          success: true,
+//        });
+//      } else {
+//        response.json({
+//          success: false,
+//        });
+//      }
+//    })
+//});
 
 
 
