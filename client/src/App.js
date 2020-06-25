@@ -45,7 +45,8 @@ function App() {
     name: "",
     url: "",
     img: "",
-    cooktime: ""
+    cooktime: "",
+    summary:""
   })
   const onChangeGenre = (event) => {
     setFilter({ ...filter, Genre: event.target.value });
@@ -187,7 +188,8 @@ function App() {
             name: data.recipes[0]['title'],
             url: data.recipes[0]['spoonacularSourceUrl'],
             img: data.recipes[0]['image'],
-            cooktime: data.recipes[0]['readyInMinutes']
+            cooktime: data.recipes[0]['readyInMinutes'],
+            summary: data.recipes[0]['summary']
           })
         }
         console.log("and now the recipe info is", recipeInfo)
