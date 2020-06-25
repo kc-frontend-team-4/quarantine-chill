@@ -8,6 +8,7 @@ import imdb from '../../../imdb.png'
 function Results(props) {
 
   function submit() {
+
     const formData = {
       randomedMovie: props.randomedMovie,
       imdbId: props.imdbId,
@@ -31,6 +32,12 @@ function Results(props) {
   useEffect(() => {
     console.log("recipe info found!")
   }, [props.recipeInfo.recipeImg])
+
+  function formatRecipeSummary(summary) {
+    let formattedSummary = summary.replace(/<[^>]*>?/gm, '')
+
+    return (formattedSummary)
+  }
 
   function formatRecipeSummary(summary) {
     let formattedSummary = summary.replace(/<[^>]*>?/gm, '')
@@ -79,7 +86,9 @@ function Results(props) {
             </div>
             <div className="recipe-information">
               <p className="recipe-name">{props.recipeInfo.name}</p>
+
               <p>{formatRecipeSummary(props.recipeInfo.summary).substring(0, 200)}...</p>
+
               <div class="recipe-link-container">
                 <div class="recipe-link">
                   <a className="recipe-text" target="_blank" href={props.recipeInfo.url}>See the full recipe</a>
@@ -91,6 +100,7 @@ function Results(props) {
         {/* href={props.recipeInfo.url}> */}
         <button style={{ alignSelf: "flex-start" }} onClick={submit}>Love It!</button>
         <button className="gray-button" onClick={props.getPair} style={{ alignSelf: "flex-start" }}>Give Me Another </button>
+
       </main>
     </div>
   )
