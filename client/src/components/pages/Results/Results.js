@@ -84,11 +84,10 @@ function Results(props) {
             </div>
           </div>
         </div>
-        {/* href={props.recipeInfo.url}> */}
         <button style={{ alignSelf: "flex-start" }} onClick={submit}>Love It!</button>
         <button className="gray-button" onClick={props.getPair} style={{ alignSelf: "flex-start" }}>Give Me Another </button>
       </main>
-    </div>
+    </div >
   )
 }
 export default Results;

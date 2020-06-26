@@ -87,7 +87,6 @@ function LandingPage(props) {
                 </select>
               </div >
               <div className="labels">
-
                 <label htmlFor='Meal Type'>Meal Type</label>
                 <select required onChange={props.onChangeMealTypes} name='Meal Type' id='Meal Type'>
                   {arrays.meal_types.map((element, index) => (
@@ -95,8 +94,6 @@ function LandingPage(props) {
                   ))}
                 </select>
               </div >
-
-
               <div className="labels">
                 {/* food restrictions */}
                 <label htmlFor='food restrictions'>food restrictions</label>
@@ -109,9 +106,11 @@ function LandingPage(props) {
             </div>
           </div>
         </div>
-        <button style= {{margin : 0}} onClick={props.onClick} type="submit">
-          <Link to="/results/">Pair Me</Link>
-        </button>
+        {!props.isLoaded ?
+          null :
+          <button style={{ margin: 0 }} onClick={props.onClick} type="submit">
+            <Link to="/results/">Pair Me</Link>
+          </button>}
       </main>
     </div>
   )

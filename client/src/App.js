@@ -17,6 +17,7 @@ function App() {
 
   // https://developers.themoviedb.org/3/movies/get-movie-details
   // https://api.themoviedb.org/3/movie/{movie_id}?api_key=<<api_key>>&language=en-US
+  const [isLoaded, setIsLoaded] = useState(false)
   const movieApiKey = 'api_key=0402eec8d6da4df59f8077842992a247';
   const foodApiKey = 'apiKey=73bb985ab78b4740a1444004dfd60217';// 'apiKey=2fa1eb822ad241b381e2d9b65da08a0f'; //'apiKey=73bb985ab78b4740a1444004dfd60217'; //'
   const [randomedMovie, setRandomedMovie] = useState({});
@@ -76,6 +77,7 @@ function App() {
       await delay(1000 - elaspedTime);
     }
     setLoader({ loading: false })
+    setIsLoaded(true)
   }, []);
   function fetchMovie() {
     let listOfMovies = [];
@@ -103,9 +105,7 @@ function App() {
 
     while (currentYear < decadeAsInteger + 10) {
       years.push(currentYear + 1);
-      console.log("kevin", currentYear)
       currentYear++;
-      console.log(years)
     }
     const yearsAsStrings = years.map(year => year.toString())
     return yearsAsStrings
@@ -154,19 +154,19 @@ function App() {
             if (runtime >= 0 && runtime <= 105) {
               movieToSet = movie;
               setImdbID(imdb_id);
-              setmovieOverview(overview);
+              setmovieOverview(sanitizeString(overview));
             }
           } else if (desiredLength === "106 min - 135 min") {
             if (runtime >= 106 && runtime <= 135) {
               movieToSet = movie;
               setImdbID(imdb_id);
-              setmovieOverview(overview);
+              setmovieOverview(sanitizeString(overview));
             }
           } else if (desiredLength === "More than 135 min") {
             if (runtime > 135) {
               movieToSet = movie;
               setImdbID(imdb_id);
-              setmovieOverview(overview);
+              setmovieOverview(sanitizeString(overview));
             }
           }
           tries++;
@@ -253,6 +253,7 @@ function App() {
             onChangeFoodAllergies={onChangeFoodAllergies}
             onChangeFoodRestrictions={onChangeFoodRestrictions}
             loader={loader}
+            isLoaded={isLoaded}
           />} />
           <Route exact path='/results' render={(...props) => <Results {...props}
             recipeInfo={recipeInfo}
