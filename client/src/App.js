@@ -118,6 +118,7 @@ function App() {
   }
   // show the random movie poster and title 
   async function onPairMeClick() {
+
     let genreID;
     // given genre name, we need to search for its corresponding genre id
     for (const el of arrays.genres) {

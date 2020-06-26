@@ -77,12 +77,13 @@ a {
 
  .movie-selections-results, .recipe-selections-results {
     padding: 25px 25px 0 25px;
-    background-color: var(--gray)
+    background-color: var(--gray);
+    border-radius: 10px 
 }
 
 .movie-selections, .recipe-selections, .movie-selections-results, .recipe-selections-results  {
     position: absolute;
-    top: 40%;
+    top: 30%;
 }
 
 .recipe-selections, .recipe-selections-results {
@@ -136,15 +137,20 @@ button {
 
 .gray-button {
     background-color: var(--gray);
-    margin-top: 210px;
+    margin-top: 270px;
 }
 
 .start-over {
     position: absolute;
-    top: 30%;
-    right: 215px;
+    top: 20%;
+    right: 250px;
     margin-left: 25px;
     font-size: 22px;
+}
+
+.start-over:hover {
+    color: var(--red);
+    transform: scale(1.05, 1);
 }
 
 .pagination {
@@ -177,6 +183,7 @@ button {
     margin-left: -25px;
     margin-right: -27px;
     border: 2px solid var(--gray);
+    border-radius: 0px 0px 10px 10px 
 }
 
 .movie-link, .recipe-link {

@@ -71,7 +71,7 @@ export const cuisines = [
 
 // from https://api.themoviedb.org/3/genre/movie/list?api_key=0402eec8d6da4df59f8077842992a247
 export const genres = [
-    { 'name': 'Genres' },
+    { 'name': 'Genre' },
     {
         "id": 28,
         "name": "Action"

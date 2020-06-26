@@ -19,7 +19,8 @@ function Results(props) {
       randomedMovie: props.randomedMovie,
       imdbId: props.imdbId,
       movieOverview: props.movieOverview,
-      recipeInfo: props.recipeInfo
+      recipeInfo: props.recipeInfo,
+      valid: true
     }
 
     console.log("Sending pairing to the database...")
@@ -47,10 +48,10 @@ function Results(props) {
         color={'#000000'}
         loading={props.loader.loading}
       />
-      <main>
+      <main style={{ height: "1000px" }}>
         <div className="movie-column">
           <div className="start-over">
-            <Link to="/">Start Over</Link>
+            <Link to="/">⬅ Start Over</Link>
           </div>
           <div className="movie-selections-results">
             <div className="movie-image">
@@ -59,8 +60,8 @@ function Results(props) {
             <div className="movie-information">
               <p className="movie-name">{props.randomedMovie.title || props.randomedMovie.name}</p>
               <p>{props.movieOverview}</p>
-              <div class="movie-link-container">
-                <div class="movie-link">
+              <div className="movie-link-container">
+                <div className="movie-link">
                   <a className="imdb-text" target="_blank" href={'https://www.imdb.com/title/' + props.imdbId}>Check it out on <img className="imdb-img" src={imdb} /></a>
                 </div>
               </div>
@@ -74,7 +75,7 @@ function Results(props) {
             </div>
             <div className="recipe-information">
               <p className="recipe-name">{props.recipeInfo.name}</p>
-              <p>{props.recipeInfo.summary}</p>
+              <p style={{ fontSize: "16px" }} >{props.recipeInfo.summary}</p>
               <div class="recipe-link-container">
                 <div class="recipe-link">
                   <a className="recipe-text" target="_blank" href={props.recipeInfo.url}>See the full recipe</a>
