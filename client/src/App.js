@@ -8,6 +8,7 @@ import LandingPage from './components/pages/LandingPage/LandingPage.js';
 import Favorites from './components/pages/Favorites/Favorites.js';
 import Recent from './components/pages/Recent/Recent.js';
 import Results from './components/pages/Results/Results.js';
+import {sanitizeString} from './sanitize.js';
 
 import { css } from "@emotion/core";
 import BounceLoader from "react-spinners/BounceLoader";
@@ -27,7 +28,7 @@ function App() {
   // https://developers.themoviedb.org/3/movies/get-movie-details
   // https://api.themoviedb.org/3/movie/{movie_id}?api_key=<<api_key>>&language=en-US
   const movieApiKey = 'api_key=0402eec8d6da4df59f8077842992a247';
-  const foodApiKey = 'apiKey=d04ffb4acf8442e5a0cbc4291ed663b4';// 'apiKey=2fa1eb822ad241b381e2d9b65da08a0f'; //'apiKey=73bb985ab78b4740a1444004dfd60217'; //'
+  const foodApiKey = 'apiKey=73bb985ab78b4740a1444004dfd60217';// 'apiKey=2fa1eb822ad241b381e2d9b65da08a0f'; //'apiKey=73bb985ab78b4740a1444004dfd60217'; //'
   const [randomedMovie, setRandomedMovie] = useState({});
   const [filteredMovieList, setFilteredMovieList] = useState([]);
   const [imdbId, setImdbID] = useState('');
@@ -131,19 +132,19 @@ function App() {
         if (runtime >= 0 && runtime <= 105) {
           movieToSet = movie;
           setImdbID(imdb_id);
-          setmovieOverview(overview);
+          setmovieOverview(sanitizeString(overview));
         }
       } else if (desiredLength === "106 min - 135 min") {
         if (runtime >= 106 && runtime <= 135) {
           movieToSet = movie;
           setImdbID(imdb_id);
-          setmovieOverview(overview);
+          setmovieOverview(sanitizeString(overview));
         }
       } else if (desiredLength === "More than 135 min") {
         if (runtime > 135) {
           movieToSet = movie;
           setImdbID(imdb_id);
-          setmovieOverview(overview);
+          setmovieOverview(sanitizeString(overview));
         }
       }
     };
@@ -187,13 +188,14 @@ function App() {
             name: data.recipes[0]['title'],
             url: data.recipes[0]['spoonacularSourceUrl'],
             img: data.recipes[0]['image'],
-            cooktime: data.recipes[0]['readyInMinutes']
+            summary: sanitizeString(data.recipes[0]['summary'])
           })
         }
         console.log("and now the recipe info is", recipeInfo)
       })
     
   }
+
   function getPair() {
     fetchRecipes();
     onPairMeClick();

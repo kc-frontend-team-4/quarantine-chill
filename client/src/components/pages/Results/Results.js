@@ -50,7 +50,7 @@ function Results(props) {
             </div>
             <div className="recipe-information">
               <p className="recipe-name">{props.recipeInfo.name}</p>
-              <p>Cook time is {props.recipeInfo.cooktime} minutes.</p>
+              <p>{props.recipeInfo.summary}</p>
               <div class="recipe-link-container">
                 <div class="recipe-link">
                   <a className="recipe-text" target="_blank" href={props.recipeInfo.url}>See the full recipe</a>
