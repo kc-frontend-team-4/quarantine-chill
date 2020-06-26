@@ -19,7 +19,7 @@ function App() {
   // https://api.themoviedb.org/3/movie/{movie_id}?api_key=<<api_key>>&language=en-US
   const [isLoaded, setIsLoaded] = useState(false)
   const movieApiKey = 'api_key=0402eec8d6da4df59f8077842992a247';
-  const foodApiKey = 'apiKey=2fa1eb822ad241b381e2d9b65da08a0f'; //'apiKey=73bb985ab78b4740a1444004dfd60217'; //'
+  const foodApiKey = 'apiKey=d04ffb4acf8442e5a0cbc4291ed663b4'; //'apiKey=2fa1eb822ad241b381e2d9b65da08a0f'; //'
   const [randomedMovie, setRandomedMovie] = useState({});
   const [imdbId, setImdbID] = useState('');
   const [movieOverview, setmovieOverview] = useState('');
@@ -151,7 +151,7 @@ function App() {
           "overview": ".",
         }
       );
-      setmovieOverview("Nothing.");
+      setmovieOverview(" ");
     } else {
       let movieToSet = undefined;
       const desiredLength = filter.Length;
@@ -240,7 +240,7 @@ function App() {
 
     fetchRecipes();
     onPairMeClick();
-    await delay(1000);
+    await delay(1500);
     setLoader({
       loading: false,
     });
