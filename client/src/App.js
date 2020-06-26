@@ -8,10 +8,9 @@ import LandingPage from './components/pages/LandingPage/LandingPage.js';
 import Favorites from './components/pages/Favorites/Favorites.js';
 import Recent from './components/pages/Recent/Recent.js';
 import Results from './components/pages/Results/Results.js';
-import {sanitizeString} from './sanitize.js';
+import { sanitizeString } from './sanitize.js';
 
 import { css } from "@emotion/core";
-import BounceLoader from "react-spinners/BounceLoader";
 
 const override = css`
   display: block;
@@ -19,12 +18,12 @@ const override = css`
   border-color: red;
 `;
 
-
 function App() {
 
   const [loader, setLoader] = useState({
     loading: true,
   })
+
   // https://developers.themoviedb.org/3/movies/get-movie-details
   // https://api.themoviedb.org/3/movie/{movie_id}?api_key=<<api_key>>&language=en-US
   const movieApiKey = 'api_key=0402eec8d6da4df59f8077842992a247';
@@ -50,8 +49,6 @@ function App() {
     summary: "",
   })
   const onChangeGenre = (event) => {
-    console.log(filter.Genre)
-    console.log(filter)
     setFilter({ ...filter, Genre: event.target.value });
   }
   const onChangeDecade = (event) => {
@@ -67,7 +64,6 @@ function App() {
   const onChangeMealTypes = (event) => {
     let mealTypeURL = event.target.value.toLowerCase();
     setFilter({ ...filter, 'Meal Type': mealTypeURL });
-    console.log(filter['Meal Type'])
   }
   const onChangeFoodAllergies = (event) => {
     let foodAllergiesURL = event.target.value.toLowerCase().split(' ').join('%20');
@@ -80,7 +76,17 @@ function App() {
   }
 
   const [movies, setMovies] = useState(null);
-  useEffect(() => { fetchMovie(); }, []);
+  const delay = ms => new Promise(res => setTimeout(res, ms));
+  useEffect(async () => {
+    const startTime = new Date();
+
+    fetchMovie();
+    const elaspedTime = new Date() - startTime;
+    if (elaspedTime < 1000) {
+      await delay(1000 - elaspedTime);
+    }
+    setLoader({ loading: false })
+  }, []);
   function fetchMovie() {
     let listOfMovies = [];
     // popular end point has max of 500 pages 
@@ -97,7 +103,6 @@ function App() {
           if (counter >= numberOfPages) {
             setMovies(listOfMovies)
           }
-          setLoader({ loading: false })
         })
     }
   }
@@ -117,7 +122,6 @@ function App() {
     // console.log('filtered movie list', filteredMovieList);
   }
 
-
   async function getMovieRuntime(movie) {
     const movieData = await fetch(`https://api.themoviedb.org/3/movie/${movie.id}?api_key=0402eec8d6da4df59f8077842992a247`);
     const json = await movieData.json();
@@ -126,10 +130,9 @@ function App() {
   // show the random movie poster and title 
   async function onPairMeClick() {
     // onClickSearchMovies();
-    if (filter.Genre === '' || filter.Decade === '' || filter.Length === '') {
-      alert('kevin');
-
-    }
+    // if (filter.Genre === '' || filter.Decade === '' || filter.Length === '') {
+    //   alert('please select filters!');
+    // }
     let genreID;
     // given genre name, we need to search for its corresponding genre id
     for (const el of arrays.genres) {
@@ -142,39 +145,51 @@ function App() {
     if (filteredMovies.length == 0) {
       setRandomedMovie(
         {
-          "poster_path": "/bz9717vMiTw2EGvGQUPRK4WLQ6G.jpg",
-          "backdrop_path": "/kc0ufvlfl7H9G6BRhnBf8EbTpF5.jpg",
-          "id": 323027,
+          // need picture here!
+          "poster_path": "/.jpg",
+          "id": null,
           "title": "No movie found",
           "overview": "Nothing.",
         }
       );
-      console.log("No movie found");
     } else {
       let movieToSet = undefined;
       const desiredLength = filter.Length;
+      let tries = 0;
       while (movieToSet === undefined) {
-        let index = Math.floor((Math.random() * filteredMovies.length));
-        let movie = filteredMovies[index];
-        let [runtime, imdb_id, overview] = await getMovieRuntime(movie);
-        if (desiredLength === "Less than 106 min") {
-          if (runtime >= 0 && runtime <= 105) {
-            movieToSet = movie;
-            setImdbID(imdb_id);
-            setmovieOverview(overview);
+        if (tries < 30) {
+          let index = Math.floor((Math.random() * filteredMovies.length));
+          let movie = filteredMovies[index];
+          let [runtime, imdb_id, overview] = await getMovieRuntime(movie);
+          if (desiredLength === "Less than 106 min") {
+            if (runtime >= 0 && runtime <= 105) {
+              movieToSet = movie;
+              setImdbID(imdb_id);
+              setmovieOverview(overview);
+            }
+          } else if (desiredLength === "106 min - 135 min") {
+            if (runtime >= 106 && runtime <= 135) {
+              movieToSet = movie;
+              setImdbID(imdb_id);
+              setmovieOverview(overview);
+            }
+          } else if (desiredLength === "More than 135 min") {
+            if (runtime > 135) {
+              movieToSet = movie;
+              setImdbID(imdb_id);
+              setmovieOverview(overview);
+            }
           }
-        } else if (desiredLength === "106 min - 135 min") {
-          if (runtime >= 106 && runtime <= 135) {
-            movieToSet = movie;
-            setImdbID(imdb_id);
-            setmovieOverview(overview);
-          }
-        } else if (desiredLength === "More than 135 min") {
-          if (runtime > 135) {
-            movieToSet = movie;
-            setImdbID(imdb_id);
-            setmovieOverview(overview);
-          }
+          tries++;
+        } else {
+          movieToSet = (
+            {
+              "poster_path": "/.jpg",
+              "id": null,
+              "title": "No movie found",
+              "overview": "Nothing.",
+            }
+          );
         }
       };
       setRandomedMovie(movieToSet);
@@ -182,9 +197,6 @@ function App() {
   }
 
   function fetchRecipes() {
-    console.log("fetching recipe data from API...",);
-
-
     const recipeFilters = [
       filter['Cuisine Type'],
       filter['Food Restriction'],
@@ -206,12 +218,9 @@ function App() {
       tags
 
     // Do the fetch
-    console.log('here is the api', recipeApi)
     fetch(recipeApi)
       .then(response => response.json())
       .then(data => {
-
-        console.log(recipeApi)
         // check if such recipe exists  
         if (data.recipes[0] !== undefined) {
           setRecipeInfo({
@@ -222,14 +231,20 @@ function App() {
             cooktime: data.recipes[0]['readyInMinutes'],
           })
         }
-        console.log("and now the recipe info is", recipeInfo)
       })
-
   }
 
-  function getPair() {
+  async function getPair() {
+    setLoader({
+      loading: true,
+    });
+
     fetchRecipes();
     onPairMeClick();
+    await delay(1000);
+    setLoader({
+      loading: false,
+    });
   }
   return (
     <div>
@@ -258,6 +273,7 @@ function App() {
             randomedMovie={randomedMovie}
             imdbId={imdbId}
             getPair={getPair}
+            loader={loader}
           />} />
           <Route exact path='/favorites/' component={Favorites} />
           <Route exact path='/recent/' component={Recent} />

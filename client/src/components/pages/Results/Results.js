@@ -5,7 +5,18 @@ import './Results.css';
 import { Link } from 'react-router-dom';
 import imdb from '../../../imdb.png'
 
+import { css } from "@emotion/core";
+import FadeLoader from "react-spinners/FadeLoader";
+
 function Results(props) {
+
+  const override = css`
+  position: absolute;
+  left:50%;
+  top:150px;
+`;
+
+
 
   function submit() {
 
@@ -28,17 +39,6 @@ function Results(props) {
       });
   }
 
-
-  useEffect(() => {
-    console.log("recipe info found!")
-  }, [props.recipeInfo.recipeImg])
-
-  function formatRecipeSummary(summary) {
-    let formattedSummary = summary.replace(/<[^>]*>?/gm, '')
-
-    return (formattedSummary)
-  }
-
   function formatRecipeSummary(summary) {
     let formattedSummary = summary.replace(/<[^>]*>?/gm, '')
 
@@ -47,16 +47,13 @@ function Results(props) {
 
   return (
 
-
     <div>
-      {/* <div>
-        <BounceLoader
-          // css={override}
-          size={50}
-          color={'#000000'}
-          loading={props.loader.loading}
-        />
-      </div> */}
+      <FadeLoader
+        css={override}
+        size={2500}
+        color={'#000000'}
+        loading={props.loader.loading}
+      />
       <main>
         <div className="movie-column">
           <div className="start-over">
