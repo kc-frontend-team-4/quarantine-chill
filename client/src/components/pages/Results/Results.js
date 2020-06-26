@@ -62,8 +62,8 @@ function Results(props) {
             <div className="movie-information">
               <p className="movie-name">{props.randomedMovie.title || props.randomedMovie.name}</p>
               <p>{props.movieOverview}</p>
-            <div class="movie-link-container">
-              <div class="movie-link">
+            <div className="movie-link-container">
+              <div className="movie-link">
                 <a className="imdb-text" target="_blank" href={'https://www.imdb.com/title/' + props.imdbId}>Check it out on <img className="imdb-img"src={imdb} /></a>
               </div>
             </div>
@@ -80,8 +80,8 @@ function Results(props) {
             <div className="recipe-information">
               <p className="recipe-name">{props.recipeInfo.name}</p>
               <p>{formatRecipeSummary(props.recipeInfo.summary).substring(0,200)}...</p>
-              <div class="recipe-link-container">
-                <div class="recipe-link">
+              <div className="recipe-link-container">
+                <div className="recipe-link">
                   <a className="recipe-text" target="_blank" href={props.recipeInfo.url}>See the full recipe</a>
                 </div>
             </div>           
