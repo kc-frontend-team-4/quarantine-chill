@@ -40,3 +40,7 @@ a {
     color: var(--gray);
 }
 
+.recent-link:hover {
+    color: var(--white);
+}
+

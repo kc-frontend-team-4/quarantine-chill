@@ -209,7 +209,7 @@ function App() {
 
     const tags = tagList.join();
     const recipeApi =
-      `https://api.spoonacular.com/recipes/random?${foodApiKey}&tags${tags}`
+      `https://api.spoonacular.com/recipes/random?${foodApiKey}&tags=${tags}`
     // Do the fetch
     fetch(recipeApi)
       .then(response => response.json())
@@ -224,6 +224,7 @@ function App() {
             cooktime: data.recipes[0]['readyInMinutes'],
           })
         }
+        console.log(recipeApi)
       })
   }
 

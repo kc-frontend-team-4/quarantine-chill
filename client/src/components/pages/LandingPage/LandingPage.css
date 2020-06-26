@@ -16,6 +16,8 @@ background-color: red;
     --gray: #98A0A6;
     --red:  #e63946;
     --black: #081621;
+    --hover-red: #a80210;
+    --hover-gray: #505456;
 }
 
 * {

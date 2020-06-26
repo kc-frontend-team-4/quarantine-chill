@@ -83,8 +83,8 @@ function Results(props) {
             </div>
           </div>
         </div>
-        <button style={{ alignSelf: "flex-start" }} onClick={submit}>Love It!</button>
-        <button className="gray-button" onClick={props.getPair} style={{ alignSelf: "flex-start" }}>Give Me Another </button>
+        <button style={{ alignSelf: "center", marginBottom: "62px" }} onClick={submit}>Love It!</button>
+        <button className="gray-button" onClick={props.getPair} style={{ alignSelf: "flex-end", marginBottom: "100px" }}>Give Me Another </button>
       </main>
     </div >
   )
