@@ -1,0 +1,82 @@
+.RecentCardMovie {
+    right: 0;
+    margin-left: 500px;
+    margin-top: 30px;
+    padding: 25px 0px 0px 0px;
+    background-color: var(--gray);
+    border-radius: 10px;
+    width: 350px;
+    top: 30%; 
+}
+
+.RecentCardMovie-name, .recipe-name {
+    font-size: 22px;
+    font-weight: 700;
+    text-align: center;
+    margin-top: 0;
+}
+
+
+.RecentCardMovie-body {
+    background-color: var(--gray);
+    padding: 0px 25px 0px 25px;
+    left: 0;
+    width: 300px;
+}
+
+.RecentCardMovie-link-container {
+    background-color: var(--white);
+    border: 2px solid var(--gray);
+    width: 346px;
+    height: 50px;
+    border-radius: 0px 0px 10px 10px 
+}
+
+.RecentCardMovie-link, .recipe-link-recent {
+    margin: auto;
+    margin-top: 7px;
+    width: 200px;
+    padding: 5px;
+    background-color: var(--darkgray);
+    height: 27px;
+    border-radius: 3px
+    
+}
+
+.RecentCardMovie-imdb-text {
+    margin-left: 15px;
+}
+
+.RecentCardMovie-imdb-img {
+    width: 50px;
+    margin-bottom: -6px;
+}
+
+.RecentCardMovie-imdb-text, .recipe-text {
+    font-size: 16px;
+    color: var(--white);
+}
+
+.recipe-text {
+    margin-left: 32px;
+}
+
+.RecentCardMovie-image, .recipe-image {
+    height: 300px;
+    width: 300px;
+    border: var(--main-border);
+    margin-bottom: 15px;
+}
+
+.RecentCardMovie-image {
+    background-color: var(--black);
+    margin-left: auto;
+}
+
+.RecentCardMovie-image img {
+    margin-left: 50px;
+}
+
+.recipe-image {
+    background-color: var(--black);
+}
