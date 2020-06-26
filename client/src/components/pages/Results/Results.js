@@ -13,7 +13,8 @@ function Results(props) {
       randomedMovie: props.randomedMovie,
       imdbId: props.imdbId,
       movieOverview: props.movieOverview,
-      recipeInfo: props.recipeInfo
+      recipeInfo: props.recipeInfo,
+      valid: true
     }
 
     console.log("Sending pairing to the database...")
@@ -32,18 +33,6 @@ function Results(props) {
   useEffect(() => {
     console.log("recipe info found!")
   }, [props.recipeInfo.recipeImg])
-
-  function formatRecipeSummary(summary) {
-    let formattedSummary = summary.replace(/<[^>]*>?/gm, '')
-
-    return (formattedSummary)
-  }
-
-  function formatRecipeSummary(summary) {
-    let formattedSummary = summary.replace(/<[^>]*>?/gm, '')
-
-    return (formattedSummary)
-  }
 
   return (
 
