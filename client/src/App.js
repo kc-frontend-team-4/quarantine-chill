@@ -218,7 +218,7 @@ function App() {
             name: data.recipes[0]['title'],
             url: data.recipes[0]['spoonacularSourceUrl'],
             img: data.recipes[0]['image'],
-            summary: sanitizeString(data.recipes[0]['summary'])
+            summary: sanitizeString(data.recipes[0]['summary']),
             cooktime: data.recipes[0]['readyInMinutes'],
           })
         }
