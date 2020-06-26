@@ -58,7 +58,7 @@ function App() {
     setFilter({ ...filter, Decade: event.target.value });
   }
   const onChangeLength = (event) => {
-    setFilter({ ...filter, Length: event.target.value })
+    setFilter({ ...filter, Length: event.target.value });
   }
   const onChangeCuisineType = (event) => {
     let cusineURL = event.target.value.toLowerCase().split(' ').join('%20');
@@ -88,8 +88,8 @@ function App() {
     if (elaspedTime < 1000) {
       await delay(1000 - elaspedTime);
     }
-    setLoader({ loading: false })
-    setIsLoaded(true)
+    setLoader({ loading: false });
+    setIsLoaded(true);
   }, []);
   function fetchMovie() {
     let listOfMovies = [];
@@ -111,25 +111,24 @@ function App() {
   }
   function allYearsIn(decade) {
     const decadeAsInteger = parseInt(decade)
-    const years = []
-    let currentYear = decadeAsInteger
+    const years = [];
+    let currentYear = decadeAsInteger;
 
     while (currentYear < decadeAsInteger + 10) {
       years.push(currentYear + 1);
       currentYear++;
     }
-    const yearsAsStrings = years.map(year => year.toString())
-    return yearsAsStrings
+    const yearsAsStrings = years.map(year => year.toString());
+    return yearsAsStrings;
   }
 
-  async function getMovieRuntime(movie) {
+  async function getMovieDetails(movie) {
     const movieData = await fetch(`https://api.themoviedb.org/3/movie/${movie.id}?api_key=0402eec8d6da4df59f8077842992a247`);
     const json = await movieData.json();
     return [json.runtime, json.imdb_id, json.overview];
   }
   // show the random movie poster and title 
   async function onPairMeClick() {
-
     let genreID;
     // given genre name, we need to search for its corresponding genre id
     for (const el of arrays.genres) {
@@ -137,21 +136,18 @@ function App() {
         genreID = el.id;
       }
     }
-
     let filteredMovies = movies.filter(element => element.genre_ids.includes(genreID))
       .filter(element => allYearsIn(filter.Decade).includes(element.release_date.slice(0, 4)))
-
     if (filteredMovies.length === 0) {
       setRandomedMovie(
         {
-          // need picture here!
           "poster_path": "/.jpg",
           "id": null,
           "title": "Please select three filters",
-          "overview": ".",
+          "overview": "",
         }
       );
-      setmovieOverview("Nothing.");
+      setmovieOverview("");
     } else {
       let movieToSet = undefined;
       const desiredLength = filter.Length;
@@ -160,7 +156,7 @@ function App() {
         if (tries < 99) {
           let index = Math.floor((Math.random() * filteredMovies.length));
           let movie = filteredMovies[index];
-          let [runtime, imdb_id, overview] = await getMovieRuntime(movie);
+          let [runtime, imdb_id, overview] = await getMovieDetails(movie);
           if (desiredLength === "Less than 106 min") {
             if (runtime >= 0 && runtime <= 105) {
               movieToSet = movie;
@@ -198,39 +194,37 @@ function App() {
   }
 
   function fetchRecipes() {
-    // const recipeFilters = [
-    //   filter['Cuisine Type'],
-    //   filter['Food Restriction'],
-    //   filter['Meal Type']
-    // ]
+    const recipeFilters = [
+      filter['Cuisine Type'],
+      filter['Food Restriction'],
+      filter['Meal Type']
+    ]
+    let tagList = []
+    // Add non-empty strings to list
+    for (let filter of recipeFilters) {
+      if (filter !== "" && filter !== undefined) {
+        tagList.push(filter);
+      }
+    }
 
-    // let tagList = []
-
-    // // Add non-empty strings to list
-    // for (let filter of recipeFilters) {
-    //   if (filter !== "" && filter !== undefined) {
-    //     tagList.push(filter)
-    //   }
-    // }
-
-    // const tags = tagList.join()
-    // const recipeApi =
-    //   `https://api.spoonacular.com/recipes/random?${foodApiKey}&tags${tags}`
-    // // Do the fetch
-    // fetch(recipeApi)
-    //   .then(response => response.json())
-    //   .then(data => {
-    //     // check if such recipe exists  
-    //     if (data.recipes[0] !== undefined) {
-    //       setRecipeInfo({
-    //         name: data.recipes[0]['title'],
-    //         url: data.recipes[0]['spoonacularSourceUrl'],
-    //         img: data.recipes[0]['image'],
-    //         summary: sanitizeString(data.recipes[0]['summary']),
-    //         cooktime: data.recipes[0]['readyInMinutes'],
-    //       })
-    //     }
-    //   })
+    const tags = tagList.join();
+    const recipeApi =
+      `https://api.spoonacular.com/recipes/random?${foodApiKey}&tags${tags}`
+    // Do the fetch
+    fetch(recipeApi)
+      .then(response => response.json())
+      .then(data => {
+        // check if such recipe exists  
+        if (data.recipes[0] !== undefined) {
+          setRecipeInfo({
+            name: data.recipes[0]['title'],
+            url: data.recipes[0]['spoonacularSourceUrl'],
+            img: data.recipes[0]['image'],
+            summary: sanitizeString(data.recipes[0]['summary']),
+            cooktime: data.recipes[0]['readyInMinutes'],
+          })
+        }
+      })
   }
 
   async function getPair() {
