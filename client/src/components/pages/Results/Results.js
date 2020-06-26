@@ -1,5 +1,4 @@
-
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import './Results.css';
 
 import { Link } from 'react-router-dom';
@@ -35,10 +34,10 @@ function Results(props) {
       });
   }
 
-  function formatRecipeSummary(summary) {
-    let formattedSummary = summary.replace(/<[^>]*>?/gm, '')
-    return (formattedSummary)
-  }
+  // function formatRecipeSummary(summary) {
+  //   let formattedSummary = summary.replace(/<[^>]*>?/gm, '')
+  //   return (formattedSummary)
+  // }
 
   return (
     <div>

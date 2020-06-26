@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, Switch, Route } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 
 import './App.css';
 import * as arrays from './arrays.js';
@@ -19,7 +19,7 @@ function App() {
   // https://api.themoviedb.org/3/movie/{movie_id}?api_key=<<api_key>>&language=en-US
   const [isLoaded, setIsLoaded] = useState(false)
   const movieApiKey = 'api_key=0402eec8d6da4df59f8077842992a247';
-  const foodApiKey = 'apiKey=73bb985ab78b4740a1444004dfd60217';// 'apiKey=2fa1eb822ad241b381e2d9b65da08a0f'; //'apiKey=73bb985ab78b4740a1444004dfd60217'; //'
+  const foodApiKey = 'apiKey=2fa1eb822ad241b381e2d9b65da08a0f'; //'apiKey=73bb985ab78b4740a1444004dfd60217'; //'
   const [randomedMovie, setRandomedMovie] = useState({});
   const [imdbId, setImdbID] = useState('');
   const [movieOverview, setmovieOverview] = useState('');
@@ -89,7 +89,6 @@ function App() {
         .then(response => response.json())
         .then(data => {
           // building array of movies
-          // console.log(data.results)
           listOfMovies = [...listOfMovies, ...data.results]
           counter++;
           if (counter >= numberOfPages) {
@@ -130,7 +129,7 @@ function App() {
     let filteredMovies = movies.filter(element => element.genre_ids.includes(genreID))
       .filter(element => allYearsIn(filter.Decade).includes(element.release_date.slice(0, 4)))
 
-    if (filteredMovies.length == 0) {
+    if (filteredMovies.length === 0) {
       setRandomedMovie(
         {
           // need picture here!
@@ -204,9 +203,7 @@ function App() {
 
     const tags = tagList.join()
     const recipeApi =
-      `https://api.spoonacular.com/recipes/random?${foodApiKey}` + "&tags=" +
-      tags
-
+      `https://api.spoonacular.com/recipes/random?${foodApiKey}&tags${tags}`
     // Do the fetch
     fetch(recipeApi)
       .then(response => response.json())
@@ -271,6 +268,5 @@ function App() {
     </div>
   );
 }
-
 
 export default App;
