@@ -9,17 +9,12 @@ import { css } from "@emotion/core";
 import FadeLoader from "react-spinners/FadeLoader";
 
 function Results(props) {
-
   const override = css`
   position: absolute;
   left:50%;
   top:150px;
 `;
-
-
-
   function submit() {
-
     const formData = {
       randomedMovie: props.randomedMovie,
       imdbId: props.imdbId,
@@ -41,12 +36,10 @@ function Results(props) {
 
   function formatRecipeSummary(summary) {
     let formattedSummary = summary.replace(/<[^>]*>?/gm, '')
-
     return (formattedSummary)
   }
 
   return (
-
     <div>
       <FadeLoader
         css={override}
@@ -73,8 +66,6 @@ function Results(props) {
               </div>
             </div>
           </div>
-
-
         </div>
         <div className="recipe-column">
           <div className="recipe-selections-results">
@@ -95,7 +86,6 @@ function Results(props) {
         {/* href={props.recipeInfo.url}> */}
         <button style={{ alignSelf: "flex-start" }} onClick={submit}>Love It!</button>
         <button className="gray-button" onClick={props.getPair} style={{ alignSelf: "flex-start" }}>Give Me Another </button>
-
       </main>
     </div>
   )

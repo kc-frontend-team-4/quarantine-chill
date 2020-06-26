@@ -10,16 +10,7 @@ import Recent from './components/pages/Recent/Recent.js';
 import Results from './components/pages/Results/Results.js';
 import { sanitizeString } from './sanitize.js';
 
-import { css } from "@emotion/core";
-
-const override = css`
-  display: block;
-  margin: 0 auto;
-  border-color: red;
-`;
-
 function App() {
-
   const [loader, setLoader] = useState({
     loading: true,
   })
@@ -29,7 +20,6 @@ function App() {
   const movieApiKey = 'api_key=0402eec8d6da4df59f8077842992a247';
   const foodApiKey = 'apiKey=73bb985ab78b4740a1444004dfd60217';// 'apiKey=2fa1eb822ad241b381e2d9b65da08a0f'; //'apiKey=73bb985ab78b4740a1444004dfd60217'; //'
   const [randomedMovie, setRandomedMovie] = useState({});
-  const [filteredMovieList, setFilteredMovieList] = useState([]);
   const [imdbId, setImdbID] = useState('');
   const [movieOverview, setmovieOverview] = useState('');
   const [filter, setFilter] = useState({
@@ -106,20 +96,19 @@ function App() {
         })
     }
   }
+  function allYearsIn(decade) {
+    const decadeAsInteger = parseInt(decade)
+    const years = []
+    let currentYear = decadeAsInteger
 
-  // get filtered movies list
-  function onClickSearchMovies() {
-    let genreID;
-    // given genre name, we need to search for its corresponding genre id
-    for (const el of arrays.genres) {
-      if (el.name === filter.Genre) {
-        genreID = el.id;
-      }
+    while (currentYear < decadeAsInteger + 10) {
+      years.push(currentYear + 1);
+      console.log("kevin", currentYear)
+      currentYear++;
+      console.log(years)
     }
-    let filteredMovies = movies.filter(element => element.genre_ids.includes(genreID))
-      .filter(element => filter.Decade === element.release_date.slice(0, 4));
-    setFilteredMovieList(filteredMovies);
-    // console.log('filtered movie list', filteredMovieList);
+    const yearsAsStrings = years.map(year => year.toString())
+    return yearsAsStrings
   }
 
   async function getMovieRuntime(movie) {
@@ -129,10 +118,6 @@ function App() {
   }
   // show the random movie poster and title 
   async function onPairMeClick() {
-    // onClickSearchMovies();
-    // if (filter.Genre === '' || filter.Decade === '' || filter.Length === '') {
-    //   alert('please select filters!');
-    // }
     let genreID;
     // given genre name, we need to search for its corresponding genre id
     for (const el of arrays.genres) {
@@ -140,8 +125,10 @@ function App() {
         genreID = el.id;
       }
     }
+
     let filteredMovies = movies.filter(element => element.genre_ids.includes(genreID))
-      .filter(element => filter.Decade === element.release_date.slice(0, 4));
+      .filter(element => allYearsIn(filter.Decade).includes(element.release_date.slice(0, 4)))
+
     if (filteredMovies.length == 0) {
       setRandomedMovie(
         {
@@ -152,12 +139,13 @@ function App() {
           "overview": "Nothing.",
         }
       );
+      setmovieOverview("Nothing.");
     } else {
       let movieToSet = undefined;
       const desiredLength = filter.Length;
       let tries = 0;
       while (movieToSet === undefined) {
-        if (tries < 30) {
+        if (tries < 99) {
           let index = Math.floor((Math.random() * filteredMovies.length));
           let movie = filteredMovies[index];
           let [runtime, imdb_id, overview] = await getMovieRuntime(movie);
@@ -190,6 +178,7 @@ function App() {
               "overview": "Nothing.",
             }
           );
+          setmovieOverview("Nothing.");
         }
       };
       setRandomedMovie(movieToSet);
@@ -262,8 +251,6 @@ function App() {
             onChangeMealTypes={onChangeMealTypes}
             onChangeFoodAllergies={onChangeFoodAllergies}
             onChangeFoodRestrictions={onChangeFoodRestrictions}
-            onClickSearchMovies={onClickSearchMovies}
-
             loader={loader}
           />} />
           <Route exact path='/results' render={(...props) => <Results {...props}
