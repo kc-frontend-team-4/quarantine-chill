@@ -54,14 +54,14 @@ function Results(props) {
           </div>
           <div className="movie-selections-results">
             <div className="movie-image">
-              <img src={`https://image.tmdb.org/t/p/w200${props.randomedMovie.poster_path}`}></img>
+              <img alt='Movie Poster' src={`https://image.tmdb.org/t/p/w200${props.randomedMovie.poster_path}`}></img>
             </div>
             <div className="movie-information">
               <p className="movie-name">{props.randomedMovie.title || props.randomedMovie.name}</p>
               <p>{props.movieOverview}</p>
               <div className="movie-link-container">
                 <div className="movie-link">
-                  <a className="imdb-text" target="_blank" href={'https://www.imdb.com/title/' + props.imdbId}>Check it out on <img className="imdb-img" src={imdb} /></a>
+                  <a className="imdb-text" target="_blank" rel="noopener noreferrer" href={'https://www.imdb.com/title/' + props.imdbId}>Check it out on <img className="imdb-img" alt='IMDB' src={imdb} /></a>
                 </div>
               </div>
             </div>
@@ -70,14 +70,14 @@ function Results(props) {
         <div className="recipe-column">
           <div className="recipe-selections-results">
             <div className="recipe-image">
-              <img className="recipe-image-item" src={props.recipeInfo.img} />
+              <img alt='Food' className="recipe-image-item" src={props.recipeInfo.img} />
             </div>
             <div className="recipe-information">
               <p className="recipe-name">{props.recipeInfo.name}</p>
               <p style={{ fontSize: "16px" }} >{props.recipeInfo.summary}</p>
               <div class="recipe-link-container">
                 <div class="recipe-link">
-                  <a className="recipe-text" target="_blank" href={props.recipeInfo.url}>See the full recipe</a>
+                  <a className="recipe-text" target="_blank" rel="noopener noreferrer" href={props.recipeInfo.url}>See the full recipe</a>
                 </div>
               </div>
             </div>
@@ -90,3 +90,10 @@ function Results(props) {
   )
 }
 export default Results;
+
+// response if recipe api reach limit
+// {
+//   "status": "failure",
+//   "code": 402,
+//   "message": "Your daily points limit of 150 has been reached. Please upgrade your plan to continue using the API."
+//   }

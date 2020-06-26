@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 import './LandingPage.css';
-import * as arrays from './arrays.js';
+import * as arrays from './../../../arrays.js';
 import { ReactComponent as Movie } from '../../../movie.svg';
 import { ReactComponent as Recipe } from '../../../recipe.svg';
 
@@ -88,7 +88,7 @@ function LandingPage(props) {
                     < option value={element} key={index} > {element}</option>
                   ))}
                 </select>
-              </div >
+              </div>
               <div className="labels">
                 {/* food restrictions */}
                 <label htmlFor='food restrictions'>food restrictions</label>
@@ -97,7 +97,7 @@ function LandingPage(props) {
                     < option value={element} key={index} > {element}</option>
                   ))}
                 </select>
-              </div >
+              </div>
             </div>
           </div>
         </div>

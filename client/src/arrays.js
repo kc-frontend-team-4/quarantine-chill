@@ -1,47 +1,48 @@
 // https://spoonacular.com/food-api/docs#Meal-Types
 // comment out meal types we don't want to include
 export const meal_types = [
-    'Main Course',
-    'Side Dish',
-    'Dessert',
-    //'Appetizer',
-    'Salad',
-    // 'Bread',
+    'Meal Type',
     'Breakfast',
-    'Soup',
-    // 'Beverage',
-    // 'Sauce',
-    // 'Marinade',
-    // 'Fingerfood',
-    // 'Snack',
-    // 'Drink'
+    'Lunch',
+    'Dinner',
+    'Snack',
+    'Dessert',
 ];
+
+export const food_restrictions = [
+    'Dietary Restictions',
+    'Vegan',
+    'Vegetarian',
+    'DairyFree',
+    'GlutenFree'
+];
+
 // https://spoonacular.com/food-api/docs#Intolerances
-export const food_allergies = [
-    'vegan',
-    'vegetarian'
-    // 'Dairy',
-    // 'Egg',
-    // 'Gluten',
-    // 'Grain',
-    // 'Peanut',
-    // 'Seafood',
-    // 'Sesame',
-    // 'Shellfish',
-    // 'Soy',
-    // 'Sulfite',
-    // 'Tree Nut',
-    // 'Wheat'
-];
+// export const food_allergies = [
+//     'Food Allergy',
+//     'Dairy',
+//     'Egg',
+//     'Gluten',
+// 'Grain',
+// 'Peanut',
+// 'Seafood',
+// 'Sesame',
+// 'Shellfish',
+// 'Soy',
+// 'Sulfite',
+// 'Tree Nut',
+// 'Wheat'
+// ];
 // https://spoonacular.com/food-api/docs#Cuisines
 export const cuisines = [
+    'Cuisine Type',
     'African',
     'American',
     'British',
     'Cajun',
     'Caribbean',
     'Chinese',
-    'Eastern European',
+    // 'Eastern European',
     'European',
     'French',
     'German',
@@ -52,19 +53,23 @@ export const cuisines = [
     'Japanese',
     'Jewish',
     'Korean',
-    'Latin American',
+    // 'Latin American',
     'Mediterranean',
     'Mexican',
-    'Middle Eastern',
+    // 'Middle Eastern',
     'Nordic',
     'Southern',
     'Spanish',
     'Thai',
-    'Vietnamese'
+    'Vietnamese',
+    //extras
+    // "Scottish",
+    // "British",
 ];
 
 // from https://api.themoviedb.org/3/genre/movie/list?api_key=0402eec8d6da4df59f8077842992a247
 export const genres = [
+    { 'name': 'Genre' },
     {
         "id": 28,
         "name": "Action"
