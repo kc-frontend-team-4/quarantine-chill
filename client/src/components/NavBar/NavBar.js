@@ -19,7 +19,7 @@ function NavBar() {
           </div>
         <div className="right-menu">
           <span className="right-menu-links">
-            <Link to="/favorites/">Favorites</Link> | <Link to="/recent/">Recent</Link>
+            <Link to="/recent/">Recent</Link>
           </span>
         </div>
       </nav>

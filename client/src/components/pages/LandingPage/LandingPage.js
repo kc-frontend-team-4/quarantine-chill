@@ -6,11 +6,15 @@ import { ReactComponent as Movie } from '../../../movie.svg';
 import { ReactComponent as Recipe } from '../../../recipe.svg';
 
 
-// import { css } from "@emotion/core";
-import BounceLoader from "react-spinners/BounceLoader";
+import { css } from "@emotion/core";
+import FadeLoader from "react-spinners/FadeLoader";
 
 function LandingPage(props) {
-
+  const override = css`
+  position: absolute;
+  left:50%;
+  top:150px;
+`;
   const imageSize = 'w200'
   //width in px accept values of w200,w300,w400,w500,original
   //poster proportion "1x width:1.5x height"
@@ -18,9 +22,9 @@ function LandingPage(props) {
   return (
     <div>
       <div>
-        <BounceLoader
-          // css={override}
-          size={50}
+        <FadeLoader
+          css={override}
+          size={250}
           color={'#000000'}
           loading={props.loader.loading}
         />
@@ -105,7 +109,7 @@ function LandingPage(props) {
             </div>
           </div>
         </div>
-        <button onClick={props.onClick} type="submit">
+        <button style= {{margin : 0}} onClick={props.onClick} type="submit">
           <Link to="/results/">Pair Me</Link>
         </button>
       </main>
