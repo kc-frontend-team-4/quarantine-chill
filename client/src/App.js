@@ -39,6 +39,18 @@ function App() {
     cooktime: "",
     summary: "",
   })
+
+  function onStartOverClick() {
+    setFilter({
+      Genre: '',
+      Decade: '',
+      Length: '',
+      'Cuisine Type': '',
+      'Meal Type': '',
+      'Food Allergies': '',
+      'Food Restriction': '',
+    })
+  }
   const onChangeGenre = (event) => {
     setFilter({ ...filter, Genre: event.target.value });
   }
@@ -135,8 +147,8 @@ function App() {
           // need picture here!
           "poster_path": "/.jpg",
           "id": null,
-          "title": "No movie found",
-          "overview": "Nothing.",
+          "title": "Please select three filters",
+          "overview": ".",
         }
       );
       setmovieOverview("Nothing.");
@@ -174,11 +186,11 @@ function App() {
             {
               "poster_path": "/.jpg",
               "id": null,
-              "title": "No movie found",
-              "overview": "Nothing.",
+              "title": "Please select three filters",
+              "overview": "",
             }
           );
-          setmovieOverview("Nothing.");
+          setmovieOverview("");
         }
       };
       setRandomedMovie(movieToSet);
@@ -186,39 +198,39 @@ function App() {
   }
 
   function fetchRecipes() {
-    const recipeFilters = [
-      filter['Cuisine Type'],
-      filter['Food Restriction'],
-      filter['Meal Type']
-    ]
+    // const recipeFilters = [
+    //   filter['Cuisine Type'],
+    //   filter['Food Restriction'],
+    //   filter['Meal Type']
+    // ]
 
-    let tagList = []
+    // let tagList = []
 
-    // Add non-empty strings to list
-    for (let filter of recipeFilters) {
-      if (filter !== "" && filter !== undefined) {
-        tagList.push(filter)
-      }
-    }
+    // // Add non-empty strings to list
+    // for (let filter of recipeFilters) {
+    //   if (filter !== "" && filter !== undefined) {
+    //     tagList.push(filter)
+    //   }
+    // }
 
-    const tags = tagList.join()
-    const recipeApi =
-      `https://api.spoonacular.com/recipes/random?${foodApiKey}&tags${tags}`
-    // Do the fetch
-    fetch(recipeApi)
-      .then(response => response.json())
-      .then(data => {
-        // check if such recipe exists  
-        if (data.recipes[0] !== undefined) {
-          setRecipeInfo({
-            name: data.recipes[0]['title'],
-            url: data.recipes[0]['spoonacularSourceUrl'],
-            img: data.recipes[0]['image'],
-            summary: sanitizeString(data.recipes[0]['summary']),
-            cooktime: data.recipes[0]['readyInMinutes'],
-          })
-        }
-      })
+    // const tags = tagList.join()
+    // const recipeApi =
+    //   `https://api.spoonacular.com/recipes/random?${foodApiKey}&tags${tags}`
+    // // Do the fetch
+    // fetch(recipeApi)
+    //   .then(response => response.json())
+    //   .then(data => {
+    //     // check if such recipe exists  
+    //     if (data.recipes[0] !== undefined) {
+    //       setRecipeInfo({
+    //         name: data.recipes[0]['title'],
+    //         url: data.recipes[0]['spoonacularSourceUrl'],
+    //         img: data.recipes[0]['image'],
+    //         summary: sanitizeString(data.recipes[0]['summary']),
+    //         cooktime: data.recipes[0]['readyInMinutes'],
+    //       })
+    //     }
+    //   })
   }
 
   async function getPair() {
@@ -260,6 +272,7 @@ function App() {
             imdbId={imdbId}
             getPair={getPair}
             loader={loader}
+            onStartOverClick={onStartOverClick}
           />} />
           <Route exact path='/favorites/' component={Favorites} />
           <Route exact path='/recent/' component={Recent} />

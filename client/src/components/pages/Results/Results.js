@@ -49,7 +49,7 @@ function Results(props) {
       />
       <main style={{ height: "1000px" }}>
         <div className="movie-column">
-          <div className="start-over">
+          <div className="start-over" onClick={props.onStartOverClick}>
             <Link to="/">⬅ Start Over</Link>
           </div>
           <div className="movie-selections-results">
