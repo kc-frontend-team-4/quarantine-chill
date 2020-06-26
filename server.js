@@ -16,7 +16,6 @@ app.post('/api/mongodb/quarantine-chill/test', (request, response) => {
       if (err) throw err;
 
       response.json({
-        'success': true,
         'results': results,
       });
     });
