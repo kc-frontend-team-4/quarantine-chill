@@ -130,20 +130,9 @@ button {
     top: 15%;
 }
 
-.star-and-image {
-    display: flex;
-    flex-direction: row;
-}
-
-.star {
-    align-self: center;
-    margin-right: 50px;
-}
-
 .count {
     display: block;
     font-size: 20px;
     text-align: center;
 
 }
-
