@@ -131,7 +131,8 @@ function App() {
   async function onPairMeClick() {
     // onClickSearchMovies();
     // if (filter.Genre === '' || filter.Decade === '' || filter.Length === '') {
-    //   alert('please select filters!');
+    //   alert('kevin');
+
     // }
     let genreID;
     // given genre name, we need to search for its corresponding genre id

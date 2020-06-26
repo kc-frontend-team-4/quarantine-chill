@@ -109,7 +109,7 @@ function LandingPage(props) {
             </div>
           </div>
         </div>
-        <button onClick={props.onClick} type="submit">
+        <button style= {{margin : 0}} onClick={props.onClick} type="submit">
           <Link to="/results/">Pair Me</Link>
         </button>
       </main>
