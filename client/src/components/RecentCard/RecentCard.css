@@ -37,7 +37,8 @@
     background-color: var(--black);
     width: 300px;
     height: 300px;
-    margin: auto
+    margin: auto;
+    margin-bottom: 15px;
 }
 
 .RecentCardMovie-image {
@@ -74,6 +75,7 @@
     font-size: 18px;
     font-weight: 700;
     text-align: center;
+    margin-bottom: 30px;
 }
 
 
@@ -92,9 +94,7 @@
     padding: 5px;
     background-color: var(--darkgray);
     height: 27px;
-    border-radius: 3px;
-    align-self: flex-end; 
-    
+    border-radius: 3px;   
 }
 
 .RecentCardMovie-imdb-text {
