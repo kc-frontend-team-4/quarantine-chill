@@ -23,7 +23,6 @@ function Recent() {
   return (
     <div>
           <div className="recent-page"> 
-          <div>Recent</div>
             <div style={{marginTop:"120px"}}>
               {
                 pairings.map((item) => (

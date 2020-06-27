@@ -15,51 +15,29 @@
     background-color: var(--gray);
     border-radius: 10px;
     width: 350px;
-    margin-right: 20px;
+    margin-right: 10px;
 }
 
-.RecentCardMovie-name {
-    font-size: 18px;
-    font-weight: 700;
-    text-align: center;
-    margin-top: 0;
+.RecentCardRecipe {
+    padding: 25px 0px 0px 0px;
+    background-color: var(--gray);
+    border-radius: 10px;
+    width: 350px;
+    margin-left: 10px;
 }
 
 .RecentCardMovie-body {
     background-color: var(--gray);
     padding: 0px 25px 0px 25px;
-    left: 0;
     width: 300px;
 }
 
-.RecentCardMovie-link-container {
-    background-color: var(--white);
-    border: 2px solid var(--gray);
-    width: 346px;
-    height: 60px;
-    border-radius: 0px 0px 10px 10px 
-}
-
-.RecentCardMovie-link {
-    margin: auto;
-    margin-top: 7px;
-    width: 200px;
-    padding: 5px;
-    background-color: var(--darkgray);
-    height: 27px;
-    border-radius: 3px
-    
-}
-
-.RecentCardMovie-imdb-text {
-    margin-left: 15px;
-    font-size: 16px;
-    color: var(--white);
-}
-
-.RecentCardMovie-imdb-img {
-    width: 50px;
-    margin-bottom: -6px;
+.RecentCardRecipe-body {
+    display:flex;
+    background-color: var(--black);
+    width: 300px;
+    height: 300px;
+    margin: auto
 }
 
 .RecentCardMovie-image {
@@ -75,65 +53,57 @@
     margin-left: 50px;
 }
 
-/* RECIPE STYLES BELOW */
+.RecentCardRecipe-image {
+    max-width: 100%;
+    max-height: 100%;
+    background-color: var(--black);
+    margin-left: auto;
+    align-items: center;
+    object-fit: cover;
+    overflow: hidden;
+}
 
-.RecentCardRecipe {
-    padding: 25px 0px 0px 0px;
-    background-color: var(--gray);
-    border-radius: 10px;
-    width: 350px;
+.RecentCardMovie-name {
+    font-size: 18px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 30px;
 }
 
 .RecentCardRecipe-name {
     font-size: 18px;
     font-weight: 700;
     text-align: center;
-    margin: auto;
-    margin-left: 20px;
 }
 
-.RecentCardRecipe-body {
-    background-color: var(--gray);
-    padding: 0px 25px 0px 25px;
-    left: 0;
-    width: 300px;
-}
 
-.RecentCardRecipe-link-container {
+.RecentCardMovie-link-container, .RecentCardRecipe-link-container {
     background-color: var(--white);
     border: 2px solid var(--gray);
     width: 346px;
-    height: 50px;
+    height: 60px;
     border-radius: 0px 0px 10px 10px;
 }
 
-.RecentCardRecipe-link, .recipe-link-recent {
+.RecentCardMovie-link, .RecentCardRecipe-link {
     margin: auto;
     margin-top: 7px;
     width: 200px;
     padding: 5px;
     background-color: var(--darkgray);
     height: 27px;
-    border-radius: 3px
+    border-radius: 3px;
+    align-self: flex-end; 
     
 }
 
-.RecentCardRecipe-image, .recipe-image {
-    height: 300px;
-    width: 300px;
-    border: var(--main-border);
-    margin-bottom: 15px;
+.RecentCardMovie-imdb-text {
+    margin-left: 15px;
+    font-size: 16px;
+    color: var(--white);
 }
 
-.RecentCardRecipe-image {
-    background-color: var(--black);
-    margin-left: auto;
-}
-
-.RecentCardRecipe-image img {
-    margin-left: 50px;
-}
-
-.recipe-image {
-    background-color: var(--black);
+.RecentCardMovie-imdb-img {
+    width: 50px;
+    margin-bottom: -6px;
 }
