@@ -22,11 +22,12 @@ Quarantine & Chill is a single-page React web app designed to address elements o
 
 ### Set-up
 
-1. Download this repo as zip file,then extract 
-OR do a git pull and copy over the files into your project 
-OR fork this project.
+1. Do one of the following:
+    - Download this repo as zip file,then extract
+    - Git pull and copy over the files into your project 
+    - Fork this project
 
-2. Set-up a MongoDB database: Either set-up a [MongoDB Atlas](https://cloud.mongodb.com) database, or install and configure a local DB for testing
+2. Set-up a MongoDB database: Either set-up a [MongoDB Atlas](https://cloud.mongodb.com) database, or install and configure a local DB for testing.
 
 3. Create a ".env.local" file, that contains your credentials. 
 
@@ -37,8 +38,7 @@ OR fork this project.
 
     - Where USERNAME and PASSWORD is replaced with an actual username and
       password on the MongoDB. In the case of MongoDB Atlas, you will have to
-      create a username and password as a separate step (see the
-      [`mongodb_atlas_guide.md`](./mongodb_atlas_guide.md))
+      create a username and password as a separate step.
 
 4. NPM install (this will install for both backend and frontend, and may take a
 while):
