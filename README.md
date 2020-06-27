@@ -2,7 +2,7 @@
 
 # Quarantine & Chill
 
-Quarantine & Chill is a single-page React web app designed to address elements of decision fatigue that accompany shelter-in-place. With the widespread closure of businesses during COVID-19, many people have lost access to their favorite recreations and pastimes and are stuck in their own homes. The days blend together as we cook every meal at home and binge-watch television. With Quarantine and Chill, you no longer have to eternally scroll through dinner recipes and movie options, waiting for something interesting to jump out. Let Quarantine and Chill make that decision for you!
+Quarantine & Chill is a single-page React web app designed to address elements of decision fatigue that accompany shelter-in-place. With the widespread closure of businesses during COVID-19, many people have lost access to their favorite recreations and pastimes and are stuck in their own homes. The days blend together as we cook every meal at home and binge-watch television. With Quarantine and Chill, you no longer have to eternally scroll through dinner recipes and movie options, waiting for something interesting to jump out. Let Quarantine and Chill make that decision for you! [Check it out live here on Heroku](https://quarantine-chill.herokuapp.com/)
 
 ## About
 
