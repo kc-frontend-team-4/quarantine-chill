@@ -103,7 +103,7 @@ function LandingPage(props) {
         </div>
         {!props.isLoaded ?
           null :
-          <button style={{ margin: 0 }} onClick={props.onClick} type="submit">
+          <button style={{ marginTop: "-65px" }} onClick={props.onClick} type="submit">
             <Link to="/results/">Pair Me</Link>
           </button>}
       </main>

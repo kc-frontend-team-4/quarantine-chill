@@ -17,6 +17,8 @@ background-color: red;
     --red:  #e63946;
     --black: #081621;
     --darkgray: #606060;
+    --hover-red: #a80210;
+    --hover-gray: #505456;
 }
 
 * {
@@ -136,9 +138,19 @@ button {
     margin-top: 130px;
 }
 
+button:hover {
+    transform: scale(1.05, 1);
+    background-color: var(--hover-red);
+}
+
 .gray-button {
     background-color: var(--gray);
     margin-top: 270px;
+}
+
+.gray-button:hover {
+    transform: scale(1.05, 1);
+    background-color: var(--hover-gray);
 }
 
 .start-over {
@@ -192,6 +204,11 @@ button {
     width: 200px;
     padding: 5px;
     background-color: var(--darkgray);
+}
+
+.movie-link:hover, .recipe-link:hover {
+    background-color: var(--hover-gray);
+    transform: scale(1.05, 1);
 }
 
 .imdb-text {

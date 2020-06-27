@@ -124,6 +124,11 @@ button {
     align-self: center;
 }
 
+button:hover {
+    transform: scale(1.05, 1);
+    background-color: var(--hover-red);
+}
+
 .gray-button {
     background-color: var(--gray);
     margin-top: 80px;

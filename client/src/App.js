@@ -5,7 +5,6 @@ import './App.css';
 import * as arrays from './arrays.js';
 import NavBar from './components/NavBar/NavBar.js'
 import LandingPage from './components/pages/LandingPage/LandingPage.js';
-import Favorites from './components/pages/Favorites/Favorites.js';
 import Recent from './components/pages/Recent/Recent.js';
 import Results from './components/pages/Results/Results.js';
 import { sanitizeString } from './sanitize.js';
@@ -269,7 +268,6 @@ function App() {
             loader={loader}
             onStartOverClick={onStartOverClick}
           />} />
-          <Route exact path='/favorites/' component={Favorites} />
           <Route exact path='/recent/' component={Recent} />
         </Switch>
       </div>
