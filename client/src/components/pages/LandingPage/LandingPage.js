@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom'
 import './LandingPage.css';
-import * as arrays from './arrays.js';
+import * as arrays from './../../../arrays.js';
 import { ReactComponent as Movie } from '../../../movie.svg';
 import { ReactComponent as Recipe } from '../../../recipe.svg';
-
 
 import { css } from "@emotion/core";
 import FadeLoader from "react-spinners/FadeLoader";
@@ -15,10 +14,6 @@ function LandingPage(props) {
   left:50%;
   top:150px;
 `;
-  const imageSize = 'w200'
-  //width in px accept values of w200,w300,w400,w500,original
-  //poster proportion "1x width:1.5x height"
-
   return (
     <div>
       <div>
@@ -64,7 +59,7 @@ function LandingPage(props) {
                     < option value={element} key={index} > {element}</option>
                   ))}
                 </select>
-              </div >
+              </div>
             </div>
           </div>
         </div>
@@ -87,16 +82,13 @@ function LandingPage(props) {
                 </select>
               </div >
               <div className="labels">
-
                 <label htmlFor='Meal Type'>Meal Type</label>
                 <select required onChange={props.onChangeMealTypes} name='Meal Type' id='Meal Type'>
                   {arrays.meal_types.map((element, index) => (
                     < option value={element} key={index} > {element}</option>
                   ))}
                 </select>
-              </div >
-
-
+              </div>
               <div className="labels">
                 {/* food restrictions */}
                 <label htmlFor='food restrictions'>food restrictions</label>
@@ -105,13 +97,15 @@ function LandingPage(props) {
                     < option value={element} key={index} > {element}</option>
                   ))}
                 </select>
-              </div >
+              </div>
             </div>
           </div>
         </div>
-        <button style= {{margin : 0}} onClick={props.onClick} type="submit">
-          <Link to="/results/">Pair Me</Link>
-        </button>
+        {!props.isLoaded ?
+          null :
+          <button style={{ margin: 0 }} onClick={props.onClick} type="submit">
+            <Link to="/results/">Pair Me</Link>
+          </button>}
       </main>
     </div>
   )
