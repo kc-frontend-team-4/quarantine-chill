@@ -46,7 +46,7 @@ function LandingPage(props) {
                 {/* Rating */}
                 <label htmlFor='Decade'>Decade</label>
                 <select required onChange={props.onChangeDecade} name='Decade' id='Decade'>
-                  {['Decade', '1950s', '1960s', '1970s', '1980s', '1990s', '2000s', '2010s', '2020s'].map((element, index) => (
+                  {['Decade', '1950s', '1960s', '1970s', '1980s', '1990s', '2000s', '2010s'].map((element, index) => (
                     < option value={element.slice(0, element.length - 1)} key={index} > {element}</option>
                   ))}
                 </select>
