@@ -43,7 +43,7 @@ Quarantine & Chill is a single-page React web app designed to address elements o
 4. NPM install (this will install for both backend and frontend, and may take a
 while):
 
-    npm install
+    `npm install`
 
 
 ### Running
