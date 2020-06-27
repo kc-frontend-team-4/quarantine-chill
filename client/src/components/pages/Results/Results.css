@@ -199,6 +199,10 @@ button:hover {
     border-radius: 0px 0px 10px 10px 
 }
 
+.recipe-link-container {
+    height: 53px;
+}
+
 .movie-link, .recipe-link {
     margin: 10px auto;
     width: 200px;
@@ -209,6 +213,13 @@ button:hover {
 .movie-link:hover, .recipe-link:hover {
     background-color: var(--hover-gray);
     transform: scale(1.05, 1);
+}
+
+.recipe-summary, .movie-summary {
+    font-size: 16px;
+    height: 142px;
+    margin-bottom: 0;
+    margin-top: 37px;
 }
 
 .imdb-text {
