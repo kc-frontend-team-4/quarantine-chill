@@ -4,7 +4,7 @@
     border: 2px solid var(--gray);
     padding: 20px;
     width: auto;
-    height: auto;
+    height: 457px;
     border-radius: 5px;
     margin: 30px auto 30px auto;
     box-shadow: 7px 7px 5px grey;
@@ -75,7 +75,8 @@
     font-size: 18px;
     font-weight: 700;
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 33px;
+    height: 21px;
 }
 
 
@@ -95,6 +96,11 @@
     background-color: var(--darkgray);
     height: 27px;
     border-radius: 3px;   
+}
+
+.RecentCardRecipe-link {
+    padding-bottom: 0;
+    padding-top: 10px;
 }
 
 .RecentCardMovie-imdb-text {

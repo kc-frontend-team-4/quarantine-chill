@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Results.css';
 
 import { Link } from 'react-router-dom';
@@ -13,6 +13,9 @@ function Results(props) {
   left:50%;
   top:150px;
 `;
+
+  // const [isLiked, setIsLiked] = useState(false)
+
   function submit() {
     const formData = {
       randomedMovie: props.randomedMovie,
@@ -21,7 +24,7 @@ function Results(props) {
       recipeInfo: props.recipeInfo,
       valid: true
     }
-
+    // setIsLiked(true)
     console.log("Sending pairing to the database...")
     fetch('/api/mongodb/quarantine-chill/test', {
       method: 'POST',
@@ -83,8 +86,9 @@ function Results(props) {
             </div>
           </div>
         </div>
-        <button style={{ alignSelf: "center", marginBottom: "0px" }} onClick={submit}>Love It!</button>
-        <button className="gray-button" onClick={props.getPair} style={{ alignSelf: "flex-end", marginBottom: "80px" }}>Give Me Another </button>
+          <button style={{ alignSelf: "center", marginBottom: "0px" }} onClick={submit}>Love It!</button>
+          {/* {isLiked && <p>Check the <a href="/recent">Recent</a> page for more Loved combinations</p>} */}
+          <button className="gray-button" onClick={props.getPair} style={{ alignSelf: "flex-end", marginBottom: "80px" }}>Give Me Another </button>
       </main>
     </div >
   )
