@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Recent.css';
 import RecentCardMovie from '../../RecentCardMovie/RecentCardMovie.js'
+import RecentCardRecipe from '../../RecentCardRecipe/RecentCardRecipe.js'
 import imdb from '../../../imdb.png'
 
 function Recent() {
@@ -38,9 +39,15 @@ function Recent() {
             </div>
             </div>
             <div className="recipe-column">
+              <div style={{marginTop:"120px"}}>
               {
                 pairings.map((item) => (
-                  <div className="recipe-selections-recent">
+                  <RecentCardRecipe
+                    recipeImg={item.recipeInfo.img}
+                    recipeName={item.recipeInfo.name}
+                    recipeUrl={item.recipeInfo.url}
+                  /> 
+                  /*<div className="recipe-selections-recent">
                     <div className="recipe-image">
                       <img className="recipe-image-item" src={item.recipeInfo.img} />
                     </div>
@@ -57,8 +64,9 @@ function Recent() {
                         </div>
                       </div>
                   </div>
-                </div>
-              ))}
+                </div>*/
+                ))}
+              </div>
             </div>
         </main>
     </div>

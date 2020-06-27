@@ -25,7 +25,11 @@ app.post('/api/mongodb/quarantine-chill/test', (request, response) => {
 app.get('/api/mongodb/quarantine-chill/test', (request, response) => {
 
   db.collection("test")
-    .find({valid: true})
+    .find({
+      valid: true, 
+      movieOverview: {"$nin": [""]},
+      recipeInfo: {"$nin": [""]}
+     })
     .toArray((err, results) => {
       // Got data back.. send to client
       if (err) throw err;
