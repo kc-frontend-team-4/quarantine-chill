@@ -4,8 +4,22 @@ import RecentCard from '../../RecentCard/RecentCard.js'
 import imdb from '../../../imdb.png'
 
 function Recent() {
-
   const [pairings, setPairings] = useState([])
+  const [page, setPage] = useState(1);
+
+  // Go to next page
+  function goToNextPage() {
+    const newPageValue = Math.min(page + 1, Math.ceil(pairings.length/8))
+    console.log("new page value is", newPageValue)
+    setPage(newPageValue)
+    console.log("go to next page, page value is", page)
+  }
+  // Go to previous page
+  function goToPreviousPage() {
+    const newPageValue = Math.max(page - 1, 1)
+    setPage(newPageValue)
+    console.log("go to prev page, page value is", page)
+  }
 
   // Fetch pairings from the database
   function fetchPairings() {
@@ -25,19 +39,23 @@ function Recent() {
           <div className="recent-page"> 
             <div style={{marginTop:"120px"}}>
               {
-                pairings.map((item) => (
-                  <RecentCard
-                    poster_path={item.randomedMovie.poster_path}
-                    randomedMovieTitle={item.randomedMovie.title}
-                    randomedMovieName={item.randomedMovie.name}
-                    imdbId={item.imdbId}
-                    recipeImg={item.recipeInfo.img}
-                    recipeName={item.recipeInfo.name}
-                    recipeUrl={item.recipeInfo.url}
-                  /> 
+                pairings.slice(page*8-8, page*8-1)
+                  .map((item) => (
+                    <RecentCard
+                      poster_path={item.randomedMovie.poster_path}
+                      randomedMovieTitle={item.randomedMovie.title}
+                      randomedMovieName={item.randomedMovie.name}
+                      imdbId={item.imdbId}
+                      recipeImg={item.recipeInfo.img}
+                      recipeName={item.recipeInfo.name}
+                      recipeUrl={item.recipeInfo.url}
+                    /> 
                 ))}
               </div>
-            </div>
+             current page: {page}
+                <button className="PageButton" onClick={goToPreviousPage}> Previous Page </button>
+                <button className="PageButton" onClick={goToNextPage}>Next Page</button>
+        </div>
     </div>
   );
 }
