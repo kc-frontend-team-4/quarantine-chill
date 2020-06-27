@@ -1,57 +1,20 @@
-![Kickstart Coding Logo](./client/public/kickstart_coding_logo.png)
+![Quarantine & Chill Logo](./client/public/quarantine-chill.png)
 
-# MERN Prototyping Starter
+# Quarantine & Chill
 
-This is an example start project for [Kickstart Coding](http://kickstartcoding.com/)
-MERN MVP projects.
-
-It provides a solid foundation for building a MERN project that's ready to
-launch to Heroku or similar web-hosting service.
-
-**DO NOT** use this project as-is in production. It exposes an API to MongoDB
-without any sort of security. The only purpose of the API is to allow rapid
-front-end prototyping without much (or any) backend modifications. See the
-"Securing the backend" section below for more info.
+Quarantine & Chill is a single-page React web app designed to address elements of decision fatigue that accompany shelter-in-place. With the widespread closure of business during COVID-19, many people have lost access to their favorite recreations and pastimes and are stuck in their own homes. The days blend together as we cook every meal at home and binge-watch television. With Quarantine and Chill, you no longer have to eterally scroll through dinner recipes and movie options, waiting for something interesting to jump out. Let Quarantine and Chill make that decision for you!
 
 ## About
 
 ### Features
 
 * `react` and `react-router` are set-up in a normal, `create-react-app` layout
-    * It DOES NOT use Redux, to keep things simpler
 
-* Example blogging single page app App that does all four CRUD operation in a
-  heavily commented way, for examples to do everything
+* Connected to two different APIs to generate unique movie and recipe pairings based on your preferences
 
-* MongoDB, Express, and Node.js are set-up
-    * Does NOT use Mongoose, to keep things simpler
-    * Purposefully exposes the MongoDB API to the front-end for
-      rapid-prototyping without the need of doing any back-end coding
+* MongoDB/Express/Node.js - powered backend
 
 * Handy `run.sh` script that brings in a `.env.local` file for configuration
-
-* Ready-to-go to launch to Heroku
-
-
-### Who is this for
-
-* This is for **new JavaScript/Reeact programmers**, including **coding class
-  students** who want a solid start for a React project and want to create
-  application prototypes without having to touch any backend coding, while
-  keeping the option open to transition to a secure MERN stack.
-
-* The documentation assumes you already have fundamental JavaScript, React, Bash
-  and Heroku knowledge. If you are new to Heroku, read our [Heroku Getting
-  Started guide](http://github.com/kickstartcoding/heroku-getting-started/).
-
-* The documentation *does not* explicitly support Windows. It assumes you use
-  either **macOS** or a **GNU/Linux** distribution such as Ubuntu. That said,
-  it might work.
-
-> This was original created for Kickstart Coding, the affordable, inclusive,
-> and intensive coding course teaching cutting-edge Python / Django and
-> JavaScript / React web development.
-> [Learn more and enroll here.](https://kickstartcoding.com/?utm_source=github&utm_campaign=cheatsheets)
 
 ## Usage
 
@@ -113,65 +76,8 @@ when you make changes.
     cd client
     npm run start
 
-
-
 #### One terminal: `run.sh`
 
 For local development, use the included "run.sh" Bash script:
 
     bash run.sh
-
-Look inside the script. Can you understand what it is doing?  It does the same
-thing as the previous instructions, but saved into a script form, so you won't
-have to open multiple terminals or tabs.
-
-
-### Heroku
-
-The `.env.local` file does not get copied over to Heroku.  If you want to use
-your MongoDB Atlas database on Heroku, you will need to configure it with
-Heroku. Use a command like below, except with the same string you did in the
-previous steps (`.env.local`):
-
-        heroku config:set MONGODB_URI='mongodb://someUser:...'
-
-To ensure Heroku has the right configuration values set (which should occur
-after you have done `heroku create` to make a new Heroku app), do a command
-like the following:
-
-        heroku config
-
-You should see your `MONGODB_URI` specified, something like:
-
-        MONGODB_URI  mongodb://someUser:somePassword@something.com:1234/someDatabaseName 
-
-Launching to Heroku is like any other app:
-
-        git push heroku master
-
-
-# Understanding the code
-
-Once you have it locally running, try the following:
-
-1. Create an article
-
-2. View the articles API using localhost:8080/api/mongodb/blogposts/
-
-
-# Securing the backend
-
-After the prototype is built, the backend can be incrementally secured by
-creating custom routes that do the logic required for your application, and
-delete each generic / insecure route. For example, instead of allowing deletion
-of ANY documents, it could only allow requests in a certain format to only
-delete from a certain collection, relevant to your application. Also, you may
-consider using an authentication framework for Express.js, such as Passport.
-
-Once you replace a given insecure route, and make the front-end use the new
-route, you can delete the old route.
-
-Once you have deleted ALL of the generic / in-secure routes, and only have
-custom and securely written routes, then this prototyping set-up will be as
-secure as any other typical MERN backend.
-
