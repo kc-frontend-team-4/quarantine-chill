@@ -103,6 +103,11 @@
     padding-top: 10px;
 }
 
+.RecentCardMovie-link:hover, .RecentCardRecipe-link:hover {
+    background-color: var(--hover-gray);
+    transform: scale(1.05, 1);
+}
+
 .RecentCardMovie-imdb-text {
     margin-left: 15px;
     font-size: 16px;

@@ -24,4 +24,4 @@ function MovieImage() {
   );
 }
 
-export default NMovieAndRecipeImages;
+export default MovieAndRecipeImages;
