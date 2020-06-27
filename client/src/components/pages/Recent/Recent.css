@@ -15,11 +15,10 @@ body {
     margin: 0;
 }
 
-main {
-    display: grid;
-    grid-template-columns: 50% 50%;
-    grid-template-rows: 50% 50%;
-    height: 800px;
+.recent-page {
+  display: flex;
+  justify-content: center;
+  margin: auto
 }
 
 a {
@@ -27,22 +26,9 @@ a {
     text-decoration: none;
 }
 
-.movie-column {
-    grid-column: 1;
-    position: relative;
-}
-
-.recipe-column {
-    grid-column: 2;
-    position: relative;
-    font-size: 22px;
-}
-
-.main-heading {
+.recent-heading {
     font-size: 30px;
-    position: absolute;
-    right: -58px;
-    top: 15%;
+    margin: 40px;
 }
 
 

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Recent.css';
-import RecentCardMovie from '../../RecentCardMovie/RecentCardMovie.js'
-import RecentCardRecipe from '../../RecentCardRecipe/RecentCardRecipe.js'
+import RecentCard from '../../RecentCard/RecentCard.js'
 import imdb from '../../../imdb.png'
 
 function Recent() {
@@ -23,52 +22,23 @@ function Recent() {
 
   return (
     <div>
-        <main> 
-            <div className="movie-column">
-                <div className="main-heading" style={{right: "-50px"}}>Recent</div>
+          <div className="recent-page"> 
+          <div>Recent</div>
             <div style={{marginTop:"120px"}}>
               {
                 pairings.map((item) => (
-                  <RecentCardMovie
+                  <RecentCard
                     poster_path={item.randomedMovie.poster_path}
                     randomedMovieTitle={item.randomedMovie.title}
                     randomedMovieName={item.randomedMovie.name}
                     imdbId={item.imdbId}
-                  />                
-              ))}
-            </div>
-            </div>
-            <div className="recipe-column">
-              <div style={{marginTop:"120px"}}>
-              {
-                pairings.map((item) => (
-                  <RecentCardRecipe
                     recipeImg={item.recipeInfo.img}
                     recipeName={item.recipeInfo.name}
                     recipeUrl={item.recipeInfo.url}
                   /> 
-                  /*<div className="recipe-selections-recent">
-                    <div className="recipe-image">
-                      <img className="recipe-image-item" src={item.recipeInfo.img} />
-                    </div>
-                    <div className="recipe-information">
-                      <p className="recipe-name">{item.recipeInfo.name}</p>
-                      <div className="recipe-link-container-recent">
-                        <div className="recipe-link-recent">
-                          <a 
-                            className="recipe-text" 
-                            target="_blank" 
-                            href={item.recipeInfo.url}
-                          >See the full recipe
-                          </a>
-                        </div>
-                      </div>
-                  </div>
-                </div>*/
                 ))}
               </div>
             </div>
-        </main>
     </div>
   );
 }

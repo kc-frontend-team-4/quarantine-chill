@@ -1,7 +1,5 @@
 .RecentCardMovie {
-    right: 0;
-    margin-left: 500px;
-    margin-top: 30px;
+    margin-top: 50px;
     padding: 25px 0px 0px 0px;
     background-color: var(--gray);
     border-radius: 10px;
@@ -9,8 +7,8 @@
     top: 30%; 
 }
 
-.RecentCardMovie-name, .recipe-name {
-    font-size: 22px;
+.RecentCardMovie-name {
+    font-size: 18px;
     font-weight: 700;
     text-align: center;
     margin-top: 0;

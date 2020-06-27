@@ -8,7 +8,7 @@ function RecentCardRecipe(props) {
           <img className="RecentCardRecipe-image" src={props.recipeImg} />
         </div>
         <div className="recipe-information">
-          <p className="recipe-name">{props.recipeName}</p>
+          <p className="RecentCardRecipe-name">{props.recipeName}</p>
             <div className="RecentCardRecipe-link-container">
               <div className="RecentCardRecipe-link">
                 <a 
