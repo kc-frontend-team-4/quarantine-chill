@@ -10,7 +10,7 @@ Quarantine & Chill is a single-page React web app designed to address elements o
 
 * `react` and `react-router` are set-up in a normal, `create-react-app` layout
 
-* Connected to two different APIs to generate unique movie and recipe pairings based on your preferences
+* Connected to two different APIs to generate unique movie and recipe pairings based on your preferences: [The Movie Database API](https://developers.themoviedb.org/3/getting-started/introduction) and [Spoontacular](https://spoonacular.com/food-api/docs#Search-Recipes)
 
 * MongoDB/Express/Node.js - powered backend
 
