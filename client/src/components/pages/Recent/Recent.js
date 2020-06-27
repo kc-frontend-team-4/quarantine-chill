@@ -9,15 +9,17 @@ function Recent() {
 
   // Go to next page
   function goToNextPage() {
-    const newPageValue = Math.min(page + 1, Math.ceil(pairings.length/8))
+    const newPageValue = Math.min(page + 1, Math.ceil(pairings.length/4))
     console.log("new page value is", newPageValue)
     setPage(newPageValue)
+    window.scrollTo(0, 0)
     console.log("go to next page, page value is", page)
   }
   // Go to previous page
   function goToPreviousPage() {
     const newPageValue = Math.max(page - 1, 1)
     setPage(newPageValue)
+    window.scrollTo(0, 0)
     console.log("go to prev page, page value is", page)
   }
 
@@ -39,7 +41,7 @@ function Recent() {
           <div className="recent-page"> 
             <div style={{marginTop:"120px"}}>
               {
-                pairings.slice(page*8-8, page*8-1)
+                pairings.slice(page*4-4, page*4)
                   .map((item) => (
                     <RecentCard
                       poster_path={item.randomedMovie.poster_path}
@@ -51,10 +53,12 @@ function Recent() {
                       recipeUrl={item.recipeInfo.url}
                     /> 
                 ))}
+              <div className="page-nav">
+                <div className="page-change-prev" onClick={goToPreviousPage}>⬅ Previous Page </div>
+                <div className="page-change-next" onClick={goToNextPage}>Next Page ➡</div>
               </div>
-             current page: {page}
-                <button className="PageButton" onClick={goToPreviousPage}> Previous Page </button>
-                <button className="PageButton" onClick={goToNextPage}>Next Page</button>
+              <div className="current-page"> Page {page} of {Math.ceil(pairings.length/4)} </div>
+          </div>
         </div>
     </div>
   );
