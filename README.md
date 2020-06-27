@@ -2,7 +2,7 @@
 
 # Quarantine & Chill
 
-Quarantine & Chill is a single-page React web app designed to address elements of decision fatigue that accompany shelter-in-place. With the widespread closure of business during COVID-19, many people have lost access to their favorite recreations and pastimes and are stuck in their own homes. The days blend together as we cook every meal at home and binge-watch television. With Quarantine and Chill, you no longer have to eternally scroll through dinner recipes and movie options, waiting for something interesting to jump out. Let Quarantine and Chill make that decision for you!
+Quarantine & Chill is a single-page React web app designed to address elements of decision fatigue that accompany shelter-in-place. With the widespread closure of businesses during COVID-19, many people have lost access to their favorite recreations and pastimes and are stuck in their own homes. The days blend together as we cook every meal at home and binge-watch television. With Quarantine and Chill, you no longer have to eternally scroll through dinner recipes and movie options, waiting for something interesting to jump out. Let Quarantine and Chill make that decision for you!
 
 ## About
 
@@ -14,22 +14,22 @@ Quarantine & Chill is a single-page React web app designed to address elements o
 
 * MongoDB/Express/Node.js - powered backend
 
+* Spinners from the [react-spinners npm package](https://www.npmjs.com/package/react-spinners)
+
 * Handy `run.sh` script that brings in a `.env.local` file for configuration
 
 ## Usage
 
 ### Set-up
 
-1. Get the code. You can either download this repo as a tar.gz or zip file,
-then extract, do a git pull and copy over the files into your project, or fork
-this project.
+1. Download this repo as zip file,then extract 
+OR do a git pull and copy over the files into your project 
+OR fork this project.
 
-2. Set-up your MongoDB database.
+2. Set-up a MongoDB database.
 
     - Either set-up a [MongoDB Atlas](https://cloud.mongodb.com) database
-      testing purposes with your team (easiest). A full guide for this is
-      included here, in the included
-      [`mongodb_atlas_guide.md`](./mongodb_atlas_guide.md)
+      testing purposes with your team (easiest).
 
     - Or install and configure a local DB for testing
 
