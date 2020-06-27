@@ -157,20 +157,20 @@ function App() {
           let index = Math.floor((Math.random() * filteredMovies.length));
           let movie = filteredMovies[index];
           let [runtime, imdb_id, overview] = await getMovieDetails(movie);
-          if (desiredLength === "Less than 106 min") {
-            if (runtime >= 0 && runtime <= 105) {
+          if (desiredLength === "Less than 90 min") {
+            if (runtime >= 0 && runtime <= 89) {
               movieToSet = movie;
               setImdbID(imdb_id);
               setmovieOverview(sanitizeString(overview));
             }
-          } else if (desiredLength === "106 min - 135 min") {
-            if (runtime >= 106 && runtime <= 135) {
+          } else if (desiredLength === "90 min - 120 min") {
+            if (runtime >= 90 && runtime <= 120) {
               movieToSet = movie;
               setImdbID(imdb_id);
               setmovieOverview(sanitizeString(overview));
             }
-          } else if (desiredLength === "More than 135 min") {
-            if (runtime > 135) {
+          } else if (desiredLength === "More than 120 min") {
+            if (runtime > 121) {
               movieToSet = movie;
               setImdbID(imdb_id);
               setmovieOverview(sanitizeString(overview));
