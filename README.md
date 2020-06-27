@@ -16,7 +16,7 @@ Quarantine & Chill is a single-page React web app designed to address elements o
 
 * Spinners from the [react-spinners npm package](https://www.npmjs.com/package/react-spinners)
 
-* Handy `run.sh` script that brings in a `.env.local` file for configuration
+* Bash `run.sh` script that brings in a `.env.local` file for configuration
 
 ## Usage
 
@@ -28,12 +28,9 @@ OR fork this project.
 
 2. Set-up a MongoDB database: Either set-up a [MongoDB Atlas](https://cloud.mongodb.com) database, or install and configure a local DB for testing
 
-3. Create a ".env.local" file, that contains your credentials. If you followed
-the [`mongodb_atlas_guide.md`](./mongodb_atlas_guide.md) tutorial, you will
-have already done this.
+3. Create a ".env.local" file, that contains your credentials. 
 
-    - This file WILL NOT go into your git repo (because it is in .gitignore).
-      If you will be using the supplied run.sh, it should be in the following
+    - If you will be using the supplied run.sh, it should be in the following
       format:
 
         export MONGODB_URI='mongodb://USERNAME:PASSWORD@something.com:1234/DB_NAME'
