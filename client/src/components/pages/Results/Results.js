@@ -58,7 +58,7 @@ function Results(props) {
             </div>
             <div className="movie-information">
               <p className="movie-name">{props.randomedMovie.title || props.randomedMovie.name}</p>
-              <p>{props.movieOverview}</p>
+              <p style={{height: "142px"}}>{props.movieOverview}</p>
               <div className="movie-link-container">
                 <div className="movie-link">
                   <a className="imdb-text" target="_blank" rel="noopener noreferrer" href={'https://www.imdb.com/title/' + props.imdbId}>Check it out on <img className="imdb-img" alt='IMDB' src={imdb} /></a>
@@ -74,7 +74,7 @@ function Results(props) {
             </div>
             <div className="recipe-information">
               <p className="recipe-name">{props.recipeInfo.name}</p>
-              <p style={{ fontSize: "16px" }} >{props.recipeInfo.summary}</p>
+              <p style={{ fontSize: "16px", height: "142px" }} >{props.recipeInfo.summary}</p>
               <div class="recipe-link-container">
                 <div class="recipe-link">
                   <a className="recipe-text" target="_blank" rel="noopener noreferrer" href={props.recipeInfo.url}>See the full recipe</a>
@@ -83,8 +83,8 @@ function Results(props) {
             </div>
           </div>
         </div>
-        <button style={{ alignSelf: "center", marginBottom: "62px" }} onClick={submit}>Love It!</button>
-        <button className="gray-button" onClick={props.getPair} style={{ alignSelf: "flex-end", marginBottom: "100px" }}>Give Me Another </button>
+        <button style={{ alignSelf: "center", marginBottom: "0px" }} onClick={submit}>Love It!</button>
+        <button className="gray-button" onClick={props.getPair} style={{ alignSelf: "flex-end", marginBottom: "80px" }}>Give Me Another </button>
       </main>
     </div >
   )
