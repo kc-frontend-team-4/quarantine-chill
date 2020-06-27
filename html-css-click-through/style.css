@@ -136,9 +136,40 @@ button {
     align-self: center;
 }
 
+.pair { 
+    background-color: var(--red);
+    border: 1px solid black;
+    padding: 10px 20px;
+    transition: .8s;
+}
+
+.pair:hover{
+ color: #a80210; 
+}
+
+
+.red-button {
+    background-color: var(--red);
+    border: 1px solid black;
+    padding: 10px 20px;
+    transition: .8s;
+}
+
+
 .gray-button {
     background-color: var(--gray);
     margin-top: 80px;
+    border: 1px solid black;
+    padding: 10px 20px;
+    transition: .8s;
+}
+
+.red-button:hover{
+ color: #a80210; 
+}
+
+.gray-button:hover{
+ color: #505456;
 }
 
 .start-over {
